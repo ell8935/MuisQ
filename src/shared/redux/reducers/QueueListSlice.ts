@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
-interface queueItem {
-  title: string;
-  url: string;
-}
+import { queueItem } from "../../types";
 
 const initialState: queueItem[] = [];
 
@@ -11,7 +7,7 @@ export const queueListSlice = createSlice({
   name: "queueListSlice",
   initialState,
   reducers: {
-    setQueueListData: (state, action: PayloadAction<queueItem[]>) => {
+    setQueueListData: (_state, action: PayloadAction<queueItem[]>) => {
       return action.payload;
     },
   },

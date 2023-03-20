@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { createRoom } from "../../../../../../../MusiQ/src/services/firebase";
-import { useAuth } from "../../../../../../../MusiQ/src/shared/hooks/useAuth";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
+// import { useAuth } from "../../../../shared/hooks/useAuth";
+import { createRoom } from "../../../../shared/services/firebase";
 
 const CreateRoom = () => {
-  const { user } = useAuth();
+  // const { user } = useAuth();
+  const user = {};
   const [room, setRoom] = useState("");
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -15,10 +16,11 @@ const CreateRoom = () => {
   const handleCreateRoom = async () => {
     // console.log(room);
     if (room) {
-      createRoom(room, user);
+      // createRoom({ roomName: room, user });
       setRoom("");
     }
   };
+
   return (
     <>
       <CustomInput value={room} onChange={handleNameChange} />

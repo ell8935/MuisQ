@@ -1,35 +1,23 @@
-import SearchBarYT from "../SearchBarYT/SearchBarYT";
 import React, { useState } from "react";
+import SearchBarYT from "../SearchBarYT/SearchBarYT";
 import { useDispatch, useSelector } from "react-redux";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { setQueueListData } from "../../../../shared/redux/reducers/QueueListSlice";
+import { AppDispatch, RootState } from "../../../../shared/redux/store";
+import { queueItem } from "../../../../shared/types";
 
 interface Props {
-  handleSelectSong: (index: any) => void;
-}
-interface newItem {
-  title?: string;
-  url?: string;
+  handleSelectSong: (index: number) => void;
 }
 
 const QueueList = ({ handleSelectSong }: Props): JSX.Element => {
-  const dispatch = useDispatch();
-  const queueList = useSelector((state: any) => state.queueList);
-  const [newItem, setNewItem] = useState<newItem>({});
+  const dispatch: AppDispatch = useDispatch();
+  const queueList = useSelector((state: RootState) => state.queueList);
 
-  const addItem = () => {
-    if (newItem) {
-      const itemExists = queueList.find(
-        (item: any) => item.url === newItem.url
-      );
-      if (!itemExists) {
-        dispatch(setQueueListData([...queueList, newItem]));
-        console.log(queueList);
-        setNewItem({});
-      }
-    }
+  const addItem = (queueItem: queueItem) => {
+    dispatch(setQueueListData([...queueList, queueItem]));
   };
 
   const removeItem = (index: number) => {
@@ -40,12 +28,11 @@ const QueueList = ({ handleSelectSong }: Props): JSX.Element => {
   return (
     <div>
       <div>
-        <SearchBarYT setNewItem={setNewItem} />
-        <button onClick={addItem}>Add Song</button>
+        <SearchBarYT addItem={addItem} />
       </div>
       <h2>Queue List</h2>
       <ul>
-        {queueList.map((item: newItem, index: number) => (
+        {queueList.map((item: queueItem, index: number) => (
           <li key={index}>
             <IconButton onClick={() => handleSelectSong(index)}>
               <PlayArrowIcon />

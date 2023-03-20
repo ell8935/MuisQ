@@ -1,11 +1,10 @@
-/// <reference types="node" />
-import { FirebaseError } from "firebase-admin";
 import { initializeApp } from "firebase/app";
 import {
   GoogleAuthProvider,
   signInWithPopup,
   getAuth,
   signOut,
+  UserInfo,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -18,12 +17,20 @@ import {
   getDocs,
 } from "firebase/firestore";
 
-interface Values {
-  roomName: string;
+interface getMessagesInterface {
   roomId: string;
-  user: { uid: string; displayName: string };
-  text: string;
   callback: (messages: any) => void;
+}
+
+interface newMessage {
+  roomId: string;
+  user: Partial<UserInfo>;
+  text: string;
+}
+
+interface newRoom {
+  roomName: string;
+  user: Partial<UserInfo>;
 }
 
 const firebaseConfig = {
@@ -35,34 +42,26 @@ const firebaseConfig = {
   appId: process.env.REACT_APP_FIREBASE_APP_ID,
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
-
 const auth = getAuth();
+
 const loginWithGoogle = async () => {
   try {
     const provider = new GoogleAuthProvider();
 
     const { user } = await signInWithPopup(auth, provider);
 
-    localStorage.setItem("user", user.uid);
-
-    return { uid: user.uid, displayName: user.displayName };
-  } catch (error: unknown) {
-    if (error instanceof Error) {
-      console.error(error);
-    }
-
+    return user;
+  } catch (error) {
     return null;
   }
 };
 
-const googleLogout = () => {
-  signOut(auth);
-  localStorage.removeItem("user");
-};
+const googleLogout = async () => signOut(auth);
 
-const sendMessage = async ({ roomId, user, text }: Values) => {
+const sendMessage = async ({ roomId, user, text }: newMessage) => {
   try {
     await addDoc(collection(db, "chat-rooms", roomId, "messages"), {
       uid: user.uid,
@@ -75,10 +74,7 @@ const sendMessage = async ({ roomId, user, text }: Values) => {
   }
 };
 
-const getMessages = ({
-  roomId,
-  callback,
-}: Pick<Values, "roomId" | "callback">) => {
+const getMessages = ({ roomId, callback }: getMessagesInterface) => {
   return onSnapshot(
     query(
       collection(db, "chat-rooms", roomId, "messages"),
@@ -93,18 +89,42 @@ const getMessages = ({
     }
   );
 };
-const createRoom = async ({ roomName, user }: Values) => {
+
+const createRoom = async ({ roomName, user }: newRoom) => {
   try {
-    await addDoc(collection(db, "Main", "Hall", "Rooms", roomName, "data"), {
+    await addDoc(collection(db, "Rooms"), {
       uid: user.uid,
       displayName: user.displayName,
       timestamp: serverTimestamp(),
       roomName,
     });
-    console.log("Room created");
+    console.log(`${roomName} Created`);
   } catch (error) {
     console.error(error);
   }
+};
+
+const getRooms = async () => {
+  try {
+    const q = query(collection(db, "Rooms"));
+
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      console.log(doc.id, " => ", doc.data());
+    });
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+export {
+  loginWithGoogle,
+  sendMessage,
+  getMessages,
+  googleLogout,
+  createRoom,
+  getRooms,
 };
 
 // const getRooms = async () => {
@@ -125,21 +145,6 @@ const createRoom = async ({ roomName, user }: Values) => {
 //   }
 // };
 
-const getRooms = async () => {
-  try {
-    const q = query(collection(db, "Main", "Hall", "Rooms", "asd", "data"));
-
-    const querySnapshot = await getDocs(q);
-    // console.log(querySnapshot);
-    querySnapshot.forEach((doc) => {
-      // doc.data() is never undefined for query doc snapshots
-      // console.log(doc.id, " => ", doc.data());
-    });
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-};
 // const getRooms = async () => {
 //   try {
 //     const querySnapshot = await getDocs(collection(db, "rooms"));
@@ -170,12 +175,3 @@ const getRooms = async () => {
 //     console.error(error);
 //   }
 // };
-
-export {
-  loginWithGoogle,
-  sendMessage,
-  getMessages,
-  googleLogout,
-  createRoom,
-  getRooms,
-};

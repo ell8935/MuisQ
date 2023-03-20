@@ -3,14 +3,14 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../shared/redux/store";
 import QueueList from "../../../songs/components/QueueList/QueueList";
+import LogoutButton from "../../../auth/components/LogoutButton/LogoutButton";
+import RoomsSelect from "../../../chat/components/RoomsSelect/RoomsSelect";
 
 const MainScreen = () => {
   const queueList = useSelector((state: RootState) => state.queueList);
-  const [isPlaying, setIsPlaying] = useState<boolean>(true);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [currentVideoIndex, setCurrentVideoIndex] = useState<number>(0);
-  const url =
-    queueList[currentVideoIndex]?.url ||
-    "https://www.youtube.com/watch?v=NiPCZ6mW_T8";
+  const url = queueList[currentVideoIndex]?.url;
 
   const togglePlayer = () => {
     setIsPlaying((prev) => !prev);
@@ -30,6 +30,8 @@ const MainScreen = () => {
 
   return (
     <>
+      <RoomsSelect />
+      <LogoutButton />
       <ReactPlayer url={url} playing={isPlaying} onEnded={handleSkipSong} />
       <QueueList handleSelectSong={handleSelectSong} />
       <button onClick={togglePlayer}>play/pause</button>

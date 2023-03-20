@@ -1,15 +1,15 @@
+import { useEffect } from "react";
 import { Provider } from "react-redux";
-import { UnauthenticatedApp } from "./moduels/auth/components/UnauthenticatedApp/UnauthenticatedApp";
-import MainScreen from './moduels/main/screens/MainScreen/MainScreen'
+import LoginScreen from "./moduels/auth/screens/LoginScreen/LoginScreen";
+import MainScreen from "./moduels/main/screens/MainScreen/MainScreen";
+import Routes from "./moduels/Routes/Routes";
 import { store } from "./shared/redux/store";
 
 function App() {
-  return (<>
+  return (
     <Provider store={store}>
-        <MainScreen /> 
+      <Routes />
     </Provider>
-  </>
   );
 }
 export default App;
-

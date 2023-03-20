@@ -1,3 +1,4 @@
+import { authSlice } from "./reducers/authSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
   persistStore,
@@ -20,6 +21,7 @@ const persistConfig = {
 
 const reducers = combineReducers({
   queueList: queueListSlice.reducer,
+  auth: authSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

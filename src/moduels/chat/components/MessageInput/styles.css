@@ -1,11 +1,10 @@
 .message-input-container {
-    display: flex;
-    gap: 4px;
+    display:flex;
 }
 
 .message-input {
+    flex:1;
     padding: 12px 8px;
-    flex: 1;
     background: var(--color-gray);
     border-radius: var(--border-radius);
 }
