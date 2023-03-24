@@ -1,28 +1,41 @@
-import React, { useState } from "react";
-import SearchBarYT from "../SearchBarYT/SearchBarYT";
-import { useDispatch, useSelector } from "react-redux";
-import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { useSelector } from "react-redux";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { setQueueListData } from "../../../../shared/redux/reducers/QueueListSlice";
-import { AppDispatch, RootState } from "../../../../shared/redux/store";
-import { queueItem } from "../../../../shared/types";
+import SearchBarYT from "../SearchBarYT/SearchBarYT";
+import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import { RootState } from "../../../../shared/redux/store";
+import { queueItem, Songs } from "../../../../shared/types";
+import { removeSong, addSong } from "../../../../shared/services/firebase";
 
 interface Props {
   handleSelectSong: (index: number) => void;
+  roomId: string;
+  songsList: Songs[];
 }
 
-const QueueList = ({ handleSelectSong }: Props): JSX.Element => {
-  const dispatch: AppDispatch = useDispatch();
-  const queueList = useSelector((state: RootState) => state.queueList);
+const QueueList = ({
+  songsList,
+  handleSelectSong,
+  roomId,
+}: Props): JSX.Element => {
+  const user = useSelector((state: RootState) => state.auth);
 
   const addItem = (queueItem: queueItem) => {
-    dispatch(setQueueListData([...queueList, queueItem]));
+    addSong({
+      roomId,
+      user,
+      songURL: queueItem.url,
+      songTitle: queueItem.title,
+    });
   };
 
   const removeItem = (index: number) => {
-    const tempQueueList = [...queueList].filter((_, i) => i !== index);
-    dispatch(setQueueListData(tempQueueList));
+    try {
+      const docId = songsList.filter((_, i) => i === index)[0].id;
+      removeSong({ roomId, docId });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -32,7 +45,7 @@ const QueueList = ({ handleSelectSong }: Props): JSX.Element => {
       </div>
       <h2>Queue List</h2>
       <ul>
-        {queueList.map((item: queueItem, index: number) => (
+        {songsList.map((item: Songs, index: number) => (
           <li key={index}>
             <IconButton onClick={() => handleSelectSong(index)}>
               <PlayArrowIcon />
@@ -40,7 +53,7 @@ const QueueList = ({ handleSelectSong }: Props): JSX.Element => {
             <IconButton onClick={() => removeItem(index)}>
               <DeleteIcon />
             </IconButton>
-            {item.title}
+            {item.songTitle}
           </li>
         ))}
       </ul>

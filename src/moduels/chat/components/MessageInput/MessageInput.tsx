@@ -1,4 +1,4 @@
-import React, { FormEvent, ChangeEvent, useState } from "react";
+import { FormEvent, ChangeEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import "./styles.css";
 import { RootState } from "../../../../shared/redux/store";

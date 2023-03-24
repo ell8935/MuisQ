@@ -1,29 +1,24 @@
-import { useEffect, useState } from "react";
+import "./styles.css";
 import { Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { DocumentData } from "firebase/firestore";
 import { getRooms } from "../../../../shared/services/firebase";
 import CreateRoom from "../../../main/components/CreateRoom/CreateRoom";
-import { chatRooms } from "../../data/chatRooms";
-import "./styles.css";
 
 const RoomsSelect = () => {
-  const [rooms, setRooms] = useState([]);
-
-  useEffect(() => {
-    const handleGetRooms = async () => {
-      const roomsGot: any = await getRooms();
-      setRooms(roomsGot);
-    };
-    handleGetRooms();
-  }, []);
+  const { data, isLoading, error } = useQuery<DocumentData[]>({
+    queryKey: ["getRooms"],
+    queryFn: getRooms,
+  });
 
   return (
     <>
       <CreateRoom />
-      <h2>Choose a Chat Room</h2>
+      <h2>Choose a Room or create</h2>
       <ul className="chat-room-list">
-        {chatRooms.map((room) => (
+        {data?.map((room) => (
           <li key={room.id}>
-            <Link to={`/room?id=${room.id}`}>{room.title}</Link>
+            <Link to={`/room?id=${room.id}`}>{room.id}</Link>
           </li>
         ))}
       </ul>

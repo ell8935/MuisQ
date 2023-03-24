@@ -12,6 +12,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { queueListSlice } from "./reducers/QueueListSlice";
+import { roomsSlice } from "./reducers/roomsSlice";
 
 const persistConfig = {
   key: "root",
@@ -22,6 +23,7 @@ const persistConfig = {
 const reducers = combineReducers({
   queueList: queueListSlice.reducer,
   auth: authSlice.reducer,
+  rooms: roomsSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

@@ -11,7 +11,7 @@ const LogoutButton = () => {
       await googleLogout();
       dispatch(clearAuth());
     } catch (error) {
-      // console.log(error);
+      console.log(error);
     }
   };
 

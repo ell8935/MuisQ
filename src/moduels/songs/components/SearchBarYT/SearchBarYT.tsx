@@ -8,6 +8,7 @@ interface SearchResult {
   id: { videoId: string };
   snippet: { title: string };
 }
+
 interface Props {
   addItem: (queueItem: queueItem) => void;
 }
@@ -38,7 +39,7 @@ function SearchBarYT({ addItem }: Props): JSX.Element {
     const youTubeVideoTitle = result.snippet.title;
     const youTubeVideoId = result.id.videoId;
     const youTubeURL = `https://www.youtube.com/watch?v=${youTubeVideoId}`;
-    addItem({ title: youTubeVideoTitle, url: youTubeURL });
+    addItem({ url: youTubeURL, title: youTubeVideoTitle });
   };
 
   return (

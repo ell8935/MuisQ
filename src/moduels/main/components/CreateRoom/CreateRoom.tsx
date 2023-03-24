@@ -1,30 +1,34 @@
 import React, { useState } from "react";
-import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
-// import { useAuth } from "../../../../shared/hooks/useAuth";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { RootState } from "../../../../shared/redux/store";
 import { createRoom } from "../../../../shared/services/firebase";
+import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 
 const CreateRoom = () => {
-  // const { user } = useAuth();
-  const user = {};
-  const [room, setRoom] = useState("");
+  const user = useSelector((state: RootState) => state.auth);
+  const navigate = useNavigate();
+  const [roomName, setRoomName] = useState("");
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    // console.log(event);
-    setRoom(event.target.value);
+    setRoomName(event.target.value);
   };
 
   const handleCreateRoom = async () => {
-    // console.log(room);
-    if (room) {
-      // createRoom({ roomName: room, user });
-      setRoom("");
+    try {
+      await createRoom({ roomName, user });
+      navigate(`/room?id=${roomName}`);
+    } catch (error) {
+      throw new Error("Unable to create room");
     }
   };
 
   return (
     <>
-      <CustomInput value={room} onChange={handleNameChange} />
-      <button onClick={handleCreateRoom}>Create Room</button>;
+      <CustomInput value={roomName} onChange={handleNameChange} />
+      <button disabled={!roomName} onClick={handleCreateRoom}>
+        Create Room
+      </button>
     </>
   );
 };

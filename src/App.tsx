@@ -1,15 +1,17 @@
-import { useEffect } from "react";
 import { Provider } from "react-redux";
-import LoginScreen from "./moduels/auth/screens/LoginScreen/LoginScreen";
-import MainScreen from "./moduels/main/screens/MainScreen/MainScreen";
-import Routes from "./moduels/Routes/Routes";
 import { store } from "./shared/redux/store";
+import Navigator from "./moduels/routes/Navigator";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-function App() {
+const App = () => {
+  const queryClient = new QueryClient();
+
   return (
     <Provider store={store}>
-      <Routes />
+      <QueryClientProvider client={queryClient}>
+        <Navigator />
+      </QueryClientProvider>
     </Provider>
   );
-}
+};
 export default App;

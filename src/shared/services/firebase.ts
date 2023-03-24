@@ -15,33 +15,42 @@ import {
   query,
   orderBy,
   getDocs,
+  setDoc,
+  doc,
+  deleteDoc,
+  getDoc,
+  DocumentData,
 } from "firebase/firestore";
+import { firebaseConfig } from "./firebaseConfig";
 
+interface createRoomInterface {
+  roomName: string;
+  user: Partial<UserInfo>;
+}
 interface getMessagesInterface {
   roomId: string;
   callback: (messages: any) => void;
 }
 
-interface newMessage {
+interface sendMessageInterface {
   roomId: string;
   user: Partial<UserInfo>;
   text: string;
 }
-
-interface newRoom {
-  roomName: string;
-  user: Partial<UserInfo>;
+interface getSongsInterface {
+  roomId: string;
+  callback: (songs: any) => void;
 }
-
-const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
-  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
-};
+interface addSongInterface {
+  roomId: string;
+  user: Partial<UserInfo>;
+  songURL: string;
+  songTitle: string;
+}
+interface removeSongInterface {
+  roomId: string;
+  docId: string;
+}
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -61,9 +70,40 @@ const loginWithGoogle = async () => {
 
 const googleLogout = async () => signOut(auth);
 
-const sendMessage = async ({ roomId, user, text }: newMessage) => {
+const createRoom = async ({
+  roomName,
+  user,
+}: createRoomInterface): Promise<void> => {
+  await setDoc(doc(db, "Rooms", roomName), {
+    addedByUser: user.displayName,
+    timestamp: serverTimestamp(),
+  });
+
+  await addDoc(collection(db, "Rooms", roomName, "songs"), {
+    songURL: "https://www.youtube.com/watch?v=aD8crP0_k0g",
+    songTitle: "Chill Drive Music - Lofi hip hop",
+    uid: user.uid,
+    displayName: user.displayName,
+    timestamp: serverTimestamp(),
+  });
+
+  console.log(`${roomName} Created`);
+};
+
+const getRooms = async (): Promise<DocumentData[]> => {
+  const rooms = await getDocs(collection(db, "Rooms"));
+
+  return rooms.docs;
+};
+
+const getRoom = async (roomId: string): Promise<DocumentData | undefined> => {
+  const room = await getDoc(doc(db, "Rooms", roomId));
+  return room.data();
+};
+
+const sendMessage = async ({ roomId, user, text }: sendMessageInterface) => {
   try {
-    await addDoc(collection(db, "chat-rooms", roomId, "messages"), {
+    await addDoc(collection(db, "Rooms", roomId, "messages"), {
       uid: user.uid,
       displayName: user.displayName,
       text: text.trim(),
@@ -77,7 +117,7 @@ const sendMessage = async ({ roomId, user, text }: newMessage) => {
 const getMessages = ({ roomId, callback }: getMessagesInterface) => {
   return onSnapshot(
     query(
-      collection(db, "chat-rooms", roomId, "messages"),
+      collection(db, "Rooms", roomId, "messages"),
       orderBy("timestamp", "asc")
     ),
     (querySnapshot) => {
@@ -90,87 +130,65 @@ const getMessages = ({ roomId, callback }: getMessagesInterface) => {
   );
 };
 
-const createRoom = async ({ roomName, user }: newRoom) => {
+const addSong = async ({
+  roomId,
+  user,
+  songURL,
+  songTitle,
+}: addSongInterface) => {
   try {
-    await addDoc(collection(db, "Rooms"), {
+    await addDoc(collection(db, "Rooms", roomId, "songs"), {
       uid: user.uid,
       displayName: user.displayName,
+      songURL: songURL,
+      songTitle: songTitle,
       timestamp: serverTimestamp(),
-      roomName,
     });
-    console.log(`${roomName} Created`);
   } catch (error) {
     console.error(error);
   }
 };
 
-const getRooms = async () => {
-  try {
-    const q = query(collection(db, "Rooms"));
+const removeSong = async ({ roomId, docId }: removeSongInterface) => {
+  await deleteDoc(doc(db, "Rooms", roomId, "songs", docId));
+};
 
-    const querySnapshot = await getDocs(q);
-    querySnapshot.forEach((doc) => {
-      console.log(doc.id, " => ", doc.data());
-    });
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
+const getSongs = ({ roomId, callback }: getSongsInterface) => {
+  return onSnapshot(
+    query(
+      collection(db, "Rooms", roomId, "songs"),
+      orderBy("timestamp", "asc")
+    ),
+    (querySnapshot) => {
+      const songs = querySnapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      callback(songs);
+    }
+  );
 };
 
 export {
+  removeSong,
+  getSongs,
+  addSong,
   loginWithGoogle,
   sendMessage,
   getMessages,
   googleLogout,
   createRoom,
   getRooms,
+  getRoom,
 };
 
-// const getRooms = async () => {
+// const removeSong = async ({ roomId }: removeSongInterface) => {
 //   try {
-//     const querySnapshot = await getDocs(collection(db, "rooms"));
-//     const docs = querySnapshot.docs;
-
-//     if (docs.length === 0) {
-//       console.log("No documents found in 'rooms' collection");
-//       return [];
+//     if (roomId === undefined) {
+//       throw new Error("Values undefined");
 //     }
-
-//     const roomIds = docs.map((doc) => doc.id);
-//     return roomIds;
-//   } catch (error) {
-//     console.error(error);
-//     return null;
-//   }
-// };
-
-// const getRooms = async () => {
-//   try {
-//     const querySnapshot = await getDocs(collection(db, "rooms"));
-//     console.log(querySnapshot);
-//     const roomIds = querySnapshot.docs.map((doc) => doc);
-//     console.log(roomIds);
-//     return roomIds;
-//   } catch (error) {
-//     console.error(error);
-//     return null;
-//   }
-// };
-
-// const getRooms = async () => {
-//   try {
-//     const querySnapshot = await getDocs(collection(db, "rooms"));
-//     const rooms = [];
-//     querySnapshot.forEach((doc) => {
-//       const room = {
-//         id: doc.id,
-//         ...doc.data(),
-//       };
-//       console.log("sad");
-//       rooms.push(room);
-//     });
-//     return rooms;
+//     await deleteDoc(doc(db, "Rooms", roomId));
+//     console.log("song removed");
 //   } catch (error) {
 //     console.error(error);
 //   }

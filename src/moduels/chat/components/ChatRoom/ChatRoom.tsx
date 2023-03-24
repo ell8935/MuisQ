@@ -1,30 +1,32 @@
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import NotFound from "../../../auth/components/NotFound404/NotFound404";
-import { chatRooms } from "../../data/chatRooms";
-import { MessageInput } from "../MessageInput/MessageInput";
-import { MessageList } from "../MessageList/MessageList";
 import "./styles.css";
+import { useSelector } from "react-redux";
+import { MessageList } from "../MessageList/MessageList";
+import { Link, useSearchParams } from "react-router-dom";
+import { RootState } from "../../../../shared/redux/store";
+import { MessageInput } from "../MessageInput/MessageInput";
+import NotFound from "../../../auth/components/NotFound404/NotFound404";
 
-function ChatRoom() {
+const ChatRoom = () => {
   const [searchParams] = useSearchParams();
+  const rooms = useSelector((state: RootState) => state.rooms);
 
   const roomId = searchParams.get("id");
 
-  const room = chatRooms.find((room) => room.id === roomId);
+  const room = rooms.find((room) => room === roomId);
 
   if (!room) return <NotFound />;
 
   return (
     <div className="chatroom">
-      <span>{room.title}</span>
+      <span>{room}</span>
       <div>
         <Link to="/">⬅️ Back to all rooms</Link>
       </div>
 
-      <MessageList roomId={room.id} />
-      <MessageInput roomId={room.id} />
+      <MessageList roomId={room} />
+      <MessageInput roomId={room} />
     </div>
   );
-}
+};
 
-export { ChatRoom };
+export default ChatRoom;
