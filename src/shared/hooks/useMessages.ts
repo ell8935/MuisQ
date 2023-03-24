@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { getMessages } from "../services/firebase";
+import { getMessages } from "../services/firebaseServices/messageServices";
 
 interface Message {
   displayName: string;

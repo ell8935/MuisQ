@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../../shared/redux/store";
-import { createRoom } from "../../../../shared/services/firebase";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
+import { createRoom } from "../../../../shared/services/firebaseServices/roomServices";
 
 const CreateRoom = () => {
   const user = useSelector((state: RootState) => state.auth);

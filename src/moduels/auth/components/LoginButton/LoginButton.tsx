@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { AppDispatch } from "../../../../shared/redux/store";
 import { setAuth } from "../../../../shared/redux/reducers/authSlice";
-import { loginWithGoogle } from "../../../../shared/services/firebase";
+import { loginWithGoogle } from "../../../../shared/services/firebaseServices/authServies";
 
 const LoginButton = () => {
   const dispatch: AppDispatch = useDispatch();

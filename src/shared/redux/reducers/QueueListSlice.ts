@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { queueItem } from "../../types";
+import { queueItem } from "../../constants/types";
 
 const initialState: queueItem[] = [];
 

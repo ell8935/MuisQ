@@ -2,8 +2,8 @@ import "./styles.css";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { DocumentData } from "firebase/firestore";
-import { getRooms } from "../../../../shared/services/firebase";
 import CreateRoom from "../../../main/components/CreateRoom/CreateRoom";
+import { getRooms } from "../../../../shared/services/firebaseServices/roomServices";
 
 const RoomsSelect = () => {
   const { data, isLoading, error } = useQuery<DocumentData[]>({

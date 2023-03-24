@@ -4,8 +4,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import SearchBarYT from "../SearchBarYT/SearchBarYT";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import { RootState } from "../../../../shared/redux/store";
-import { queueItem, Songs } from "../../../../shared/types";
-import { removeSong, addSong } from "../../../../shared/services/firebase";
+import { queueItem, Songs } from "../../../../shared/constants/types";
+import {
+  addSong,
+  removeSong,
+} from "../../../../shared/services/firebaseServices/songServices";
 
 interface Props {
   handleSelectSong: (index: number) => void;

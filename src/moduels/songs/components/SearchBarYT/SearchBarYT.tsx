@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import useDebounce from "../../../../shared/hooks/useDebounce";
 import AddIcon from "@mui/icons-material/Add";
-import { queueItem } from "../../../../shared/types";
+import { queueItem } from "../../../../shared/constants/types";
 interface SearchResult {
   id: { videoId: string };
   snippet: { title: string };

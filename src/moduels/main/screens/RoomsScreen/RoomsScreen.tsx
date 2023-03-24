@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { Link, useSearchParams } from "react-router-dom";
 import Player from "../../../songs/components/Player/Player";
-import { getRoom } from "../../../../shared/services/firebase";
 import NotFound from "../../../auth/components/NotFound404/NotFound404";
 import { MessageList } from "../../../chat/components/MessageList/MessageList";
 import { MessageInput } from "../../../chat/components/MessageInput/MessageInput";
+import { getRoom } from "../../../../shared/services/firebaseServices/roomServices";
 
 function RoomScreen() {
   const [searchParams] = useSearchParams();

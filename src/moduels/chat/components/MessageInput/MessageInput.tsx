@@ -2,7 +2,7 @@ import { FormEvent, ChangeEvent, useState } from "react";
 import { useSelector } from "react-redux";
 import "./styles.css";
 import { RootState } from "../../../../shared/redux/store";
-import { sendMessage } from "../../../../shared/services/firebase";
+import { sendMessage } from "../../../../shared/services/firebaseServices/messageServices";
 
 interface Props {
   roomId: string;
