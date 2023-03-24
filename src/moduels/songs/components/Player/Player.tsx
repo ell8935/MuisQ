@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import ReactPlayer from "react-player";
 import { useSongs } from "../../../../shared/hooks/useSongs";
 import QueueList from "../../../songs/components/QueueList/QueueList";
@@ -15,7 +15,7 @@ const Player = ({ roomId }: Props) => {
 
   const url = songsList[currentVideoIndex]?.songURL;
   const tabTitle = songsList[currentVideoIndex]?.songTitle;
-  document.title = isPlaying ? `MusiQ-${tabTitle}` : "MusiQ";
+  document.title = isPlaying && url ? `MusiQ-${tabTitle}` : "MusiQ";
 
   const togglePlayer = () => {
     setIsPlaying((prev) => !prev);
