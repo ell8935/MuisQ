@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { RootState } from "../../../../shared/redux/store";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 import { createRoom } from "../../../../shared/services/firebaseServices/roomServices";
+import CreateRoomStyled from "./CreateRoomStyled";
+import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
 
 const CreateRoom = () => {
   const user = useSelector((state: RootState) => state.auth);
@@ -24,12 +26,21 @@ const CreateRoom = () => {
   };
 
   return (
-    <>
-      <CustomInput value={roomName} onChange={handleNameChange} />
-      <button disabled={!roomName} onClick={handleCreateRoom}>
-        Create Room
-      </button>
-    </>
+    <CreateRoomStyled>
+      <CustomInput
+        label="Room's Name"
+        value={roomName}
+        onChange={handleNameChange}
+        placeHolder="e.g Rock and Roll"
+      />
+      <div className="createRoom">
+        <CustomButton
+          label="Create Room"
+          disabled={!roomName}
+          onClick={handleCreateRoom}
+        />
+      </div>
+    </CreateRoomStyled>
   );
 };
 

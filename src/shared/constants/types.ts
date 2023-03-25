@@ -10,3 +10,8 @@ export interface Songs {
   songTitle: string;
   timestamp: {};
 }
+
+export interface CustomTextInterface {
+  label?: string;
+  size?: string;
+}

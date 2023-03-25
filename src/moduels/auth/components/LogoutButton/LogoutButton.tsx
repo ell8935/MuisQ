@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
-import { clearAuth } from "../../../../shared/redux/reducers/authSlice";
 import { AppDispatch } from "../../../../shared/redux/store";
+import { clearAuth } from "../../../../shared/redux/reducers/authSlice";
+import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
 import { googleLogout } from "../../../../shared/services/firebaseServices/authServies";
 
 const LogoutButton = () => {
@@ -15,7 +16,7 @@ const LogoutButton = () => {
     }
   };
 
-  return <button onClick={handleLogout}>Logout</button>;
+  return <CustomButton label="Logout" onClick={handleLogout} />;
 };
 
 export default LogoutButton;

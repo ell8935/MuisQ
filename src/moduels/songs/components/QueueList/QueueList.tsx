@@ -9,6 +9,7 @@ import {
   addSong,
   removeSong,
 } from "../../../../shared/services/firebaseServices/songServices";
+import QueueListStyled from "./QueueListStyled";
 
 interface Props {
   handleSelectSong: (index: number) => void;
@@ -42,7 +43,7 @@ const QueueList = ({
   };
 
   return (
-    <div>
+    <QueueListStyled>
       <div>
         <SearchBarYT addItem={addItem} />
       </div>
@@ -60,7 +61,7 @@ const QueueList = ({
           </li>
         ))}
       </ul>
-    </div>
+    </QueueListStyled>
   );
 };
 
