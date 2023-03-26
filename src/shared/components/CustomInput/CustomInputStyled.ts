@@ -1,21 +1,24 @@
 import styled from "styled-components";
 
 const CustomInputStyled = styled.div`
+  width: 100%;
+
   span {
     position: relative;
     display: inline-block;
-    margin: 25px 10px 0px 10px;
+    width: 100%;
+    margin: 0px 0px 0px 5px;
   }
 
   .slide-up {
     display: inline-block;
-    width: 215px;
-    padding: 10px 0 15px 15px;
+    width: 98%;
     font-weight: 400;
+    padding: 15px 0px;
     color: #377d6a;
     background: #efefef;
     border: 0;
-    border-radius: 3px;
+    border-radius: ${({ theme }) => theme.padding.small};
     outline: 0;
     text-indent: 80px; // Arbitrary.
     transition: all 0.3s ease-in-out;
@@ -30,8 +33,9 @@ const CustomInputStyled = styled.div`
       display: inline-block;
       position: absolute;
       transform: translateX(0);
-      top: 3%;
-      border-radius: 5px;
+      top: 2%;
+      right: 50%;
+      border-radius: ${({ theme }) => theme.padding.small};
 
       left: 1%;
       padding: 10px 15px;
@@ -87,7 +91,7 @@ const CustomInputStyled = styled.div`
       transform: translateY(-100%);
 
       &:before {
-        border-radius: 5px;
+        border-radius: ${({ theme }) => theme.padding.small};
       }
       &:after {
         transform: translateY(100%);

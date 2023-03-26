@@ -23,11 +23,13 @@ const RoomsSelect = () => {
           <ul className="listContainer">
             <h2>Choose a Room or Create</h2>
             {data?.map((room) => (
-              <li className="listItem" key={room.id}>
-                <Link className="linkRoom" to={`/room?id=${room.id}`}>
-                  {room.id}
-                </Link>
-              </li>
+              <Link
+                key={room.id}
+                className="linkRoom"
+                to={`/room?id=${room.id}`}
+              >
+                <li className="listItem">{room.id}</li>
+              </Link>
             ))}
           </ul>
         </>

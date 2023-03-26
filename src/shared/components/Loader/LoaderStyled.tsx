@@ -15,7 +15,7 @@ const LoaderStyled = styled.div`
 */
   svg path,
   svg rect {
-    fill: #ff6700;
+    fill: #0b0602;
   }
 `;
 

@@ -3,8 +3,9 @@ import styled from "styled-components";
 const CreateRoomStyled = styled.div`
   display: flex;
   padding: ${({ theme }) => theme.padding.medium};
+  width: 100%;
 
-  .createRoom {
+  .createRoomButton {
     display: flex;
     flex-direction: column;
     justify-content: end;

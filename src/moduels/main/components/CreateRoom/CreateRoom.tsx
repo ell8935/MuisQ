@@ -33,7 +33,7 @@ const CreateRoom = () => {
         onChange={handleNameChange}
         placeHolder="e.g Rock and Roll"
       />
-      <div className="createRoom">
+      <div className="createRoomButton">
         <CustomButton
           label="Create Room"
           disabled={!roomName}

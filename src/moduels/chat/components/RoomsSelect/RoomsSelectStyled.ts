@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 const RoomsSelectStyled = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -9,19 +10,24 @@ const RoomsSelectStyled = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.medium};
 
   .listContainer {
-    width: clamp(100px, 75%, 500px);
+    width: 98%;
     padding: ${({ theme }) => theme.padding.medium};
     margin: 0px;
+    font-weight: 700;
+    .linkRoom {
+      color: ${({ theme }) => theme.colors.black};
+      user-select: none;
+      text-decoration: none;
 
-    .listItem {
-      list-style-type: none;
-      border: 2px solid black;
-      background-color: ${({ theme }) => theme.colors.white};
-      padding: ${({ theme }) => theme.padding.small};
-
-      .linkRoom {
-        text-decoration: none;
-        color: ${({ theme }) => theme.colors.black};
+      .listItem {
+        list-style-type: none;
+        border-radius: ${({ theme }) => theme.borderRadius.medium};
+        background-color: ${({ theme }) => theme.colors.redGray};
+        padding: ${({ theme }) => theme.padding.small};
+        margin-bottom: 5px;
+        :hover {
+          background-color: ${({ theme }) => theme.colors.black};
+        }
       }
     }
   }

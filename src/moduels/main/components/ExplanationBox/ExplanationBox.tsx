@@ -1,4 +1,3 @@
-import React from "react";
 import CustomText from "../../../../shared/components/CustomText/CustomText";
 import ExplanationBoxStyled from "./ExplanationBoxStyled";
 
