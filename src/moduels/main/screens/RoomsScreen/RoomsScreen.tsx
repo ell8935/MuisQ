@@ -5,6 +5,8 @@ import NotFound from "../../../auth/components/NotFound404/NotFound404";
 import { MessageList } from "../../../chat/components/MessageList/MessageList";
 import { MessageInput } from "../../../chat/components/MessageInput/MessageInput";
 import { getRoom } from "../../../../shared/services/firebaseServices/roomServices";
+import HeaderBar from "../../components/HeaderBar/HeaderBar";
+import RoomScreenStyled from "./RoomScreenStyled";
 
 function RoomScreen() {
   const [searchParams] = useSearchParams();
@@ -19,15 +21,15 @@ function RoomScreen() {
   if (error) return <NotFound />;
 
   return (
-    <div className="chatroom">
-      <span>{roomId}</span>
+    <RoomScreenStyled>
+      <HeaderBar />
       <div>
-        <Link to="/">⬅️ Back to all rooms</Link>
         <Player roomId={roomId} />
         <MessageList roomId={roomId} />
         <MessageInput roomId={roomId} />
+        <Link to="/">⬅️ Back to all rooms</Link>
       </div>
-    </div>
+    </RoomScreenStyled>
   );
 }
 

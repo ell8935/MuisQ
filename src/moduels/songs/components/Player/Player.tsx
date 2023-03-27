@@ -2,8 +2,6 @@ import { useState } from "react";
 import ReactPlayer from "react-player";
 import { useSongs } from "../../../../shared/hooks/useSongs";
 import QueueList from "../../../songs/components/QueueList/QueueList";
-import LoginButton from "../../../auth/components/LoginButton/LoginButton";
-import LogoutButton from "../../../auth/components/LogoutButton/LogoutButton";
 interface Props {
   roomId: string;
 }
@@ -41,8 +39,6 @@ const Player = ({ roomId }: Props) => {
 
   return (
     <>
-      <LoginButton />
-      <LogoutButton />
       <ReactPlayer
         onPlay={handleOnPlay}
         onPause={handleOnPause}

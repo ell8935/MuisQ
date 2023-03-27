@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MainScreenStyled = styled.div`
+const RoomScreenStyled = styled.div`
   font-family: "Open Sans", sans-serif;
   display: grid;
   height: 100vh;
@@ -63,13 +63,4 @@ const MainScreenStyled = styled.div`
   }
 `;
 
-export default MainScreenStyled;
-
-//PC
-/* @media (min-width: 600px) {
-  padding: 50px;
-}
-//mobile
-background-color: ${({ theme }) => theme.colors.whiteCream};
-padding: 10px;
-gap: 3px; */
+export default RoomScreenStyled;
