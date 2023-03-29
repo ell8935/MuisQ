@@ -1,3 +1,4 @@
+import { musicControlsSlice } from "./reducers/musicControlsSlice";
 import { authSlice } from "./reducers/authSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import {
@@ -11,7 +12,6 @@ import {
   REGISTER,
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
-import { queueListSlice } from "./reducers/QueueListSlice";
 import { roomsSlice } from "./reducers/roomsSlice";
 
 const persistConfig = {
@@ -21,9 +21,9 @@ const persistConfig = {
 };
 
 const reducers = combineReducers({
-  queueList: queueListSlice.reducer,
   auth: authSlice.reducer,
   rooms: roomsSlice.reducer,
+  musicControls: musicControlsSlice.reducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);

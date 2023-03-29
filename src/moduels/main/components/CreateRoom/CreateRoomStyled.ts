@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 const CreateRoomStyled = styled.div`
   display: flex;
-  padding: ${({ theme }) => theme.padding.medium};
   width: 100%;
 
   .createRoomButton {

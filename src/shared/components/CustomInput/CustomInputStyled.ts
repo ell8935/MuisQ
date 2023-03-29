@@ -7,12 +7,11 @@ const CustomInputStyled = styled.div`
     position: relative;
     display: inline-block;
     width: 100%;
-    margin: 0px 0px 0px 5px;
   }
 
   .slide-up {
     display: inline-block;
-    width: 98%;
+    width: 100%;
     font-weight: 400;
     padding: 15px 0px;
     color: #377d6a;

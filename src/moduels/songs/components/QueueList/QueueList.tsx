@@ -1,38 +1,23 @@
-import { useSelector } from "react-redux";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
-import SearchBarYT from "../SearchBarYT/SearchBarYT";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { RootState } from "../../../../shared/redux/store";
-import { queueItem, Songs } from "../../../../shared/constants/types";
-import {
-  addSong,
-  removeSong,
-} from "../../../../shared/services/firebaseServices/songServices";
+import { Songs } from "../../../../shared/constants/types";
+import { removeSong } from "../../../../shared/services/firebaseServices/songServices";
 import QueueListStyled from "./QueueListStyled";
 
 interface Props {
   handleSelectSong: (index: number) => void;
   roomId: string;
   songsList: Songs[];
+  className: string;
 }
 
 const QueueList = ({
   songsList,
   handleSelectSong,
   roomId,
+  className,
 }: Props): JSX.Element => {
-  const user = useSelector((state: RootState) => state.auth);
-
-  const addItem = (queueItem: queueItem) => {
-    addSong({
-      roomId,
-      user,
-      songURL: queueItem.url,
-      songTitle: queueItem.title,
-    });
-  };
-
   const removeItem = (index: number) => {
     try {
       const docId = songsList.filter((_, i) => i === index)[0].id;
@@ -43,10 +28,7 @@ const QueueList = ({
   };
 
   return (
-    <QueueListStyled>
-      <div>
-        <SearchBarYT addItem={addItem} />
-      </div>
+    <QueueListStyled className={className}>
       <h2>Queue List</h2>
       <ul>
         {songsList.map((item: Songs, index: number) => (

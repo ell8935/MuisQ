@@ -10,7 +10,7 @@ const RoomsSelectStyled = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.medium};
 
   .listContainer {
-    width: 98%;
+    width: 95%;
     padding: ${({ theme }) => theme.padding.medium};
     margin: 0px;
     font-weight: 700;

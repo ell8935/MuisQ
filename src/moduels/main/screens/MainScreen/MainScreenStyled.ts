@@ -3,16 +3,12 @@ import styled from "styled-components";
 const MainScreenStyled = styled.div`
   font-family: "Open Sans", sans-serif;
   display: grid;
-  height: 100vh;
+  height: calc(100vh - 30px);
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 10% 1fr;
   grid-column-gap: 3px;
   grid-row-gap: 3px;
-  padding: 5px;
-
-  .header {
-    display: grid;
-  }
+  padding: 15px;
 
   .logo {
     grid-area: 1 / 1 / 2 / 2;

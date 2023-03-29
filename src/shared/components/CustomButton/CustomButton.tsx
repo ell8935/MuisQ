@@ -1,5 +1,6 @@
-import React, { MouseEventHandler } from "react";
+import { MouseEventHandler } from "react";
 import CustomButtonStyled from "./CustomButtonStyled";
+
 interface CustomButtonInterface {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   label?: string;
