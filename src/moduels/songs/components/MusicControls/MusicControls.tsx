@@ -31,8 +31,6 @@ const MusicControls = () => {
   // }, []);
 
   const togglePlayerPausePlay = () => {
-    console.log(togglePlayer);
-
     dispatch(setTogglePlayer(!togglePlayer));
   };
 

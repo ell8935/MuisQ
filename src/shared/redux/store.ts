@@ -13,6 +13,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import { roomsSlice } from "./reducers/roomsSlice";
+import { modalSlice } from "./reducers/modalSlice";
 
 const persistConfig = {
   key: "root",
@@ -23,6 +24,7 @@ const persistConfig = {
 const reducers = combineReducers({
   auth: authSlice.reducer,
   rooms: roomsSlice.reducer,
+  modal: modalSlice.reducer,
   musicControls: musicControlsSlice.reducer,
 });
 

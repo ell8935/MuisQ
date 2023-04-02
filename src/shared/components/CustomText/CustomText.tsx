@@ -2,8 +2,6 @@ import { CustomTextInterface } from "../../constants/types";
 import CustomTextStyled from "./CustomTextStyled";
 
 const CustomText = ({ label, size }: CustomTextInterface) => {
-  console.log(size);
-
   return (
     <CustomTextStyled size={size}>
       <span>{label}</span>

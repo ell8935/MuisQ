@@ -1,4 +1,3 @@
-import { UserInfo } from "firebase/auth";
 import {
   addDoc,
   collection,
@@ -9,28 +8,20 @@ import {
   query,
   serverTimestamp,
 } from "firebase/firestore";
+import {
+  addSongInterface,
+  getSongsInterface,
+  removeSongInterface,
+} from "../../constants/types/songTypes";
 import { db } from "../firebase";
-
-interface getSongsInterface {
-  roomId: string;
-  callback: (songs: any) => void;
-}
-interface addSongInterface {
-  roomId: string;
-  user: Partial<UserInfo>;
-  songURL: string;
-  songTitle: string;
-}
-interface removeSongInterface {
-  roomId: string;
-  docId: string;
-}
 
 const addSong = async ({
   roomId,
   user,
   songURL,
   songTitle,
+  duration,
+  channelTitle,
 }: addSongInterface) => {
   try {
     await addDoc(collection(db, "Rooms", roomId, "songs"), {
@@ -38,6 +29,8 @@ const addSong = async ({
       displayName: user.displayName,
       songURL: songURL,
       songTitle: songTitle,
+      duration,
+      channelTitle,
       timestamp: serverTimestamp(),
     });
   } catch (error) {

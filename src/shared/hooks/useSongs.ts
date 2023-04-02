@@ -1,5 +1,5 @@
-import { Songs } from "../constants/types";
 import { useEffect, useState } from "react";
+import { Songs } from "../constants/types/songTypes";
 import { getSongs } from "../services/firebaseServices/songServices";
 
 function useSongs(roomId: string): Songs[] {

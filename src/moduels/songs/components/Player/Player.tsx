@@ -1,5 +1,7 @@
+import { IconButton } from "@mui/material";
 import ReactPlayer from "react-player";
 import { useDispatch, useSelector } from "react-redux";
+import CustomModal from "../../../../shared/components/CustomModal/CustomModal";
 import { useSongs } from "../../../../shared/hooks/useSongs";
 import {
   setSongCurrentIndex,
@@ -7,8 +9,13 @@ import {
   skipSong,
 } from "../../../../shared/redux/reducers/musicControlsSlice";
 import { AppDispatch, RootState } from "../../../../shared/redux/store";
+import ShareRoom from "../../../main/components/ShareRoom/ShareRoom";
 import QueueList from "../../../songs/components/QueueList/QueueList";
 import PlayerStyled from "./PlayerStyled";
+import IosShareIcon from "@mui/icons-material/IosShare";
+import { setModal } from "../../../../shared/redux/reducers/modalSlice";
+import DurationTimer from "../DurationTimer/DurationTimer";
+import { useRef, useState } from "react";
 
 interface Props {
   roomId: string;
@@ -21,12 +28,23 @@ const Player = ({ roomId, className }: Props) => {
   const { togglePlayer, currentIndex } = useSelector(
     (state: RootState) => state.musicControls
   );
+  const [durationElapsed, setDurationElapsed] = useState<number>(0);
 
   const url = songsList[currentIndex]?.songURL;
   const songTitle = songsList[currentIndex]?.songTitle;
+  const songDuration = songsList[currentIndex]?.duration;
+  const songChannelTitle = songsList[currentIndex]?.channelTitle;
+
+  const playerRef = useRef<ReactPlayer>(null);
 
   document.title =
     togglePlayer === true && url ? `MusiQ-${songTitle}` : "MusiQ";
+
+  const handleTimer = () => {
+    if (playerRef.current) {
+      setDurationElapsed(Math.floor(playerRef.current.getCurrentTime()));
+    }
+  };
 
   const handleSelectSong = (index: number) => {
     if (index === currentIndex) {
@@ -38,19 +56,32 @@ const Player = ({ roomId, className }: Props) => {
   return (
     <PlayerStyled className={className}>
       <span>{roomId}'s room</span>
+      <CustomModal>
+        <ShareRoom roomId={roomId} />
+      </CustomModal>
+      <IconButton onClick={() => dispatch(setModal(true))}>
+        <IosShareIcon />
+      </IconButton>
 
       <div className="playerDetailsContainer">
         <ReactPlayer
+          onProgress={handleTimer}
+          onReady={handleTimer}
           url={url}
           playing={togglePlayer}
           onEnded={() => dispatch(skipSong())}
           width="45%"
           height="100%"
+          ref={playerRef}
         />
 
         <div className="songDetails">
           <h2>{songTitle}</h2>
-          <h5>channel name</h5>
+          <h5>{songChannelTitle}</h5>
+          <DurationTimer
+            durationElapsedInSeconds={durationElapsed}
+            totalDurationInSeconds={Number(songDuration)}
+          />
         </div>
       </div>
 

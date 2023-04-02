@@ -1,16 +1,18 @@
 import { IconButton } from "@mui/material";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import useDebounce from "../../../../shared/hooks/useDebounce";
+import React, { useState } from "react";
 import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../shared/redux/store";
 import { addSong } from "../../../../shared/services/firebaseServices/songServices";
 import SearchBarYTStyled from "./SearchBarYTStyled";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
+import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
+import { formatDurationISO8601 } from "../../../../shared/utils/timeUtils";
+
 interface SearchResult {
   id: { videoId: string };
-  snippet: { title: string };
+  snippet: { title: string; channelTitle: string };
 }
 
 interface Props {
@@ -21,19 +23,21 @@ interface Props {
 function SearchBarYT({ roomId, className }: Props): JSX.Element {
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<SearchResult[]>([]);
-  const debouncedInputValue = useDebounce({ value: query, delay: 300 });
   const user = useSelector((state: RootState) => state.auth);
 
-  useEffect(() => {
-    if (debouncedInputValue) {
-      autoComplete(debouncedInputValue);
+  const queryFormatter = () => {
+    if (query.includes("youtube.com")) {
+      const searchParams = new URLSearchParams(query);
+      const videoId = searchParams.get("v");
+      setQuery(videoId ?? "");
     }
-  }, [debouncedInputValue]);
+    autoComplete();
+  };
 
-  const autoComplete = async (query: string) => {
+  const autoComplete = async () => {
     if (query) {
       const { data } = await axios.get(
-        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=AIzaSyBJZnCO6LQLXEIuTbWnV8QN-B-hnNHIP2g`
+        `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${process.env.REACT_APP_YOUTUBE_AUTOCOMPLETE_KEY}`
       );
       setResults(data.items);
     } else {
@@ -41,30 +45,48 @@ function SearchBarYT({ roomId, className }: Props): JSX.Element {
     }
   };
 
-  const handleAddNewItem = (result: SearchResult) => {
+  const handleAddNewItem = async (result: SearchResult) => {
     const youTubeVideoTitle = result.snippet.title;
     const youTubeVideoId = result.id.videoId;
     const youTubeURL = `https://www.youtube.com/watch?v=${youTubeVideoId}`;
+    const youtubeDuration = await getItemDuration(youTubeVideoId);
+    const youtubeChannel = result.snippet.channelTitle;
+    console.log(youtubeChannel);
+
     addSong({
       roomId,
       user,
       songURL: youTubeURL,
       songTitle: youTubeVideoTitle,
+      channelTitle: youtubeChannel,
+      duration: youtubeDuration,
     });
+  };
+
+  const getItemDuration = async (videoId: string) => {
+    const { data } = await axios.get(
+      `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${process.env.REACT_APP_YOUTUBE_AUTOCOMPLETE_KEY}`
+    );
+    const tempDuration = data.items[0].contentDetails.duration;
+
+    return formatDurationISO8601(tempDuration);
   };
 
   return (
     <SearchBarYTStyled className={className}>
-      <CustomInput
-        label="Search a song"
-        value={query}
-        type="text"
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setQuery(e.target.value)
-        }
-      />
+      <div style={{ display: "flex", flexDirection: "row" }}>
+        <CustomInput
+          label="Search a song"
+          value={query}
+          type="text"
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setQuery(e.target.value)
+          }
+        />
+        <CustomButton label="Search!" onClick={queryFormatter} />
+      </div>
       <div className="suggestionsContainer">
-        {results.map((result) => (
+        {results?.map((result) => (
           <div key={result.id.videoId}>
             <IconButton size="large" onClick={() => handleAddNewItem(result)}>
               <AddIcon />
