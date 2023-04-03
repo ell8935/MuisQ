@@ -9,22 +9,11 @@ const RoomScreenStyled = styled.div`
   grid-column-gap: 3px;
   grid-row-gap: 3px;
   padding: 15px;
-  .logo {
-    grid-area: 1 / 1 / 2 / 2;
-    background-color: ${({ theme }) => theme.colors.camel};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
-  }
-  .controlBox {
-    grid-area: 1 / 2 / 2 / 6;
-    background-color: ${({ theme }) => theme.colors.camel};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
+
+  .header {
+    grid-area: 1 / 1 / 2 / 7;
   }
 
-  .logout {
-    grid-area: 1 / 6 / 2 / 7;
-    background-color: ${({ theme }) => theme.colors.camel};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
-  }
   .player {
     grid-area: 2 / 1 / 4 / 4;
   }
@@ -33,6 +22,25 @@ const RoomScreenStyled = styled.div`
   }
   .chat {
     grid-area: 3 / 4 / 4 / 7;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 10% 75vh auto auto;
+
+    .header {
+      grid-area: 1 / 1 / 2 / 5;
+    }
+    .player {
+      grid-area: 2 / 1 / 3 / 5;
+      overflow-y: auto;
+    }
+    .searchBar {
+      grid-area: 3 / 1 / 4 / 5;
+    }
+    .chat {
+      grid-area: 4 / 1 / 5 / 5;
+    }
   }
 `;
 

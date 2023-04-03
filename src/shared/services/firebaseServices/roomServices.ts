@@ -1,4 +1,3 @@
-import { UserInfo } from "firebase/auth";
 import {
   addDoc,
   collection,
@@ -10,6 +9,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
+import { UserInfo } from "firebase/auth";
 
 interface createRoomInterface {
   roomName: string;
@@ -23,13 +23,16 @@ const createRoom = async ({
   await setDoc(doc(db, "Rooms", roomName), {
     addedByUser: user.displayName,
     timestamp: serverTimestamp(),
+    refreshTime: serverTimestamp(),
   });
 
   await addDoc(collection(db, "Rooms", roomName, "songs"), {
-    songURL: "https://www.youtube.com/watch?v=aD8crP0_k0g",
-    songTitle: "Chill Drive Music - Lofi hip hop",
     uid: user.uid,
     displayName: user.displayName,
+    songURL: "https://www.youtube.com/watch?v=Gs069dndIYk",
+    songTitle: "Earth, Wind & Fire - September",
+    duration: 201,
+    channelTitle: "Earth Wind & Fire",
     timestamp: serverTimestamp(),
   });
 

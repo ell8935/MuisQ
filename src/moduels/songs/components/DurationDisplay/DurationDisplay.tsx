@@ -1,15 +1,24 @@
-import moment from "moment";
+import moment, { Duration } from "moment";
+import DurationDisplayStyled from "./DurationDisplayStyled";
 
 interface Props {
   durationInSeconds: number;
+  isTotal?: boolean;
 }
 
-function DurationDisplay({ durationInSeconds }: Props) {
+function DurationDisplay({ durationInSeconds, isTotal }: Props) {
+  const duration: Duration = moment.duration(durationInSeconds * 1000);
+  const format = duration.asHours() >= 1 ? "HH:mm:ss" : "mm:ss";
   const formattedDuration = moment
-    .utc(durationInSeconds * 1000)
-    .format("mm:ss");
+    .utc(duration.asMilliseconds())
+    .format(format);
 
-  return <span>{formattedDuration}</span>;
+  return (
+    <DurationDisplayStyled>
+      {isTotal ? <span> Total time: </span> : ""}
+      <span>{formattedDuration}</span>
+    </DurationDisplayStyled>
+  );
 }
 
 export default DurationDisplay;

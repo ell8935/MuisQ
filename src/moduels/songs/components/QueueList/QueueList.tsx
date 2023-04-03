@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
@@ -20,7 +21,7 @@ const QueueList = ({
   roomId,
   className,
 }: Props): JSX.Element => {
-  const [totalDuration, setTotalDuration] = useState<string>("");
+  const [totalDuration, setTotalDuration] = useState<number>(0);
 
   useEffect(() => {
     handleSumSongDurations();
@@ -36,9 +37,12 @@ const QueueList = ({
   };
 
   const handleSumSongDurations = () => {
-    songsList.map((item) => {
-      setTotalDuration(totalDuration + item.duration);
-    });
+    const durations = songsList.map((item) => Number(item.duration));
+    const totalDurationInSeconds = durations.reduce(
+      (acc, curr) => acc + curr,
+      0
+    );
+    setTotalDuration(totalDurationInSeconds);
   };
 
   return (
@@ -53,13 +57,16 @@ const QueueList = ({
             <IconButton onClick={() => removeItem(index)}>
               <DeleteIcon />
             </IconButton>
-            {item.songTitle}
-            <DurationDisplay durationInSeconds={Number(item.duration)} />
+            <div className="songTitle">{item.songTitle}</div>
+            <div className="durationTime">
+              <DurationDisplay durationInSeconds={Number(item.duration)} />
+            </div>
           </li>
         ))}
       </ul>
-      <p>total time is</p>
-      <DurationDisplay durationInSeconds={Number(totalDuration)} />
+      <div className="totalDuration">
+        <DurationDisplay isTotal durationInSeconds={Number(totalDuration)} />
+      </div>
     </QueueListStyled>
   );
 };

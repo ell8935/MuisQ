@@ -7,8 +7,20 @@ const PlayerStyled = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.medium};
   padding: ${({ theme }) => theme.padding.medium};
 
+  .roomNameHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   .playerDetailsContainer {
     display: flex;
+
+    @media (max-width: 600px) {
+      .player {
+        display: none;
+      }
+    }
 
     .songDetails {
       padding-left: 1.5em;

@@ -10,21 +10,8 @@ const MainScreenStyled = styled.div`
   grid-row-gap: 3px;
   padding: 15px;
 
-  .logo {
-    grid-area: 1 / 1 / 2 / 2;
-    background-color: ${({ theme }) => theme.colors.camel};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
-  }
-  .middleBox {
-    grid-area: 1 / 2 / 2 / 6;
-    background-color: ${({ theme }) => theme.colors.camel};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
-  }
-
-  .logout {
-    grid-area: 1 / 6 / 2 / 7;
-    background-color: ${({ theme }) => theme.colors.camel};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
+  .header {
+    grid-area: 1 / 1 / 2 / 7;
   }
   .explanationBox {
     grid-area: 2 / 1 / 3 / 4;
@@ -37,18 +24,9 @@ const MainScreenStyled = styled.div`
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 10% 1fr 1fr;
 
-    .logo {
-      grid-area: 1 / 1 / 2 / 2;
+    .header {
+      grid-area: 1 / 1 / 2 / 5;
     }
-
-    .middleBox {
-      grid-area: 1 / 2 / 2 / 4;
-    }
-
-    .logout {
-      grid-area: 1 / 4 / 2 / 5;
-    }
-
     .explanationBox {
       grid-area: 2 / 1 / 3 / 5;
     }
@@ -60,12 +38,3 @@ const MainScreenStyled = styled.div`
 `;
 
 export default MainScreenStyled;
-
-//PC
-/* @media (min-width: 600px) {
-  padding: 50px;
-}
-//mobile
-background-color: ${({ theme }) => theme.colors.whiteCream};
-padding: 10px;
-gap: 3px; */

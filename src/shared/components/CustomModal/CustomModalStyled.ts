@@ -15,26 +15,21 @@ const CustomModalStyled = styled.div<CustomModalStyledProps>`
   background-color: ${({ isOpen }) =>
     isOpen ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0)"};
 
-  .modal-content {
+  .modalContent {
+    display: flex;
+    flex-direction: column;
     background-color: #fff;
     margin: 15% auto;
     padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
+    width: fit-content; /* Updated */
+    max-width: 100%; /* Added */
+    border-radius: ${({ theme }) => theme.borderRadius.medium};
+    justify-content: center;
+    align-items: center;
 
-  .close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-  }
-
-  .close:hover,
-  .close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
+    .close {
+      align-self: flex-end;
+    }
   }
 `;
 

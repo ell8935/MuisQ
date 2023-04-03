@@ -1,37 +1,48 @@
+import { MouseEventHandler } from "react";
+import CustomButton from "../CustomButton/CustomButton";
 import CustomInputStyled from "./CustomInputStyled";
 
 interface Props {
-  label?: string;
   type?: string;
   value?: string;
   placeHolder?: string;
   minLength?: number;
   className?: string;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  buttonLabel?: string;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 const CustomInput = ({
-  label,
   type,
   value,
   onChange,
   placeHolder,
   minLength,
   className,
+  buttonLabel,
+  onClick,
 }: Props) => {
   return (
     <CustomInputStyled>
-      <span>
-        <input
-          className={className ? className : "slide-up"}
-          id="card"
-          type={type}
-          value={value}
-          onChange={onChange}
-          placeholder={placeHolder}
-          minLength={minLength}
-        />
-        {label ? <label htmlFor="card">{label}</label> : ""}
-      </span>
+      <input
+        className={className ? className : "default"}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeHolder}
+        minLength={minLength}
+      />
+      {buttonLabel ? (
+        <div className="inputButton">
+          <CustomButton
+            label={buttonLabel}
+            onClick={onClick}
+            disabled={!value}
+          />
+        </div>
+      ) : (
+        ""
+      )}
     </CustomInputStyled>
   );
 };

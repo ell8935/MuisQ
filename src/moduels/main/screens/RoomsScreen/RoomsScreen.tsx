@@ -22,7 +22,7 @@ function RoomScreen() {
 
   return (
     <RoomScreenStyled>
-      <MusicControls />
+      <MusicControls className="header" />
       <Player className="player" roomId={roomId} />
       <SearchBarYT className="searchBar" roomId={roomId} />
       <MessageContainer className="chat" roomId={roomId} />

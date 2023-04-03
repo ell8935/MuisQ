@@ -2,10 +2,12 @@ import { UserInfo } from "firebase/auth";
 import {
   addDoc,
   collection,
+  doc,
   onSnapshot,
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
 import { db } from "../firebase";
 
@@ -22,6 +24,14 @@ interface sendMessageInterface {
 
 const sendMessage = async ({ roomId, user, text }: sendMessageInterface) => {
   try {
+    await setDoc(
+      doc(db, "Rooms", roomId),
+      {
+        refreshTime: serverTimestamp(),
+      },
+      { merge: true }
+    );
+
     await addDoc(collection(db, "Rooms", roomId, "messages"), {
       uid: user.uid,
       displayName: user.displayName,

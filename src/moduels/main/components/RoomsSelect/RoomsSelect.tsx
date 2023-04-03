@@ -24,18 +24,7 @@ const RoomsSelect = () => {
       x: 0,
       transition: { delay: i * 0.1 },
     }));
-  }, []);
-
-  // const listVariant = {
-  //   hidden: {
-  //     x: -100,
-  //     opacity: 0,
-  //   },
-  //   visible: {
-  //     x: 0,
-  //     opacity: 1,
-  //   },
-  // };
+  }, [controls]);
 
   return (
     <RoomsSelectStyled>

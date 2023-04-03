@@ -12,8 +12,13 @@ import {
   skipSong,
 } from "../../../../shared/redux/reducers/musicControlsSlice";
 import { IconButton } from "@mui/material";
+import MusicControlStyled from "./MusicControlsStyled";
+import { MusicQLogo } from "../../../../shared/assets/images";
+interface Props {
+  className: string;
+}
 
-const MusicControls = () => {
+const MusicControls = ({ className }: Props) => {
   const controls = useAnimationControls();
   const { togglePlayer } = useSelector(
     (state: RootState) => state.musicControls
@@ -35,39 +40,32 @@ const MusicControls = () => {
   };
 
   return (
-    <>
+    <MusicControlStyled className={className}>
       <motion.div custom={1} animate={controls} className="logo">
-        logo
+        <img src={MusicQLogo} alt="Logo" className="logoImage" />
       </motion.div>
       <motion.div custom={2} animate={controls} className="controlBox">
-        <div
-          // style={{
-          //   width: "50px",
-          //   height: "50px",
-          //   backgroundColor: "blue",
-          //   color: "black",
-          // }}
-          onClick={togglePlayerPausePlay}
-        >
+        <IconButton onClick={() => dispatch(previousSong())}>
+          <SkipPreviousOutlined sx={{ fontSize: 35 }}></SkipPreviousOutlined>
+        </IconButton>
+
+        <IconButton onClick={togglePlayerPausePlay}>
           {togglePlayer ? (
-            <PauseOutlined sx={{ fontSize: 50 }}></PauseOutlined>
+            <PauseOutlined sx={{ fontSize: 35 }}></PauseOutlined>
           ) : (
-            <PlayArrowOutlined sx={{ fontSize: 50 }}></PlayArrowOutlined>
+            <PlayArrowOutlined sx={{ fontSize: 35 }}></PlayArrowOutlined>
           )}
-        </div>
+        </IconButton>
 
         <IconButton onClick={() => dispatch(skipSong())}>
-          <SkipNextOutlined></SkipNextOutlined>
-        </IconButton>
-
-        <IconButton onClick={() => dispatch(previousSong())}>
-          <SkipPreviousOutlined sx={{ fontSize: 50 }}></SkipPreviousOutlined>
+          <SkipNextOutlined sx={{ fontSize: 35 }}></SkipNextOutlined>
         </IconButton>
       </motion.div>
+
       <motion.div custom={3} animate={controls} className="logout">
         <LogoutButton />
       </motion.div>
-    </>
+    </MusicControlStyled>
   );
 };
 

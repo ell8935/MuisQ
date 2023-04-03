@@ -19,8 +19,8 @@ function CustomModal({ children }: Props) {
 
   return (
     <CustomModalStyled isOpen={isOpen}>
-      <div className="modal-content">
-        <IconButton onClick={closeModal}>
+      <div className="modalContent">
+        <IconButton className="close" onClick={closeModal}>
           <CancelPresentationIcon />
         </IconButton>
         <p>{children}</p>

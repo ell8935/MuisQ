@@ -7,6 +7,7 @@ import {
   orderBy,
   query,
   serverTimestamp,
+  setDoc,
 } from "firebase/firestore";
 import {
   addSongInterface,
@@ -24,6 +25,14 @@ const addSong = async ({
   channelTitle,
 }: addSongInterface) => {
   try {
+    await setDoc(
+      doc(db, "Rooms", roomId),
+      {
+        refreshTime: serverTimestamp(),
+      },
+      { merge: true }
+    );
+
     await addDoc(collection(db, "Rooms", roomId, "songs"), {
       uid: user.uid,
       displayName: user.displayName,

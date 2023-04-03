@@ -55,28 +55,32 @@ const Player = ({ roomId, className }: Props) => {
 
   return (
     <PlayerStyled className={className}>
-      <span>{roomId}'s room</span>
-      <CustomModal>
-        <ShareRoom roomId={roomId} />
-      </CustomModal>
-      <IconButton onClick={() => dispatch(setModal(true))}>
-        <IosShareIcon />
-      </IconButton>
+      <span className="roomNameHeader">
+        {roomId}'s room
+        <CustomModal>
+          <ShareRoom roomId={roomId} />
+        </CustomModal>
+        <IconButton onClick={() => dispatch(setModal(true))}>
+          <IosShareIcon />
+        </IconButton>
+      </span>
 
       <div className="playerDetailsContainer">
-        <ReactPlayer
-          onProgress={handleTimer}
-          onReady={handleTimer}
-          url={url}
-          playing={togglePlayer}
-          onEnded={() => dispatch(skipSong())}
-          width="45%"
-          height="100%"
-          ref={playerRef}
-        />
+        <div className="player">
+          <ReactPlayer
+            onProgress={handleTimer}
+            onReady={handleTimer}
+            url={url}
+            playing={togglePlayer}
+            onEnded={() => dispatch(skipSong())}
+            width="25vh"
+            height="15vh"
+            ref={playerRef}
+          />
+        </div>
 
         <div className="songDetails">
-          <h2>{songTitle}</h2>
+          <h3>{songTitle}</h3>
           <h5>{songChannelTitle}</h5>
           <DurationTimer
             durationElapsedInSeconds={durationElapsed}

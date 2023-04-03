@@ -16,10 +16,11 @@ const MainScreen = () => {
       x: 0,
       transition: { delay: i * 0.05 },
     }));
-  }, []);
+  }, [controls]);
+
   return (
     <MainScreenStyled>
-      <HeaderBar />
+      <HeaderBar className="header" />
       <motion.div custom={4} animate={controls} className="explanationBox">
         <ExplanationBox />
       </motion.div>
@@ -31,17 +32,3 @@ const MainScreen = () => {
 };
 
 export default MainScreen;
-
-{
-  /* <motion.div custom={1} animate={controls} className="logo">
-  logo
-</motion.div>
-<motion.div
-  custom={2}
-  animate={controls}
-  className="middleBox"
-></motion.div>
-<motion.div custom={3} animate={controls} className="logout">
-  <LogoutButton />
-</motion.div> */
-}

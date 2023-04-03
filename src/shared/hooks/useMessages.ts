@@ -5,13 +5,14 @@ interface Message {
   displayName: string;
   id: string;
   text: string;
+  uid: string;
 }
 
 function useMessages(roomId: string): Message[] {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const callback = (messages: Message[]) => {
-    setMessages(messages.reverse());
+    setMessages(messages);
   };
 
   useEffect(() => {

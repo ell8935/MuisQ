@@ -51,7 +51,6 @@ function SearchBarYT({ roomId, className }: Props): JSX.Element {
     const youTubeURL = `https://www.youtube.com/watch?v=${youTubeVideoId}`;
     const youtubeDuration = await getItemDuration(youTubeVideoId);
     const youtubeChannel = result.snippet.channelTitle;
-    console.log(youtubeChannel);
 
     addSong({
       roomId,
@@ -74,16 +73,16 @@ function SearchBarYT({ roomId, className }: Props): JSX.Element {
 
   return (
     <SearchBarYTStyled className={className}>
-      <div style={{ display: "flex", flexDirection: "row" }}>
+      <div className="search">
         <CustomInput
-          label="Search a song"
           value={query}
           type="text"
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setQuery(e.target.value)
           }
+          buttonLabel="Search!"
+          onClick={queryFormatter}
         />
-        <CustomButton label="Search!" onClick={queryFormatter} />
       </div>
       <div className="suggestionsContainer">
         {results?.map((result) => (

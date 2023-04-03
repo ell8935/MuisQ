@@ -5,7 +5,6 @@ import { RootState } from "../../../../shared/redux/store";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 import { createRoom } from "../../../../shared/services/firebaseServices/roomServices";
 import CreateRoomStyled from "./CreateRoomStyled";
-import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
 
 const CreateRoom = () => {
   const user = useSelector((state: RootState) => state.auth);
@@ -28,18 +27,13 @@ const CreateRoom = () => {
   return (
     <CreateRoomStyled>
       <CustomInput
-        label="Room's Name"
         value={roomName}
         onChange={handleNameChange}
         placeHolder="e.g Rock and Roll"
+        buttonLabel="Create"
+        onClick={handleCreateRoom}
+        minLength={1}
       />
-      <div className="createRoomButton">
-        <CustomButton
-          label="Create Room"
-          disabled={!roomName}
-          onClick={handleCreateRoom}
-        />
-      </div>
     </CreateRoomStyled>
   );
 };

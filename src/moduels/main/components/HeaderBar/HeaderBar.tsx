@@ -1,7 +1,12 @@
 import LogoutButton from "../../../auth/components/LogoutButton/LogoutButton";
 import { useEffect } from "react";
 import { motion, useAnimationControls } from "framer-motion";
-const HeaderBar = () => {
+import HeaderBarStyled from "./HeaderBarStyled";
+import { MusicQLogo } from "../../../../shared/assets/images";
+interface Props {
+  className: string;
+}
+const HeaderBar = ({ className }: Props) => {
   const controls = useAnimationControls();
 
   useEffect(() => {
@@ -12,11 +17,12 @@ const HeaderBar = () => {
       x: 0,
       transition: { delay: i * 0.05 },
     }));
-  }, []);
+  }, [controls]);
+
   return (
-    <>
+    <HeaderBarStyled className={className}>
       <motion.div custom={1} animate={controls} className="logo">
-        logo
+        <img src={MusicQLogo} alt="Logo" className="logoImage" />
       </motion.div>
       <motion.div
         custom={2}
@@ -26,7 +32,7 @@ const HeaderBar = () => {
       <motion.div custom={3} animate={controls} className="logout">
         <LogoutButton />
       </motion.div>
-    </>
+    </HeaderBarStyled>
   );
 };
 

@@ -5,10 +5,16 @@ interface CustomButtonInterface {
   onClick?: MouseEventHandler<HTMLButtonElement>;
   label?: string;
   disabled?: boolean;
+  className?: string;
 }
-const CustomButton = ({ onClick, label, disabled }: CustomButtonInterface) => {
+const CustomButton = ({
+  onClick,
+  label,
+  disabled = false,
+  className,
+}: CustomButtonInterface) => {
   return (
-    <CustomButtonStyled>
+    <CustomButtonStyled className={className} disabled={disabled}>
       <button disabled={disabled} onClick={onClick}>
         {label}
       </button>
