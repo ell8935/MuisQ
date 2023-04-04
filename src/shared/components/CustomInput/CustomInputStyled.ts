@@ -6,6 +6,8 @@ const CustomInputStyled = styled.div`
   display: flex;
   flex-direction: "row";
   position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
 
   .default {
     width: 100%;

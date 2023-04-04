@@ -9,7 +9,7 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { db, getExpiredDate } from "../firebase";
 
 interface getMessagesInterface {
   roomId: string;
@@ -27,7 +27,7 @@ const sendMessage = async ({ roomId, user, text }: sendMessageInterface) => {
     await setDoc(
       doc(db, "Rooms", roomId),
       {
-        refreshTime: serverTimestamp(),
+        expiredTime: getExpiredDate(),
       },
       { merge: true }
     );

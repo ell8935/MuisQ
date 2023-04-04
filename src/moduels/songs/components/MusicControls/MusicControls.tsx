@@ -42,7 +42,7 @@ const MusicControls = ({ className }: Props) => {
   return (
     <MusicControlStyled className={className}>
       <motion.div custom={1} animate={controls} className="logo">
-        <img src={MusicQLogo} alt="Logo" className="logoImage" />
+        <img src={MusicQLogo} alt="Logo" />
       </motion.div>
       <motion.div custom={2} animate={controls} className="controlBox">
         <IconButton onClick={() => dispatch(previousSong())}>

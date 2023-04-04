@@ -7,4 +7,11 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth();
 
-export { db, auth };
+const getExpiredDate = () => {
+  const expiredDate = new Date();
+  expiredDate.setDate(expiredDate.getDate() + 2);
+
+  return expiredDate;
+};
+
+export { db, auth, getExpiredDate };

@@ -14,11 +14,10 @@ const MusicControlStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 1vw;
 
-    .logoImage {
-      max-width: 80%;
-      height: auto;
-      margin: 0 auto;
+    img {
+      max-width: 100%;
     }
   }
 

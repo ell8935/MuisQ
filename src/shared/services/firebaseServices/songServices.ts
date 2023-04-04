@@ -14,7 +14,7 @@ import {
   getSongsInterface,
   removeSongInterface,
 } from "../../constants/types/songTypes";
-import { db } from "../firebase";
+import { db, getExpiredDate } from "../firebase";
 
 const addSong = async ({
   roomId,
@@ -28,7 +28,7 @@ const addSong = async ({
     await setDoc(
       doc(db, "Rooms", roomId),
       {
-        refreshTime: serverTimestamp(),
+        expiredTime: getExpiredDate(),
       },
       { merge: true }
     );

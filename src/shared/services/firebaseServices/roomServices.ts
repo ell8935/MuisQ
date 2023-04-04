@@ -8,7 +8,7 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import { db } from "../firebase";
+import { db, getExpiredDate } from "../firebase";
 import { UserInfo } from "firebase/auth";
 
 interface createRoomInterface {
@@ -23,7 +23,7 @@ const createRoom = async ({
   await setDoc(doc(db, "Rooms", roomName), {
     addedByUser: user.displayName,
     timestamp: serverTimestamp(),
-    refreshTime: serverTimestamp(),
+    expiredTime: getExpiredDate(),
   });
 
   await addDoc(collection(db, "Rooms", roomName, "songs"), {
