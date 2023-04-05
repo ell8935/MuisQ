@@ -3,10 +3,12 @@ import { useEffect } from "react";
 import { motion, useAnimationControls } from "framer-motion";
 import HeaderBarStyled from "./HeaderBarStyled";
 import { MusicQLogo } from "../../../../shared/assets/images";
+import MusicControls from "../../../songs/components/MusicControls/MusicControls";
 interface Props {
   className: string;
+  isControls?: boolean;
 }
-const HeaderBar = ({ className }: Props) => {
+const HeaderBar = ({ className, isControls }: Props) => {
   const controls = useAnimationControls();
 
   useEffect(() => {
@@ -24,11 +26,11 @@ const HeaderBar = ({ className }: Props) => {
       <motion.div custom={1} animate={controls} className="logo">
         <img src={MusicQLogo} alt="Logo" className="logoImage" />
       </motion.div>
-      <motion.div
-        custom={2}
-        animate={controls}
-        className="middleBox"
-      ></motion.div>
+
+      <motion.div custom={2} animate={controls} className="controls">
+        {isControls ? <MusicControls /> : ""}
+      </motion.div>
+
       <motion.div custom={3} animate={controls} className="logout">
         <LogoutButton />
       </motion.div>

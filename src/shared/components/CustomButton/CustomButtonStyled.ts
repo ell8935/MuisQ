@@ -17,8 +17,17 @@ const CustomButtonStyled = styled.div<Props>`
       disabled ? theme.colors.redGray : theme.colors.greenGray};
     color: black;
     border-color: transparent;
+    transition: 0.3s;
+    cursor: pointer;
+
     :hover {
-      cursor: pointer;
+      background-color: ${({ theme }) => theme.colors.redGray};
+      transform: scale(0.95);
+    }
+
+    :active {
+      background-color: ${({ theme }) => theme.colors.camel};
+      transform: scale(0.95);
     }
   }
 `;

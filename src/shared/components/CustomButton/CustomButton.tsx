@@ -7,6 +7,7 @@ interface CustomButtonInterface {
   disabled?: boolean;
   className?: string;
 }
+
 const CustomButton = ({
   onClick,
   label,

@@ -14,17 +14,20 @@ const HeaderBarStyled = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 
-    .logoImage {
-      max-width: 80%;
-      height: auto;
-      margin: 0 auto;
+    img {
+      max-width: 100%;
+      max-height: 100%;
     }
   }
-  .middleBox {
+  .controls {
     grid-area: 1 / 2 / 2 / 6;
     background-color: ${({ theme }) => theme.colors.camel};
     border-radius: ${({ theme }) => theme.borderRadius.medium};
+    align-items: center;
+    display: flex;
+    justify-content: center;
   }
   .logout {
     grid-area: 1 / 6 / 2 / 7;

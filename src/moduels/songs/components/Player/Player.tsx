@@ -16,6 +16,7 @@ import IosShareIcon from "@mui/icons-material/IosShare";
 import { setModal } from "../../../../shared/redux/reducers/modalSlice";
 import DurationTimer from "../DurationTimer/DurationTimer";
 import { useRef, useState } from "react";
+import screenfull from "screenfull";
 
 interface Props {
   roomId: string;
@@ -25,7 +26,7 @@ interface Props {
 const Player = ({ roomId, className }: Props) => {
   const songsList = useSongs(roomId);
   const dispatch: AppDispatch = useDispatch();
-  const { togglePlayer, currentIndex } = useSelector(
+  const { togglePlayer, currentIndex, volume, toggleMute } = useSelector(
     (state: RootState) => state.musicControls
   );
   const [durationElapsed, setDurationElapsed] = useState<number>(0);
@@ -76,6 +77,8 @@ const Player = ({ roomId, className }: Props) => {
             width="25vh"
             height="15vh"
             ref={playerRef}
+            volume={volume}
+            muted={toggleMute}
           />
         </div>
 

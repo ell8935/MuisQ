@@ -6,7 +6,7 @@ import { getRoom } from "../../../../shared/services/firebaseServices/roomServic
 import RoomScreenStyled from "./RoomScreenStyled";
 import SearchBarYT from "../../../songs/components/SearchBarYT/SearchBarYT";
 import MessageContainer from "../../../chat/components/MessageContainer/MessageContainer";
-import MusicControls from "../../../songs/components/MusicControls/MusicControls";
+import HeaderBar from "../../components/HeaderBar/HeaderBar";
 
 function RoomScreen() {
   const [searchParams] = useSearchParams();
@@ -22,7 +22,7 @@ function RoomScreen() {
 
   return (
     <RoomScreenStyled>
-      <MusicControls className="header" />
+      <HeaderBar className="header" isControls />
       <Player className="player" roomId={roomId} />
       <SearchBarYT className="searchBar" roomId={roomId} />
       <MessageContainer className="chat" roomId={roomId} />

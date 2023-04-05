@@ -1,37 +1,34 @@
 import styled from "styled-components";
 
 const MusicControlStyled = styled.div`
+  width: 100%;
+  align-items: center;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(7, 1fr);
   grid-template-rows: 1fr;
-  grid-column-gap: 3px;
-  grid-row-gap: 3px;
+  grid-column-gap: 6px;
+  grid-row-gap: 0px;
 
-  .logo {
+  .div1 {
     grid-area: 1 / 1 / 2 / 2;
-    background-color: ${({ theme }) => theme.colors.camel};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
-    display: flex;
+  }
+  .div2 {
+    grid-area: 1 / 3 / 2 / 6;
     justify-content: center;
-    align-items: center;
-    width: 1vw;
+    display: flex;
+    gap: 10px;
+  }
+  .div3 {
+    grid-area: 1 / 7 / 2 / 8;
+  }
 
-    img {
-      max-width: 100%;
+  @media (max-width: 850px) {
+    .div1 {
+      display: none;
     }
-  }
-
-  .controlBox {
-    display: flex;
-    grid-area: 1 / 2 / 2 / 6;
-    background-color: ${({ theme }) => theme.colors.camel};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
-    justify-content: center;
-  }
-  .logout {
-    grid-area: 1 / 6 / 2 / 7;
-    background-color: ${({ theme }) => theme.colors.camel};
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
+    .div3 {
+      display: none;
+    }
   }
 `;
 

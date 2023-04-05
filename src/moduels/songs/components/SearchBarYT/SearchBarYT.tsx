@@ -7,7 +7,6 @@ import { RootState } from "../../../../shared/redux/store";
 import { addSong } from "../../../../shared/services/firebaseServices/songServices";
 import SearchBarYTStyled from "./SearchBarYTStyled";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
-import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
 import { formatDurationISO8601 } from "../../../../shared/utils/timeUtils";
 
 interface SearchResult {
@@ -86,7 +85,7 @@ function SearchBarYT({ roomId, className }: Props): JSX.Element {
       </div>
       <div className="suggestionsContainer">
         {results?.map((result) => (
-          <div key={result.id.videoId}>
+          <div className="suggestion" key={result.id.videoId}>
             <IconButton size="large" onClick={() => handleAddNewItem(result)}>
               <AddIcon />
             </IconButton>

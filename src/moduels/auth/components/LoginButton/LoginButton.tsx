@@ -15,8 +15,6 @@ const LoginButton = () => {
       navigate("/");
       return dispatch(setAuth(user));
     }
-
-    // handle here user is null
   };
 
   return <button onClick={login}>Login with Google</button>;

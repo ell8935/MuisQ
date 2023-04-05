@@ -2,26 +2,33 @@ import { MouseEventHandler } from "react";
 import CustomButton from "../CustomButton/CustomButton";
 import CustomInputStyled from "./CustomInputStyled";
 
-interface Props {
+interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: string;
-  value?: string;
+  value?: string | string;
   placeHolder?: string;
   minLength?: number;
   className?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   buttonLabel?: string;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onClick?: () => void;
 }
-const CustomInput = ({
+
+const CustomInput: React.FC<Props> = ({
   type,
   value,
-  onChange,
   placeHolder,
   minLength,
   className,
   buttonLabel,
+  onChange,
   onClick,
+  ...rest
 }: Props) => {
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onClick?.();
+    }
+  };
   return (
     <CustomInputStyled>
       <input
@@ -31,12 +38,14 @@ const CustomInput = ({
         onChange={onChange}
         placeholder={placeHolder}
         minLength={minLength}
+        onKeyDown={handleKeyDown}
+        {...rest}
       />
       {buttonLabel ? (
         <div className="inputButton">
           <CustomButton
             label={buttonLabel}
-            onClick={onClick}
+            onClick={onClick as MouseEventHandler<HTMLButtonElement>}
             disabled={!value}
           />
         </div>

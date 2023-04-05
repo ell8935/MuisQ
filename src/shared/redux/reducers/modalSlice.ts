@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-// interface modalInterface {
-//   isOpen: boolean;
-// }
-
-// const initialState: modalInterface = {
-//   isOpen: false,
-// };
 const initialState: boolean = false;
 
 export const modalSlice = createSlice({

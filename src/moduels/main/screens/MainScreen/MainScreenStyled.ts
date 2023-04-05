@@ -20,7 +20,7 @@ const MainScreenStyled = styled.div`
     grid-area: 2 / 4 / 3 / 7;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 850px) {
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: 10% 1fr 1fr;
 

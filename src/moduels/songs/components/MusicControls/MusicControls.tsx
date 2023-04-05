@@ -1,5 +1,3 @@
-import LogoutButton from "../../../auth/components/LogoutButton/LogoutButton";
-import { motion, useAnimationControls } from "framer-motion";
 import PlayArrowOutlined from "@mui/icons-material/PlayArrowOutlined";
 import SkipNextOutlined from "@mui/icons-material/SkipNextOutlined";
 import SkipPreviousOutlined from "@mui/icons-material/SkipPreviousOutlined";
@@ -12,39 +10,33 @@ import {
   skipSong,
 } from "../../../../shared/redux/reducers/musicControlsSlice";
 import { IconButton } from "@mui/material";
+import VolumeControls from "./VolumeSlider/VolumeControls";
 import MusicControlStyled from "./MusicControlsStyled";
-import { MusicQLogo } from "../../../../shared/assets/images";
-interface Props {
-  className: string;
-}
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import screenfull from "screenfull";
 
-const MusicControls = ({ className }: Props) => {
-  const controls = useAnimationControls();
+const MusicControls = () => {
   const { togglePlayer } = useSelector(
     (state: RootState) => state.musicControls
   );
   const dispatch: AppDispatch = useDispatch();
 
-  // useEffect(() => {
-  //   controls.set({ opacity: 0, x: 100 });
-
-  //   controls.start((i) => ({
-  //     opacity: 1,
-  //     x: 0,
-  //     transition: { delay: i * 0.05 },
-  //   }));
-  // }, []);
-
   const togglePlayerPausePlay = () => {
     dispatch(setTogglePlayer(!togglePlayer));
   };
 
+  const handleFullScreen = () => {
+    const playerElement = document.getElementsByTagName("iframe")[0];
+    if (screenfull.isEnabled && playerElement !== null) {
+      screenfull.request(playerElement);
+    }
+  };
   return (
-    <MusicControlStyled className={className}>
-      <motion.div custom={1} animate={controls} className="logo">
-        <img src={MusicQLogo} alt="Logo" />
-      </motion.div>
-      <motion.div custom={2} animate={controls} className="controlBox">
+    <MusicControlStyled>
+      <div className="div1">
+        <VolumeControls />
+      </div>
+      <div className="div2">
         <IconButton onClick={() => dispatch(previousSong())}>
           <SkipPreviousOutlined sx={{ fontSize: 35 }}></SkipPreviousOutlined>
         </IconButton>
@@ -60,11 +52,12 @@ const MusicControls = ({ className }: Props) => {
         <IconButton onClick={() => dispatch(skipSong())}>
           <SkipNextOutlined sx={{ fontSize: 35 }}></SkipNextOutlined>
         </IconButton>
-      </motion.div>
-
-      <motion.div custom={3} animate={controls} className="logout">
-        <LogoutButton />
-      </motion.div>
+      </div>
+      <div className="div3">
+        <IconButton onClick={handleFullScreen}>
+          <FullscreenIcon sx={{ fontSize: 35 }}></FullscreenIcon>
+        </IconButton>
+      </div>
     </MusicControlStyled>
   );
 };

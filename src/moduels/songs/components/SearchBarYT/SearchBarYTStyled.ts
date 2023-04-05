@@ -14,11 +14,12 @@ const SearchBarYTStyled = styled.div`
   .suggestionsContainer {
     background-color: ${({ theme }) => theme.colors.greenGray};
     border-radius: ${({ theme }) => theme.borderRadius.medium};
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: inline-block;
-    max-width: 100%;
+
+    .suggestion {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 `;
 
