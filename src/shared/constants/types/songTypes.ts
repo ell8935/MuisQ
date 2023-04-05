@@ -1,22 +1,11 @@
 import { UserInfo } from "firebase/auth";
 
 interface SongProps {
+  roomId: string;
   songURL: string;
-  songTitle: string;
   duration: number;
+  songTitle: string;
   channelTitle: string;
-  roomId: string;
-}
-
-export interface Songs extends SongProps {
-  displayName: string;
-  id: string;
-  timestamp: {};
-}
-
-export interface addSongInterface extends SongProps {
-  roomId: string;
-  user: Partial<UserInfo>;
 }
 
 export interface getSongsInterface {
@@ -25,6 +14,17 @@ export interface getSongsInterface {
 }
 
 export interface removeSongInterface {
-  roomId: string;
   docId: string;
+  roomId: string;
+}
+
+export interface Songs extends SongProps {
+  id: string;
+  timestamp: {};
+  displayName: string;
+}
+
+export interface addSongInterface extends SongProps {
+  roomId: string;
+  user: Partial<UserInfo>;
 }

@@ -1,17 +1,17 @@
 import styled from "styled-components";
 
 const VolumeControlsStyled = styled.div`
-  justify-content: center;
-  align-items: center;
   display: flex;
   position: relative;
+  align-items: center;
+  justify-content: center;
 
   .verticalSlider {
     position: absolute;
-    opacity: 0;
     left: 60%;
-    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
     pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
   }
 
   .speakerIcon:hover + .verticalSlider,

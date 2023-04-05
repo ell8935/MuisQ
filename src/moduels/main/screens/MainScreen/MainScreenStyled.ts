@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
 const MainScreenStyled = styled.div`
-  font-family: "Open Sans", sans-serif;
   display: grid;
-  height: calc(100vh - 30px);
+  font-family: "Open Sans", sans-serif;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 10% 1fr;
+  height: calc(100vh - 30px);
   grid-column-gap: 3px;
   grid-row-gap: 3px;
   padding: 15px;

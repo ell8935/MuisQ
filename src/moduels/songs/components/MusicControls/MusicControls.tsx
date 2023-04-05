@@ -1,25 +1,19 @@
-import PlayArrowOutlined from "@mui/icons-material/PlayArrowOutlined";
-import SkipNextOutlined from "@mui/icons-material/SkipNextOutlined";
-import SkipPreviousOutlined from "@mui/icons-material/SkipPreviousOutlined";
-import PauseOutlined from "@mui/icons-material/PauseOutlined";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "../../../../shared/redux/store";
-import {
-  previousSong,
-  setTogglePlayer,
-  skipSong,
-} from "../../../../shared/redux/reducers/musicControlsSlice";
-import { IconButton } from "@mui/material";
-import VolumeControls from "./VolumeSlider/VolumeControls";
-import MusicControlStyled from "./MusicControlsStyled";
-import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import screenfull from "screenfull";
+import { IconButton } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import MusicControlStyled from "./MusicControlsStyled";
+import VolumeControls from "./VolumeSlider/VolumeControls";
+import FullscreenIcon from "@mui/icons-material/Fullscreen";
+import PauseOutlined from "@mui/icons-material/PauseOutlined";
+import SkipNextOutlined from "@mui/icons-material/SkipNextOutlined";
+import PlayArrowOutlined from "@mui/icons-material/PlayArrowOutlined";
+import { AppDispatch, RootState } from "../../../../shared/redux/store";
+import SkipPreviousOutlined from "@mui/icons-material/SkipPreviousOutlined";
+import { previousSong, setTogglePlayer, skipSong } from "../../../../shared/redux/reducers/musicControlsSlice";
 
 const MusicControls = () => {
-  const { togglePlayer } = useSelector(
-    (state: RootState) => state.musicControls
-  );
   const dispatch: AppDispatch = useDispatch();
+  const { togglePlayer } = useSelector((state: RootState) => state.musicControls);
 
   const togglePlayerPausePlay = () => {
     dispatch(setTogglePlayer(!togglePlayer));
@@ -33,10 +27,10 @@ const MusicControls = () => {
   };
   return (
     <MusicControlStyled>
-      <div className="div1">
+      <div className="volume">
         <VolumeControls />
       </div>
-      <div className="div2">
+      <div className="baseControls">
         <IconButton onClick={() => dispatch(previousSong())}>
           <SkipPreviousOutlined sx={{ fontSize: 35 }}></SkipPreviousOutlined>
         </IconButton>
@@ -53,7 +47,7 @@ const MusicControls = () => {
           <SkipNextOutlined sx={{ fontSize: 35 }}></SkipNextOutlined>
         </IconButton>
       </div>
-      <div className="div3">
+      <div className="fullScreen">
         <IconButton onClick={handleFullScreen}>
           <FullscreenIcon sx={{ fontSize: 35 }}></FullscreenIcon>
         </IconButton>

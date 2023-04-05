@@ -5,7 +5,7 @@ interface MessageProps {
   isOwnMessage: boolean;
 }
 
-function Message({ message, isOwnMessage }: MessageProps) {
+const Message = ({ message, isOwnMessage }: MessageProps) => {
   const { displayName, text } = message;
 
   return (
@@ -16,6 +16,6 @@ function Message({ message, isOwnMessage }: MessageProps) {
       </li>
     </MessageStyled>
   );
-}
+};
 
 export default Message;

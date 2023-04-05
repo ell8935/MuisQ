@@ -1,13 +1,13 @@
-import { IconButton } from "@mui/material";
 import axios from "axios";
 import React, { useState } from "react";
-import AddIcon from "@mui/icons-material/Add";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../shared/redux/store";
-import { addSong } from "../../../../shared/services/firebaseServices/songServices";
+import { IconButton } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import SearchBarYTStyled from "./SearchBarYTStyled";
-import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
+import { RootState } from "../../../../shared/redux/store";
 import { formatDurationISO8601 } from "../../../../shared/utils/timeUtils";
+import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
+import { addSong } from "../../../../shared/services/firebaseServices/songServices";
 
 interface SearchResult {
   id: { videoId: string };
@@ -19,7 +19,7 @@ interface Props {
   className: string;
 }
 
-function SearchBarYT({ roomId, className }: Props): JSX.Element {
+const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const user = useSelector((state: RootState) => state.auth);
@@ -52,12 +52,12 @@ function SearchBarYT({ roomId, className }: Props): JSX.Element {
     const youtubeChannel = result.snippet.channelTitle;
 
     addSong({
-      roomId,
       user,
+      roomId,
       songURL: youTubeURL,
+      duration: youtubeDuration,
       songTitle: youTubeVideoTitle,
       channelTitle: youtubeChannel,
-      duration: youtubeDuration,
     });
   };
 
@@ -76,9 +76,7 @@ function SearchBarYT({ roomId, className }: Props): JSX.Element {
         <CustomInput
           value={query}
           type="text"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setQuery(e.target.value)
-          }
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
           buttonLabel="Search!"
           onClick={queryFormatter}
         />
@@ -95,6 +93,6 @@ function SearchBarYT({ roomId, className }: Props): JSX.Element {
       </div>
     </SearchBarYTStyled>
   );
-}
+};
 
 export default SearchBarYT;

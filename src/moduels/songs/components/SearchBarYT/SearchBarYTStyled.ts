@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
 const SearchBarYTStyled = styled.div`
+  padding: ${({ theme }) => theme.padding.medium};
   background-color: ${({ theme }) => theme.colors.camel};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
-  padding: ${({ theme }) => theme.padding.medium};
 
   .search {
     display: flex;
-    justify-content: center;
     margin-bottom: 10px;
+    justify-content: center;
   }
 
   .suggestionsContainer {
@@ -16,8 +16,8 @@ const SearchBarYTStyled = styled.div`
     border-radius: ${({ theme }) => theme.borderRadius.medium};
 
     .suggestion {
-      white-space: nowrap;
       overflow: hidden;
+      white-space: nowrap;
       text-overflow: ellipsis;
     }
   }

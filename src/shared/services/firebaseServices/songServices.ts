@@ -9,21 +9,10 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import {
-  addSongInterface,
-  getSongsInterface,
-  removeSongInterface,
-} from "../../constants/types/songTypes";
 import { db, getExpiredDate } from "../firebase";
+import { addSongInterface, getSongsInterface, removeSongInterface } from "../../constants/types/songTypes";
 
-const addSong = async ({
-  roomId,
-  user,
-  songURL,
-  songTitle,
-  duration,
-  channelTitle,
-}: addSongInterface) => {
+const addSong = async ({ roomId, user, songURL, songTitle, duration, channelTitle }: addSongInterface) => {
   try {
     await setDoc(
       doc(db, "Rooms", roomId),
@@ -34,13 +23,13 @@ const addSong = async ({
     );
 
     await addDoc(collection(db, "Rooms", roomId, "songs"), {
-      uid: user.uid,
-      displayName: user.displayName,
-      songURL: songURL,
-      songTitle: songTitle,
       duration,
       channelTitle,
+      uid: user.uid,
+      songURL: songURL,
+      songTitle: songTitle,
       timestamp: serverTimestamp(),
+      displayName: user.displayName,
     });
   } catch (error) {
     console.error(error);
@@ -52,19 +41,13 @@ const removeSong = async ({ roomId, docId }: removeSongInterface) => {
 };
 
 const getSongs = ({ roomId, callback }: getSongsInterface) => {
-  return onSnapshot(
-    query(
-      collection(db, "Rooms", roomId, "songs"),
-      orderBy("timestamp", "asc")
-    ),
-    (querySnapshot) => {
-      const songs = querySnapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      callback(songs);
-    }
-  );
+  return onSnapshot(query(collection(db, "Rooms", roomId, "songs"), orderBy("timestamp", "asc")), (querySnapshot) => {
+    const songs = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    callback(songs);
+  });
 };
 
 export { addSong, getSongs, removeSong };

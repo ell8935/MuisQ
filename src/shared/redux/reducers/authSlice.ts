@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { UserInfo } from "firebase/auth";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const initialState: Partial<UserInfo> = {};
 
@@ -10,6 +10,7 @@ export const authSlice = createSlice({
     setAuth: (_state, action: PayloadAction<UserInfo>) => {
       return action.payload;
     },
+
     clearAuth: () => {
       return {};
     },

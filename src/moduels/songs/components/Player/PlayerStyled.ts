@@ -3,14 +3,14 @@ import styled from "styled-components";
 const PlayerStyled = styled.div`
   display: flex;
   flex-direction: column;
+  padding: ${({ theme }) => theme.padding.medium};
   background-color: ${({ theme }) => theme.colors.camel};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
-  padding: ${({ theme }) => theme.padding.medium};
 
   .roomNameHeader {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
   }
 
   .playerDetailsContainer {
@@ -23,8 +23,8 @@ const PlayerStyled = styled.div`
     }
 
     .songDetails {
-      padding-left: 1.5em;
       display: flex;
+      padding-left: 1.5em;
       flex-direction: column;
     }
   }

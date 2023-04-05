@@ -1,15 +1,15 @@
-import { FormEvent, ChangeEvent, useState } from "react";
 import { useSelector } from "react-redux";
-import { RootState } from "../../../../shared/redux/store";
-import { sendMessage } from "../../../../shared/services/firebaseServices/messageServices";
-import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 import MessageInputStyled from "./MessageInputStyled";
+import { FormEvent, ChangeEvent, useState } from "react";
+import { RootState } from "../../../../shared/redux/store";
+import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
+import { sendMessage } from "../../../../shared/services/firebaseServices/messageServices";
 
 interface Props {
   roomId: string;
 }
 
-function MessageInput({ roomId }: Props) {
+const MessageInput = ({ roomId }: Props) => {
   const user = useSelector((state: RootState) => state.auth);
   const [text, setText] = useState("");
 
@@ -38,5 +38,6 @@ function MessageInput({ roomId }: Props) {
       </form>
     </MessageInputStyled>
   );
-}
-export { MessageInput };
+};
+
+export default MessageInput;

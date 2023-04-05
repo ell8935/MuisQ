@@ -9,26 +9,28 @@ const HeaderBarStyled = styled.div`
 
   .logo {
     grid-area: 1 / 1 / 2 / 2;
+    display: flex;
+    overflow: hidden;
+    align-items: center;
+    justify-content: center;
     background-color: ${({ theme }) => theme.colors.camel};
     border-radius: ${({ theme }) => theme.borderRadius.medium};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
 
     img {
       max-width: 100%;
       max-height: 100%;
     }
   }
+
   .controls {
     grid-area: 1 / 2 / 2 / 6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: ${({ theme }) => theme.colors.camel};
     border-radius: ${({ theme }) => theme.borderRadius.medium};
-    align-items: center;
-    display: flex;
-    justify-content: center;
   }
+
   .logout {
     grid-area: 1 / 6 / 2 / 7;
     background-color: ${({ theme }) => theme.colors.camel};

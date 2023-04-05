@@ -2,15 +2,16 @@ import styled from "styled-components";
 
 const ShareRoomStyled = styled.div`
   display: flex;
-  flex-direction: column;
   gap: 10px;
+  flex-direction: column;
+
   .copyUrlContainer {
     position: relative;
 
     .isCopied {
-      position: absolute;
-      bottom: 100%;
       left: 15%;
+      bottom: 100%;
+      position: absolute;
     }
 
     .copyUrl {

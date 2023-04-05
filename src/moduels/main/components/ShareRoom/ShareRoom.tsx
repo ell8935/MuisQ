@@ -1,7 +1,7 @@
 import { useState } from "react";
 import QRCode from "react-qr-code";
-import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
 import ShareRoomStyled from "./ShareRoomStyled";
+import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
 
 interface Props {
   roomId: string;

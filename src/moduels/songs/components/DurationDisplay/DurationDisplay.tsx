@@ -6,7 +6,7 @@ interface Props {
   isTotal?: boolean;
 }
 
-function DurationDisplay({ durationInSeconds, isTotal }: Props) {
+const DurationDisplay = ({ durationInSeconds, isTotal }: Props) => {
   const duration: Duration = moment.duration(durationInSeconds * 1000);
   const format = duration.asHours() >= 1 ? "HH:mm:ss" : "mm:ss";
   const formattedDuration = moment
@@ -19,6 +19,6 @@ function DurationDisplay({ durationInSeconds, isTotal }: Props) {
       <span>{formattedDuration}</span>
     </DurationDisplayStyled>
   );
-}
+};
 
 export default DurationDisplay;

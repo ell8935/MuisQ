@@ -1,10 +1,10 @@
 import ProtectedRoutes from "./ProtectedRoutes";
-import MainScreen from "../main/screens/MainScreen/MainScreen";
-import LoginScreen from "../auth/screens/LoginScreen/LoginScreen";
-import { RoomScreen } from "../main/screens/RoomsScreen/RoomsScreen";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
 import { theme } from "../../shared/theme/theme";
+import { ThemeProvider } from "styled-components";
+import MainScreen from "../main/screens/MainScreen/MainScreen";
+import RoomScreen from "../main/screens/RoomsScreen/RoomsScreen";
+import LoginScreen from "../auth/screens/LoginScreen/LoginScreen";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 const Navigator = () => {
   return (

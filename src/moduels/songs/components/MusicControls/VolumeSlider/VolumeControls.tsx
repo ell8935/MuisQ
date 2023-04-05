@@ -1,21 +1,16 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { IconButton } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
 import VolumeSliderStyled from "./VolumeControlsStyled";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
-import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import VolumeOffIcon from "@mui/icons-material/VolumeOff";
-import { useDispatch, useSelector } from "react-redux";
+import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import { AppDispatch, RootState } from "../../../../../shared/redux/store";
-import {
-  setMute,
-  setVolume,
-} from "../../../../../shared/redux/reducers/musicControlsSlice";
+import { setMute, setVolume } from "../../../../../shared/redux/reducers/musicControlsSlice";
 
 const VolumeControls = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { volume, toggleMute } = useSelector(
-    (state: RootState) => state.musicControls
-  );
+  const { volume, toggleMute } = useSelector((state: RootState) => state.musicControls);
 
   const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     dispatch(setVolume(parseFloat(event.target.value)));

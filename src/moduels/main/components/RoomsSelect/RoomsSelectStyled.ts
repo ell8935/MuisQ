@@ -3,28 +3,30 @@ import styled from "styled-components";
 const RoomsSelectStyled = styled.div`
   display: flex;
   height: 100%;
+  align-items: center;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
   background-color: ${({ theme }) => theme.colors.camel};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
 
   .listContainer {
     width: 95%;
-    padding: ${({ theme }) => theme.padding.medium};
     margin: 0px;
     font-weight: 700;
+    padding: ${({ theme }) => theme.padding.medium};
+
     .linkRoom {
-      color: ${({ theme }) => theme.colors.black};
       user-select: none;
       text-decoration: none;
+      color: ${({ theme }) => theme.colors.black};
 
       .listItem {
-        list-style-type: none;
-        border-radius: ${({ theme }) => theme.borderRadius.medium};
-        background-color: ${({ theme }) => theme.colors.redGray};
-        padding: ${({ theme }) => theme.padding.small};
         margin-bottom: 5px;
+        list-style-type: none;
+        padding: ${({ theme }) => theme.padding.small};
+        background-color: ${({ theme }) => theme.colors.redGray};
+        border-radius: ${({ theme }) => theme.borderRadius.medium};
+
         :hover {
           background-color: ${({ theme }) => theme.colors.black};
         }

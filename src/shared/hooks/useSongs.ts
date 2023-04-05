@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Songs } from "../constants/types/songTypes";
 import { getSongs } from "../services/firebaseServices/songServices";
 
-function useSongs(roomId: string): Songs[] {
+const useSongs = (roomId: string): Songs[] => {
   const [songs, setSongs] = useState<Songs[]>([]);
 
   const callback = (songs: Songs[]) => {
@@ -16,6 +16,6 @@ function useSongs(roomId: string): Songs[] {
   }, [roomId]);
 
   return songs;
-}
+};
 
-export { useSongs };
+export default useSongs;

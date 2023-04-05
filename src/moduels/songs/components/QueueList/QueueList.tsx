@@ -1,26 +1,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { IconButton } from "@mui/material";
+import { useState, useEffect } from "react";
+import QueueListStyled from "./QueueListStyled";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
-import { removeSong } from "../../../../shared/services/firebaseServices/songServices";
-import QueueListStyled from "./QueueListStyled";
-import { Songs } from "../../../../shared/constants/types/songTypes";
 import DurationDisplay from "../DurationDisplay/DurationDisplay";
-import { useState, useEffect } from "react";
+import { Songs } from "../../../../shared/constants/types/songTypes";
+import { removeSong } from "../../../../shared/services/firebaseServices/songServices";
 
 interface Props {
-  handleSelectSong: (index: number) => void;
   roomId: string;
-  songsList: Songs[];
   className: string;
+  songsList: Songs[];
+  handleSelectSong: (index: number) => void;
 }
 
-const QueueList = ({
-  songsList,
-  handleSelectSong,
-  roomId,
-  className,
-}: Props): JSX.Element => {
+const QueueList = ({ roomId, className, songsList, handleSelectSong }: Props): JSX.Element => {
   const [totalDuration, setTotalDuration] = useState<number>(0);
 
   useEffect(() => {
@@ -38,10 +33,7 @@ const QueueList = ({
 
   const handleSumSongDurations = () => {
     const durations = songsList.map((item) => Number(item.duration));
-    const totalDurationInSeconds = durations.reduce(
-      (acc, curr) => acc + curr,
-      0
-    );
+    const totalDurationInSeconds = durations.reduce((acc, curr) => acc + curr, 0);
     setTotalDuration(totalDurationInSeconds);
   };
 

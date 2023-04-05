@@ -2,13 +2,13 @@ import { useEffect, useState } from "react";
 import { getMessages } from "../services/firebaseServices/messageServices";
 
 interface Message {
-  displayName: string;
   id: string;
-  text: string;
   uid: string;
+  text: string;
+  displayName: string;
 }
 
-function useMessages(roomId: string): Message[] {
+const useMessages = (roomId: string): Message[] => {
   const [messages, setMessages] = useState<Message[]>([]);
 
   const callback = (messages: Message[]) => {
@@ -22,6 +22,6 @@ function useMessages(roomId: string): Message[] {
   }, [roomId]);
 
   return messages;
-}
+};
 
-export { useMessages };
+export default useMessages;

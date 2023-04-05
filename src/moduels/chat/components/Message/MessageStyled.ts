@@ -6,22 +6,22 @@ interface Props {
 
 const MessageStyled = styled.div<Props>`
   display: flex;
+  margin-bottom: 10px;
   flex-direction: column;
   align-items: ${(props) => (props.isOwnMessage ? "flex-end" : "flex-start")};
-  margin-bottom: 10px;
 
   .message {
-    background: gray;
-    border-radius: 10px;
-    text-align: left;
     padding: 10px;
+    background: gray;
+    text-align: left;
+    border-radius: 10px;
   }
 
   .own-message {
-    background: green;
-    align-self: flex-end;
-    text-align: right;
     padding: 10px;
+    background: green;
+    text-align: right;
+    align-self: flex-end;
   }
 
   .sender {

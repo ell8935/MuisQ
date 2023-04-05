@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import RoomScreenStyled from "./RoomScreenStyled";
 import { useSearchParams } from "react-router-dom";
+import HeaderBar from "../../components/HeaderBar/HeaderBar";
 import Player from "../../../songs/components/Player/Player";
 import NotFound from "../../../auth/components/NotFound404/NotFound404";
-import { getRoom } from "../../../../shared/services/firebaseServices/roomServices";
-import RoomScreenStyled from "./RoomScreenStyled";
 import SearchBarYT from "../../../songs/components/SearchBarYT/SearchBarYT";
+import { getRoom } from "../../../../shared/services/firebaseServices/roomServices";
 import MessageContainer from "../../../chat/components/MessageContainer/MessageContainer";
-import HeaderBar from "../../components/HeaderBar/HeaderBar";
 
-function RoomScreen() {
+const RoomScreen = () => {
   const [searchParams] = useSearchParams();
 
   const roomId = searchParams.get("id") || "Main";
@@ -28,6 +28,6 @@ function RoomScreen() {
       <MessageContainer className="chat" roomId={roomId} />
     </RoomScreenStyled>
   );
-}
+};
 
-export { RoomScreen };
+export default RoomScreen;

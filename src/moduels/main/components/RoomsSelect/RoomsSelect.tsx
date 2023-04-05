@@ -1,20 +1,19 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { DocumentData } from "firebase/firestore";
 import CreateRoom from "../CreateRoom/CreateRoom";
 import RoomsSelectStyled from "./RoomsSelectStyled";
+import { motion, useAnimationControls } from "framer-motion";
 import Loader from "../../../../shared/components/Loader/Loader";
 import { getRooms } from "../../../../shared/services/firebaseServices/roomServices";
-import { useEffect } from "react";
-import { motion, useAnimationControls } from "framer-motion";
 
 const RoomsSelect = () => {
+  const controls = useAnimationControls();
   const { data, isLoading } = useQuery<DocumentData[]>({
     queryKey: ["getRooms"],
     queryFn: getRooms,
   });
-
-  const controls = useAnimationControls();
 
   useEffect(() => {
     controls.set({ opacity: 0, x: 100 });

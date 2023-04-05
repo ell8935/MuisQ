@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const CreateRoomStyled = styled.div`
-  display: flex;
   width: 100%;
+  display: flex;
   justify-content: center;
 `;
 

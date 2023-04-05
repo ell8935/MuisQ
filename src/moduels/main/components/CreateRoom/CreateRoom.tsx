@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import CreateRoomStyled from "./CreateRoomStyled";
 import { RootState } from "../../../../shared/redux/store";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 import { createRoom } from "../../../../shared/services/firebaseServices/roomServices";
-import CreateRoomStyled from "./CreateRoomStyled";
 
 const CreateRoom = () => {
-  const user = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
   const [roomName, setRoomName] = useState("");
+  const user = useSelector((state: RootState) => state.auth);
 
   const handleNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setRoomName(event.target.value);

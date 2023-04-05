@@ -6,26 +6,25 @@ interface CustomModalStyledProps {
 
 const CustomModalStyled = styled.div<CustomModalStyledProps>`
   display: block;
-  position: fixed;
-  z-index: 1;
-  left: 0;
   top: 0;
+  left: 0;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  background-color: ${({ isOpen }) =>
-    isOpen ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0)"};
+  position: fixed;
+  background-color: ${({ isOpen }) => (isOpen ? "rgba(0,0,0,0.5)" : "rgba(0,0,0,0)")};
 
   .modalContent {
     display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    margin: 15% auto;
     padding: 20px;
-    width: fit-content; /* Updated */
-    max-width: 100%; /* Added */
-    border-radius: ${({ theme }) => theme.borderRadius.medium};
-    justify-content: center;
+    max-width: 100%;
+    margin: 15% auto;
+    width: fit-content;
     align-items: center;
+    background-color: #fff;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: ${({ theme }) => theme.borderRadius.medium};
 
     .close {
       align-self: flex-end;

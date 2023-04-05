@@ -1,13 +1,15 @@
-import LogoutButton from "../../../auth/components/LogoutButton/LogoutButton";
 import { useEffect } from "react";
-import { motion, useAnimationControls } from "framer-motion";
 import HeaderBarStyled from "./HeaderBarStyled";
+import { motion, useAnimationControls } from "framer-motion";
 import { MusicQLogo } from "../../../../shared/assets/images";
+import LogoutButton from "../../../auth/components/LogoutButton/LogoutButton";
 import MusicControls from "../../../songs/components/MusicControls/MusicControls";
+
 interface Props {
   className: string;
   isControls?: boolean;
 }
+
 const HeaderBar = ({ className, isControls }: Props) => {
   const controls = useAnimationControls();
 

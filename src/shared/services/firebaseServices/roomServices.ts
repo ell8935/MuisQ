@@ -1,25 +1,13 @@
-import {
-  addDoc,
-  collection,
-  doc,
-  DocumentData,
-  getDoc,
-  getDocs,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
-import { db, getExpiredDate } from "../firebase";
 import { UserInfo } from "firebase/auth";
+import { db, getExpiredDate } from "../firebase";
+import { addDoc, collection, doc, DocumentData, getDoc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
 
 interface createRoomInterface {
   roomName: string;
   user: Partial<UserInfo>;
 }
 
-const createRoom = async ({
-  roomName,
-  user,
-}: createRoomInterface): Promise<void> => {
+const createRoom = async ({ roomName, user }: createRoomInterface): Promise<void> => {
   await setDoc(doc(db, "Rooms", roomName), {
     addedByUser: user.displayName,
     timestamp: serverTimestamp(),

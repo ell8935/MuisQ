@@ -1,15 +1,6 @@
 import { UserInfo } from "firebase/auth";
-import {
-  addDoc,
-  collection,
-  doc,
-  onSnapshot,
-  orderBy,
-  query,
-  serverTimestamp,
-  setDoc,
-} from "firebase/firestore";
 import { db, getExpiredDate } from "../firebase";
+import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc } from "firebase/firestore";
 
 interface getMessagesInterface {
   roomId: string;
@@ -17,9 +8,9 @@ interface getMessagesInterface {
 }
 
 interface sendMessageInterface {
+  text: string;
   roomId: string;
   user: Partial<UserInfo>;
-  text: string;
 }
 
 const sendMessage = async ({ roomId, user, text }: sendMessageInterface) => {
@@ -45,10 +36,7 @@ const sendMessage = async ({ roomId, user, text }: sendMessageInterface) => {
 
 const getMessages = ({ roomId, callback }: getMessagesInterface) => {
   return onSnapshot(
-    query(
-      collection(db, "Rooms", roomId, "messages"),
-      orderBy("timestamp", "asc")
-    ),
+    query(collection(db, "Rooms", roomId, "messages"), orderBy("timestamp", "asc")),
     (querySnapshot) => {
       const messages = querySnapshot.docs.map((doc) => ({
         id: doc.id,

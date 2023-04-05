@@ -1,26 +1,27 @@
 import styled from "styled-components";
 
 const MessageListStyled = styled.div`
-  display: flex;
-  flex-direction: column-reverse;
-  overflow: scroll;
   height: 100%;
+  display: flex;
+  overflow: scroll;
   overflow-y: auto;
   overflow-x: hidden;
+  flex-direction: column-reverse;
+
   &::-webkit-scrollbar {
     width: 8px;
   }
 
   &::-webkit-scrollbar-thumb {
     border-radius: 8px;
-    background-color: #363636;
     border-radius: 10px;
+    background-color: #363636;
   }
   ul {
-    list-style-type: none;
-    padding-right: 10px;
-    padding-left: 10px;
     margin: 0;
+    padding-left: 10px;
+    padding-right: 10px;
+    list-style-type: none;
   }
 `;
 

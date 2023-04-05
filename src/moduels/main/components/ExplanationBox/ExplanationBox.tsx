@@ -1,5 +1,5 @@
-import CustomText from "../../../../shared/components/CustomText/CustomText";
 import ExplanationBoxStyled from "./ExplanationBoxStyled";
+import CustomText from "../../../../shared/components/CustomText/CustomText";
 
 const ExplanationBox = () => {
   const explanationText =

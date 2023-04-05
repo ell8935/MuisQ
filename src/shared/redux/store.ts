@@ -1,19 +1,10 @@
-import { musicControlsSlice } from "./reducers/musicControlsSlice";
-import { authSlice } from "./reducers/authSlice";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import {
-  persistStore,
-  persistReducer,
-  FLUSH,
-  REHYDRATE,
-  PAUSE,
-  PERSIST,
-  PURGE,
-  REGISTER,
-} from "redux-persist";
 import storage from "redux-persist/lib/storage";
+import { authSlice } from "./reducers/authSlice";
 import { roomsSlice } from "./reducers/roomsSlice";
 import { modalSlice } from "./reducers/modalSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { musicControlsSlice } from "./reducers/musicControlsSlice";
+import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
 
 const persistConfig = {
   key: "root",

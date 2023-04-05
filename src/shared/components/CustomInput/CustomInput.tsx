@@ -1,27 +1,27 @@
 import { MouseEventHandler } from "react";
-import CustomButton from "../CustomButton/CustomButton";
 import CustomInputStyled from "./CustomInputStyled";
+import CustomButton from "../CustomButton/CustomButton";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
   type?: string;
-  value?: string | string;
-  placeHolder?: string;
   minLength?: number;
   className?: string;
+  placeHolder?: string;
   buttonLabel?: string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onClick?: () => void;
+  value?: string | string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const CustomInput: React.FC<Props> = ({
   type,
   value,
-  placeHolder,
+  onClick,
+  onChange,
   minLength,
   className,
   buttonLabel,
-  onChange,
-  onClick,
+  placeHolder,
   ...rest
 }: Props) => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
