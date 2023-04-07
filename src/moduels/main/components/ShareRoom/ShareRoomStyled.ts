@@ -5,18 +5,8 @@ const ShareRoomStyled = styled.div`
   gap: 10px;
   flex-direction: column;
 
-  .copyUrlContainer {
-    position: relative;
-
-    .isCopied {
-      left: 15%;
-      bottom: 100%;
-      position: absolute;
-    }
-
-    .copyUrl {
-      height: 3rem;
-    }
+  .copyUrl {
+    height: 3rem;
   }
 `;
 

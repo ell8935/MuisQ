@@ -4,19 +4,17 @@ const CustomInputStyled = styled.div`
   display: flex;
   width: 100%;
   height: 100%;
-  margin-left: 10px;
   position: relative;
-  margin-right: 10px;
   flex-direction: "row";
 
   .default {
     border: 0;
     width: 100%;
-    color: #377d6a;
+    color: ${({ theme }) => theme.colors.black};
     font-weight: 400;
     padding: 20px 0px;
     text-indent: 10px;
-    background: #efefef;
+    background-color: ${({ theme }) => theme.colors.whiteCream};
     border-radius: ${({ theme }) => theme.padding.medium};
   }
 

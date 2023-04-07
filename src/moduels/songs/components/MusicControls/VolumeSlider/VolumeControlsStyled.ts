@@ -5,19 +5,19 @@ const VolumeControlsStyled = styled.div`
   position: relative;
   align-items: center;
   justify-content: center;
+  &:hover {
+    .verticalSlider {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
 
   .verticalSlider {
     position: absolute;
     left: 60%;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease-in-out;
-  }
-
-  .speakerIcon:hover + .verticalSlider,
-  .verticalSlider:hover {
-    opacity: 1;
-    pointer-events: auto;
+    transition: opacity 0.5s ease-in-out;
   }
 `;
 

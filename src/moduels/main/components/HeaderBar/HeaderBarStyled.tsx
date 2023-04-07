@@ -13,7 +13,7 @@ const HeaderBarStyled = styled.div`
     overflow: hidden;
     align-items: center;
     justify-content: center;
-    background-color: ${({ theme }) => theme.colors.camel};
+    background-color: ${({ theme }) => theme.colors.primary};
     border-radius: ${({ theme }) => theme.borderRadius.medium};
 
     img {
@@ -27,13 +27,13 @@ const HeaderBarStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: ${({ theme }) => theme.colors.camel};
+    background-color: ${({ theme }) => theme.colors.primary};
     border-radius: ${({ theme }) => theme.borderRadius.medium};
   }
 
   .logout {
     grid-area: 1 / 6 / 2 / 7;
-    background-color: ${({ theme }) => theme.colors.camel};
+    background-color: ${({ theme }) => theme.colors.primary};
     border-radius: ${({ theme }) => theme.borderRadius.medium};
   }
 `;

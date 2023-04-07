@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { setModal } from "../../redux/reducers/modalSlice";
 import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
+import CustomIconButton from "../CustomIconButton/CustomIconButton";
 
 interface Props {
   children: any;
@@ -22,9 +23,9 @@ const CustomModal = ({ children }: Props) => {
   return (
     <CustomModalStyled isOpen={isOpen}>
       <div className="modalContent">
-        <IconButton className="close" onClick={closeModal}>
+        <CustomIconButton className="close" onClick={closeModal}>
           <CancelPresentationIcon />
-        </IconButton>
+        </CustomIconButton>
         <p>{children}</p>
       </div>
     </CustomModalStyled>

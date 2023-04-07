@@ -12,6 +12,7 @@ import { setModal } from "../../../../shared/redux/reducers/modalSlice";
 import { AppDispatch, RootState } from "../../../../shared/redux/store";
 import CustomModal from "../../../../shared/components/CustomModal/CustomModal";
 import { setSongCurrentIndex, setTogglePlayer, skipSong } from "../../../../shared/redux/reducers/musicControlsSlice";
+import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 
 interface Props {
   roomId: string;
@@ -47,14 +48,14 @@ const Player = ({ roomId, className }: Props) => {
 
   return (
     <PlayerStyled className={className}>
+      <CustomModal>
+        <ShareRoom roomId={roomId} />
+      </CustomModal>
       <span className="roomNameHeader">
-        {roomId}'s room
-        <CustomModal>
-          <ShareRoom roomId={roomId} />
-        </CustomModal>
-        <IconButton onClick={() => dispatch(setModal(true))}>
+        <h4>{roomId} Room</h4>
+        <CustomIconButton onClick={() => dispatch(setModal(true))}>
           <IosShareIcon />
-        </IconButton>
+        </CustomIconButton>
       </span>
 
       <div className="playerDetailsContainer">
@@ -65,8 +66,8 @@ const Player = ({ roomId, className }: Props) => {
             url={url}
             playing={togglePlayer}
             onEnded={() => dispatch(skipSong())}
-            width="25vh"
-            height="15vh"
+            width="20vh"
+            height="20vh"
             ref={playerRef}
             volume={volume}
             muted={toggleMute}
@@ -76,11 +77,21 @@ const Player = ({ roomId, className }: Props) => {
         <div className="songDetails">
           <h3>{songTitle}</h3>
           <h5>{songChannelTitle}</h5>
-          <DurationTimer durationElapsedInSeconds={durationElapsed} totalDurationInSeconds={Number(songDuration)} />
+          {songDuration ? (
+            <DurationTimer durationElapsedInSeconds={durationElapsed} totalDurationInSeconds={Number(songDuration)} />
+          ) : (
+            ""
+          )}{" "}
         </div>
       </div>
 
-      <QueueList className="queueList" songsList={songsList} roomId={roomId} handleSelectSong={handleSelectSong} />
+      <QueueList
+        className="queueList"
+        currentIndex={currentIndex}
+        songsList={songsList}
+        roomId={roomId}
+        handleSelectSong={handleSelectSong}
+      />
     </PlayerStyled>
   );
 };

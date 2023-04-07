@@ -7,7 +7,7 @@ const ExplanationBoxStyled = styled.div`
   line-height: 0.85;
   text-align: center;
   align-items: center;
-  background-color: ${({ theme }) => theme.colors.camel};
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
 `;
 

@@ -1,5 +1,4 @@
 import screenfull from "screenfull";
-import { IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import MusicControlStyled from "./MusicControlsStyled";
 import VolumeControls from "./VolumeSlider/VolumeControls";
@@ -9,6 +8,7 @@ import SkipNextOutlined from "@mui/icons-material/SkipNextOutlined";
 import PlayArrowOutlined from "@mui/icons-material/PlayArrowOutlined";
 import { AppDispatch, RootState } from "../../../../shared/redux/store";
 import SkipPreviousOutlined from "@mui/icons-material/SkipPreviousOutlined";
+import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 import { previousSong, setTogglePlayer, skipSong } from "../../../../shared/redux/reducers/musicControlsSlice";
 
 const MusicControls = () => {
@@ -31,26 +31,26 @@ const MusicControls = () => {
         <VolumeControls />
       </div>
       <div className="baseControls">
-        <IconButton onClick={() => dispatch(previousSong())}>
+        <CustomIconButton onClick={() => dispatch(previousSong())}>
           <SkipPreviousOutlined sx={{ fontSize: 35 }}></SkipPreviousOutlined>
-        </IconButton>
+        </CustomIconButton>
 
-        <IconButton onClick={togglePlayerPausePlay}>
+        <CustomIconButton onClick={togglePlayerPausePlay}>
           {togglePlayer ? (
             <PauseOutlined sx={{ fontSize: 35 }}></PauseOutlined>
           ) : (
             <PlayArrowOutlined sx={{ fontSize: 35 }}></PlayArrowOutlined>
           )}
-        </IconButton>
+        </CustomIconButton>
 
-        <IconButton onClick={() => dispatch(skipSong())}>
+        <CustomIconButton onClick={() => dispatch(skipSong())}>
           <SkipNextOutlined sx={{ fontSize: 35 }}></SkipNextOutlined>
-        </IconButton>
+        </CustomIconButton>
       </div>
       <div className="fullScreen">
-        <IconButton onClick={handleFullScreen}>
+        <CustomIconButton onClick={handleFullScreen}>
           <FullscreenIcon sx={{ fontSize: 35 }}></FullscreenIcon>
-        </IconButton>
+        </CustomIconButton>
       </div>
     </MusicControlStyled>
   );

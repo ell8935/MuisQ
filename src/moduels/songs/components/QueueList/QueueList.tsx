@@ -1,21 +1,23 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { IconButton } from "@mui/material";
 import { useState, useEffect } from "react";
 import QueueListStyled from "./QueueListStyled";
 import DeleteIcon from "@mui/icons-material/Delete";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
+import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import DurationDisplay from "../DurationDisplay/DurationDisplay";
 import { Songs } from "../../../../shared/constants/types/songTypes";
 import { removeSong } from "../../../../shared/services/firebaseServices/songServices";
+import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 
 interface Props {
   roomId: string;
   className: string;
   songsList: Songs[];
+  currentIndex: number;
   handleSelectSong: (index: number) => void;
 }
 
-const QueueList = ({ roomId, className, songsList, handleSelectSong }: Props): JSX.Element => {
+const QueueList = ({ roomId, className, songsList, currentIndex, handleSelectSong }: Props): JSX.Element => {
   const [totalDuration, setTotalDuration] = useState<number>(0);
 
   useEffect(() => {
@@ -38,18 +40,20 @@ const QueueList = ({ roomId, className, songsList, handleSelectSong }: Props): J
   };
 
   return (
-    <QueueListStyled className={className}>
-      <h2>Queue List</h2>
+    <QueueListStyled className={className} currentIndex={currentIndex}>
       <ul>
         {songsList.map((item: Songs, index: number) => (
-          <li key={index}>
-            <IconButton onClick={() => handleSelectSong(index)}>
-              <PlayArrowIcon />
-            </IconButton>
-            <IconButton onClick={() => removeItem(index)}>
-              <DeleteIcon />
-            </IconButton>
+          <li key={index} className={currentIndex === index ? "highlighted" : ""}>
+            <MusicNoteIcon color="action" />
             <div className="songTitle">{item.songTitle}</div>
+            <div className="queueListButton">
+              <CustomIconButton onClick={() => handleSelectSong(index)}>
+                <PlayArrowIcon />
+              </CustomIconButton>
+              <CustomIconButton color="warning" onClick={() => removeItem(index)}>
+                <DeleteIcon />
+              </CustomIconButton>
+            </div>
             <div className="durationTime">
               <DurationDisplay durationInSeconds={Number(item.duration)} />
             </div>

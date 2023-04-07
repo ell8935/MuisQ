@@ -1,5 +1,4 @@
 import React from "react";
-import { IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import VolumeSliderStyled from "./VolumeControlsStyled";
 import VolumeUpIcon from "@mui/icons-material/VolumeUp";
@@ -7,6 +6,7 @@ import VolumeOffIcon from "@mui/icons-material/VolumeOff";
 import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import { AppDispatch, RootState } from "../../../../../shared/redux/store";
 import { setMute, setVolume } from "../../../../../shared/redux/reducers/musicControlsSlice";
+import CustomIconButton from "../../../../../shared/components/CustomIconButton/CustomIconButton";
 
 const VolumeControls = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -23,9 +23,7 @@ const VolumeControls = () => {
 
   return (
     <VolumeSliderStyled>
-      <IconButton onClick={handleMute} className="speakerIcon">
-        {toggleMute ? <VolumeOffIcon /> : SpeakerIcon}
-      </IconButton>
+      <CustomIconButton onClick={handleMute}>{toggleMute ? <VolumeOffIcon /> : SpeakerIcon}</CustomIconButton>
       {toggleMute ? (
         ""
       ) : (

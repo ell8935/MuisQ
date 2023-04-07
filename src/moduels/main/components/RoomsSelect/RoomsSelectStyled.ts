@@ -6,14 +6,14 @@ const RoomsSelectStyled = styled.div`
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  background-color: ${({ theme }) => theme.colors.camel};
+  background-color: ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
 
   .listContainer {
     width: 95%;
     margin: 0px;
     font-weight: 700;
-    padding: ${({ theme }) => theme.padding.medium};
+    padding: ${({ theme }) => theme.padding.big};
 
     .linkRoom {
       user-select: none;
@@ -24,8 +24,9 @@ const RoomsSelectStyled = styled.div`
         margin-bottom: 5px;
         list-style-type: none;
         padding: ${({ theme }) => theme.padding.small};
-        background-color: ${({ theme }) => theme.colors.redGray};
         border-radius: ${({ theme }) => theme.borderRadius.medium};
+        background-color: ${({ theme }) => theme.colors.secondaryDarker};
+        text-indent: 10px;
 
         :hover {
           background-color: ${({ theme }) => theme.colors.black};

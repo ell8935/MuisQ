@@ -11,7 +11,7 @@ const Message = ({ message, isOwnMessage }: MessageProps) => {
   return (
     <MessageStyled isOwnMessage={isOwnMessage}>
       <li className={["message", isOwnMessage && "own-message"].join(" ")}>
-        <h4 className="sender">{isOwnMessage ? "You" : displayName}</h4>
+        <h5 className="sender">{isOwnMessage ? "" : displayName}</h5>
         <div>{text}</div>
       </li>
     </MessageStyled>

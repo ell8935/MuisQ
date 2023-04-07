@@ -1,13 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import SearchBarYTStyled from "./SearchBarYTStyled";
 import { RootState } from "../../../../shared/redux/store";
 import { formatDurationISO8601 } from "../../../../shared/utils/timeUtils";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 import { addSong } from "../../../../shared/services/firebaseServices/songServices";
+import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 
 interface SearchResult {
   id: { videoId: string };
@@ -72,7 +72,7 @@ const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
 
   return (
     <SearchBarYTStyled className={className}>
-      <div className="search">
+      <div>
         <CustomInput
           value={query}
           type="text"
@@ -84,9 +84,9 @@ const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
       <div className="suggestionsContainer">
         {results?.map((result) => (
           <div className="suggestion" key={result.id.videoId}>
-            <IconButton size="large" onClick={() => handleAddNewItem(result)}>
+            <CustomIconButton size="large" onClick={() => handleAddNewItem(result)}>
               <AddIcon />
-            </IconButton>
+            </CustomIconButton>
             {result.snippet.title}
           </div>
         ))}

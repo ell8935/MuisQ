@@ -15,18 +15,19 @@ const CustomButtonStyled = styled.div<Props>`
     color: black;
     cursor: pointer;
     transition: 0.3s;
+    font-weight: 900;
     border-color: transparent;
     border-radius: ${({ theme }) => theme.borderRadius.medium};
-    background-color: ${({ theme, disabled }) => (disabled ? theme.colors.redGray : theme.colors.greenGray)};
+    background-color: ${({ theme, disabled }) => (disabled ? theme.colors.warning : theme.colors.secondary)};
 
     :hover {
-      transform: scale(0.95);
-      background-color: ${({ theme }) => theme.colors.redGray};
+      background-color: ${({ theme, disabled }) =>
+        disabled ? theme.colors.warningLighter : theme.colors.secondaryLighter};
     }
 
     :active {
-      transform: scale(0.95);
-      background-color: ${({ theme }) => theme.colors.camel};
+      background-color: ${({ theme, disabled }) =>
+        disabled ? theme.colors.warningDarker : theme.colors.secondaryDarker};
     }
   }
 `;
