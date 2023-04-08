@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Songs } from "../constants/types/songTypes";
-import { getSongs } from "../services/firebaseServices/songServices";
+import { getSongs } from "../../moduels/songs/services/songServices";
 
 const useSongs = (roomId: string): Songs[] => {
   const [songs, setSongs] = useState<Songs[]>([]);

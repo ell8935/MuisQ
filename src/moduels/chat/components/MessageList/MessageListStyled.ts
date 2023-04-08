@@ -8,15 +8,6 @@ const MessageListStyled = styled.div`
   overflow-x: hidden;
   flex-direction: column-reverse;
 
-  &::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    border-radius: 8px;
-    border-radius: 10px;
-    background-color: #363636;
-  }
   ul {
     margin: 0;
     padding-left: 10px;

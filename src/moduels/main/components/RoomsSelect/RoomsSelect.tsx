@@ -6,7 +6,7 @@ import CreateRoom from "../CreateRoom/CreateRoom";
 import RoomsSelectStyled from "./RoomsSelectStyled";
 import { motion, useAnimationControls } from "framer-motion";
 import Loader from "../../../../shared/components/Loader/Loader";
-import { getRooms } from "../../../../shared/services/firebaseServices/roomServices";
+import { getRooms } from "../../services/roomServices";
 
 const RoomsSelect = () => {
   const controls = useAnimationControls();
@@ -36,11 +36,7 @@ const RoomsSelect = () => {
             <h2>Choose a Room or Create</h2>
             {data?.map((room, index) => (
               <Link key={index} className="linkRoom" to={`/room?id=${room.id}`}>
-                <motion.li
-                  custom={index}
-                  animate={controls}
-                  className="listItem"
-                >
+                <motion.li custom={index} animate={controls} className="listItem">
                   {room.id}
                 </motion.li>
               </Link>

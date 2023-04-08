@@ -1,4 +1,3 @@
-import { IconButton } from "@mui/material";
 import CustomModalStyled from "./CustomModalStyled";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";

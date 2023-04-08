@@ -1,5 +1,5 @@
 import { UserInfo } from "firebase/auth";
-import { db, getExpiredDate } from "../firebase";
+import { db, getExpiredDate } from "../../../shared/services/firebase";
 import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc } from "firebase/firestore";
 
 interface getMessagesInterface {

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import CreateRoomStyled from "./CreateRoomStyled";
 import { RootState } from "../../../../shared/redux/store";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
-import { createRoom } from "../../../../shared/services/firebaseServices/roomServices";
+import { createRoom } from "../../services/roomServices";
 
 const CreateRoom = () => {
   const navigate = useNavigate();
@@ -29,7 +29,7 @@ const CreateRoom = () => {
       <CustomInput
         value={roomName}
         onChange={handleNameChange}
-        placeHolder="e.g Rock and Roll"
+        placeholder="eg rock and roll"
         buttonLabel="Create"
         onClick={handleCreateRoom}
         minLength={1}

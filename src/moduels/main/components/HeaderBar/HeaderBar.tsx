@@ -1,16 +1,16 @@
 import { useEffect } from "react";
 import HeaderBarStyled from "./HeaderBarStyled";
 import { motion, useAnimationControls } from "framer-motion";
-import { MusicQLogo } from "../../../../shared/assets/images";
+import { MusicQLogo, MusiQWithName } from "../../../../shared/assets/images";
 import LogoutButton from "../../../auth/components/LogoutButton/LogoutButton";
 import MusicControls from "../../../songs/components/MusicControls/MusicControls";
 
 interface Props {
   className: string;
-  isControls?: boolean;
+  isMusicControls?: boolean;
 }
 
-const HeaderBar = ({ className, isControls }: Props) => {
+const HeaderBar = ({ className, isMusicControls }: Props) => {
   const controls = useAnimationControls();
 
   useEffect(() => {
@@ -26,11 +26,11 @@ const HeaderBar = ({ className, isControls }: Props) => {
   return (
     <HeaderBarStyled className={className}>
       <motion.div custom={1} animate={controls} className="logo">
-        <img src={MusicQLogo} alt="Logo" className="logoImage" />
+        <img src={MusiQWithName} alt="Logo" />
       </motion.div>
 
       <motion.div custom={2} animate={controls} className="controls">
-        {isControls ? <MusicControls /> : ""}
+        {isMusicControls ? <MusicControls /> : ""}
       </motion.div>
 
       <motion.div custom={3} animate={controls} className="logout">

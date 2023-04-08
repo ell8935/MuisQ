@@ -2,7 +2,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../shared/redux/store";
 import { clearAuth } from "../../../../shared/redux/reducers/authSlice";
 import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
-import { googleLogout } from "../../../../shared/services/firebaseServices/authServies";
+import { googleLogout } from "../../services/authServies";
 
 const LogoutButton = () => {
   const dispatch: AppDispatch = useDispatch();

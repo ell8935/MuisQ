@@ -6,7 +6,7 @@ import SearchBarYTStyled from "./SearchBarYTStyled";
 import { RootState } from "../../../../shared/redux/store";
 import { formatDurationISO8601 } from "../../../../shared/utils/timeUtils";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
-import { addSong } from "../../../../shared/services/firebaseServices/songServices";
+import { addSong } from "../../services/songServices";
 import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 
 interface SearchResult {
@@ -84,10 +84,10 @@ const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
       <div className="suggestionsContainer">
         {results?.map((result) => (
           <div className="suggestion" key={result.id.videoId}>
-            <CustomIconButton size="large" onClick={() => handleAddNewItem(result)}>
-              <AddIcon />
+            <CustomIconButton onClick={() => handleAddNewItem(result)}>
+              <AddIcon sx={{ fontSize: "3rem" }} />
             </CustomIconButton>
-            {result.snippet.title}
+            <h4>{result.snippet.title}</h4>
           </div>
         ))}
       </div>

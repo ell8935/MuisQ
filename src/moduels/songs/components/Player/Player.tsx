@@ -1,7 +1,6 @@
 import ReactPlayer from "react-player";
 import { useRef, useState } from "react";
 import PlayerStyled from "./PlayerStyled";
-import { IconButton } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import useSongs from "../../../../shared/hooks/useSongs";
@@ -77,11 +76,9 @@ const Player = ({ roomId, className }: Props) => {
         <div className="songDetails">
           <h3>{songTitle}</h3>
           <h5>{songChannelTitle}</h5>
-          {songDuration ? (
+          {songDuration && (
             <DurationTimer durationElapsedInSeconds={durationElapsed} totalDurationInSeconds={Number(songDuration)} />
-          ) : (
-            ""
-          )}{" "}
+          )}
         </div>
       </div>
 

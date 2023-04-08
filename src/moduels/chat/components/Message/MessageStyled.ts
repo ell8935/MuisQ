@@ -30,6 +30,12 @@ const MessageStyled = styled.div<Props>`
   .sender {
     margin: 1px;
   }
+
+  h6 {
+    margin: 0;
+    color: ${({ theme }) => theme.colors.primaryLighter};
+    text-align: right;
+  }
 `;
 
 export default MessageStyled;

@@ -3,7 +3,7 @@ import MessageInputStyled from "./MessageInputStyled";
 import { FormEvent, ChangeEvent, useState } from "react";
 import { RootState } from "../../../../shared/redux/store";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
-import { sendMessage } from "../../../../shared/services/firebaseServices/messageServices";
+import { sendMessage } from "../../services/messageServices";
 
 interface Props {
   roomId: string;
@@ -30,7 +30,7 @@ const MessageInput = ({ roomId }: Props) => {
         <CustomInput
           value={text}
           type="text"
-          placeHolder="Enter a message"
+          placeholder="Enter a message"
           minLength={1}
           onChange={handleChange}
           buttonLabel="Send"

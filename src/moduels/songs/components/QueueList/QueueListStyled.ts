@@ -24,11 +24,28 @@ const fadeOut = keyframes`
 `;
 
 const QueueListStyled = styled.div<Props>`
+  margin-top: 1rem;
   height: 100%;
   font-weight: 600;
   background-color: ${({ theme }) => theme.colors.primaryLighter};
   border-radius: 0 0 10px 10px;
   overflow: auto;
+
+  .queueListHeader {
+    display: flex;
+    justify-content: space-between;
+
+    .logo {
+      display: flex;
+      width: 15%;
+      align-items: center;
+      margin-left: 1.5rem;
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
+    }
+  }
 
   ul {
     padding-left: 0;
@@ -36,20 +53,22 @@ const QueueListStyled = styled.div<Props>`
     .highlighted {
       border: 2px solid ${({ theme }) => theme.colors.secondary};
       border-radius: 10px;
-      padding: 5px;
+      padding: 3px;
+      box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+        rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+      transform: translateY(-2px);
     }
 
     li {
       display: flex;
       align-items: center;
       list-style-type: none;
-      padding: 15px 0px 15px 0px;
       line-height: 2rem;
 
-      .highlighted {
-        border: 2px solid ${({ theme }) => theme.colors.secondary};
-        border-radius: 10px;
-        padding: 5px;
+      &:hover {
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,
+          rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+        transform: translateY(-2px);
       }
 
       .queueListButton {
@@ -86,11 +105,7 @@ const QueueListStyled = styled.div<Props>`
   }
 
   .totalDuration {
-    margin-top: 10px;
-    text-align: right;
     font-size: 16px;
-    position: absolute;
-    bottom: 0;
   }
 `;
 

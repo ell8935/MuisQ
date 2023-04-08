@@ -24,9 +24,7 @@ const VolumeControls = () => {
   return (
     <VolumeSliderStyled>
       <CustomIconButton onClick={handleMute}>{toggleMute ? <VolumeOffIcon /> : SpeakerIcon}</CustomIconButton>
-      {toggleMute ? (
-        ""
-      ) : (
+      {!toggleMute && (
         <input
           type="range"
           min={0}
@@ -34,7 +32,7 @@ const VolumeControls = () => {
           step={0.1}
           value={volume}
           onChange={handleVolumeChange}
-          className="verticalSlider"
+          className="slider"
         />
       )}
     </VolumeSliderStyled>

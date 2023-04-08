@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { getMessages } from "../services/firebaseServices/messageServices";
+import { getMessages } from "../../moduels/chat/services/messageServices";
 
 interface Message {
   id: string;
   uid: string;
   text: string;
   displayName: string;
+  timestamp: { seconds: number; nanoseconds: number };
 }
 
 const useMessages = (roomId: string): Message[] => {

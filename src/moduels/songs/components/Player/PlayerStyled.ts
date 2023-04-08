@@ -13,6 +13,10 @@ const PlayerStyled = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-left: 1rem;
+
+    h4 {
+      margin: 0;
+    }
   }
 
   .playerDetailsContainer {

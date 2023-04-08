@@ -1,4 +1,4 @@
-import { IconButton, IconButtonProps } from "@mui/material";
+import IconButton, { IconButtonProps } from "@mui/material/IconButton";
 import CustomIconButtonStyled from "./CustomIconButtonStyled";
 
 interface Props extends IconButtonProps {

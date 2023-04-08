@@ -5,7 +5,7 @@ import HeaderBar from "../../components/HeaderBar/HeaderBar";
 import Player from "../../../songs/components/Player/Player";
 import NotFound from "../../../auth/components/NotFound404/NotFound404";
 import SearchBarYT from "../../../songs/components/SearchBarYT/SearchBarYT";
-import { getRoom } from "../../../../shared/services/firebaseServices/roomServices";
+import { getRoom } from "../../services/roomServices";
 import MessageContainer from "../../../chat/components/MessageContainer/MessageContainer";
 
 const RoomScreen = () => {
@@ -22,7 +22,7 @@ const RoomScreen = () => {
 
   return (
     <RoomScreenStyled>
-      <HeaderBar className="header" isControls />
+      <HeaderBar className="header" isMusicControls />
       <Player className="player" roomId={roomId} />
       <SearchBarYT className="searchBar" roomId={roomId} />
       <MessageContainer className="chat" roomId={roomId} />

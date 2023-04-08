@@ -1,5 +1,5 @@
 import { UserInfo } from "firebase/auth";
-import { db, getExpiredDate } from "../firebase";
+import { db, getExpiredDate } from "../../../shared/services/firebase";
 import { addDoc, collection, doc, DocumentData, getDoc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
 
 interface createRoomInterface {

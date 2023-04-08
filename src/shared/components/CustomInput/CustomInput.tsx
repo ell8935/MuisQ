@@ -3,27 +3,13 @@ import CustomInputStyled from "./CustomInputStyled";
 import CustomButton from "../CustomButton/CustomButton";
 
 interface Props extends React.InputHTMLAttributes<HTMLInputElement> {
-  type?: string;
-  minLength?: number;
   className?: string;
-  placeHolder?: string;
   buttonLabel?: string;
   onClick?: () => void;
   value?: string | string;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const CustomInput: React.FC<Props> = ({
-  type,
-  value,
-  onClick,
-  onChange,
-  minLength,
-  className,
-  buttonLabel,
-  placeHolder,
-  ...rest
-}: Props) => {
+const CustomInput: React.FC<Props> = ({ onClick, className, buttonLabel, value, ...rest }: Props) => {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter") {
       onClick?.();
@@ -31,17 +17,8 @@ const CustomInput: React.FC<Props> = ({
   };
   return (
     <CustomInputStyled>
-      <input
-        className={className ? className : "default"}
-        type={type}
-        value={value}
-        onChange={onChange}
-        placeholder={placeHolder}
-        minLength={minLength}
-        onKeyDown={handleKeyDown}
-        {...rest}
-      />
-      {buttonLabel ? (
+      <input className={className ? className : "default"} onKeyDown={handleKeyDown} value={value} {...rest} />
+      {buttonLabel && (
         <div className="inputButton">
           <CustomButton
             label={buttonLabel}
@@ -49,8 +26,6 @@ const CustomInput: React.FC<Props> = ({
             disabled={!value}
           />
         </div>
-      ) : (
-        ""
       )}
     </CustomInputStyled>
   );

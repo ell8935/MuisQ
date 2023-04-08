@@ -9,8 +9,8 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import { db, getExpiredDate } from "../firebase";
-import { addSongInterface, getSongsInterface, removeSongInterface } from "../../constants/types/songTypes";
+import { db, getExpiredDate } from "../../../shared/services/firebase";
+import { addSongInterface, getSongsInterface, removeSongInterface } from "../../../shared/constants/types/songTypes";
 
 const addSong = async ({ roomId, user, songURL, songTitle, duration, channelTitle }: addSongInterface) => {
   try {

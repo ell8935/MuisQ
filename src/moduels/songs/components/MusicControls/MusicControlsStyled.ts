@@ -22,6 +22,8 @@ const MusicControlStyled = styled.div`
 
   .fullScreen {
     grid-area: 1 / 7 / 2 / 8;
+    display: flex;
+    justify-content: center;
   }
 
   @media (max-width: 850px) {
