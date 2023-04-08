@@ -15,7 +15,7 @@ const LoaderStyled = styled.div`
 */
   svg path,
   svg rect {
-    fill: #0b0602;
+    fill: ${({ theme }) => theme.colors.secondary};
   }
 `;
 
