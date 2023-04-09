@@ -3,10 +3,10 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import AddIcon from "@mui/icons-material/Add";
 import SearchBarYTStyled from "./SearchBarYTStyled";
+import { addSong } from "../../services/songServices";
 import { RootState } from "../../../../shared/redux/store";
 import { formatDurationISO8601 } from "../../../../shared/utils/timeUtils";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
-import { addSong } from "../../services/songServices";
 import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 
 interface SearchResult {
@@ -79,16 +79,17 @@ const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => setQuery(e.target.value)}
           buttonLabel="Search!"
           onClick={queryFormatter}
+          placeholder="Search a song"
         />
       </div>
       <div className="suggestionsContainer">
         {results?.map((result) => (
-          <div className="suggestion" key={result.id.videoId}>
+          <li className="suggestion" key={result.id.videoId}>
             <CustomIconButton onClick={() => handleAddNewItem(result)}>
               <AddIcon sx={{ fontSize: "3rem" }} />
             </CustomIconButton>
             <h4>{result.snippet.title}</h4>
-          </div>
+          </li>
         ))}
       </div>
     </SearchBarYTStyled>

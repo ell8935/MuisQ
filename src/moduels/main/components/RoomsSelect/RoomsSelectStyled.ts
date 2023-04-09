@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 const RoomsSelectStyled = styled.div`
+  padding-right: 25px;
+  padding-left: 25px;
   display: flex;
   height: 100%;
   align-items: center;
@@ -10,10 +12,10 @@ const RoomsSelectStyled = styled.div`
   border-radius: ${({ theme }) => theme.borderRadius.medium};
 
   .listContainer {
-    width: 95%;
-    margin: 0px;
+    width: 100%;
     font-weight: 700;
-    padding: ${({ theme }) => theme.padding.big};
+
+    padding: 0;
 
     .linkRoom {
       user-select: none;
@@ -29,7 +31,7 @@ const RoomsSelectStyled = styled.div`
         text-indent: 10px;
 
         :hover {
-          background-color: ${({ theme }) => theme.colors.black};
+          background-color: ${({ theme }) => theme.colors.secondaryLighter};
         }
       }
     }

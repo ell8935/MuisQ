@@ -11,11 +11,14 @@ const SearchBarYTStyled = styled.div`
     border-radius: ${({ theme }) => theme.borderRadius.medium};
 
     .suggestion {
-      display: flex;
       align-items: center;
-      overflow: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
+      display: flex;
+
+      h4 {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
 
       &:hover {
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,

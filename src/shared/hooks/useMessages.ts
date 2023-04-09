@@ -9,11 +9,13 @@ interface Message {
   timestamp: { seconds: number; nanoseconds: number };
 }
 
-const useMessages = (roomId: string): Message[] => {
+const useMessages = (roomId: string): [Message[], boolean] => {
   const [messages, setMessages] = useState<Message[]>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const callback = (messages: Message[]) => {
     setMessages(messages);
+    setIsLoading(false);
   };
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const useMessages = (roomId: string): Message[] => {
     return unsubscribe;
   }, [roomId]);
 
-  return messages;
+  return [messages, isLoading];
 };
 
 export default useMessages;

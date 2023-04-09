@@ -17,7 +17,7 @@ const CustomInput: React.FC<Props> = ({ onClick, className, buttonLabel, value, 
   };
   return (
     <CustomInputStyled>
-      <input className={className ? className : "default"} onKeyDown={handleKeyDown} value={value} {...rest} />
+      <input className={`default ${className}`} onKeyDown={handleKeyDown} value={value} {...rest} />
       {buttonLabel && (
         <div className="inputButton">
           <CustomButton

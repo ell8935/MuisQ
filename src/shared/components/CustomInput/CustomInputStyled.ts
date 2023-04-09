@@ -11,7 +11,8 @@ const CustomInputStyled = styled.div`
     border: 0;
     width: 100%;
     color: ${({ theme }) => theme.colors.black};
-    font-weight: 400;
+    font-weight: 600;
+    font-size: 1rem;
     padding: 20px 0px;
     text-indent: 10px;
     background-color: ${({ theme }) => theme.colors.whiteCream};
