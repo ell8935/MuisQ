@@ -1,10 +1,10 @@
 import CustomTextStyled from "./CustomTextStyled";
 import { CustomTextInterface } from "../../constants/types";
 
-const CustomText = ({ label, size }: CustomTextInterface) => {
+const CustomText = ({ label, size, className, ...rest }: CustomTextInterface) => {
   return (
-    <CustomTextStyled size={size}>
-      <span>{label}</span>
+    <CustomTextStyled className={className} size={size}>
+      <span {...rest}>{label}</span>
     </CustomTextStyled>
   );
 };

@@ -1,12 +1,20 @@
 import LoginScreenStyled from "./LoginScreenStyled";
 import LoginButton from "../../components/LoginButton/LoginButton";
+import CustomText from "../../../../shared/components/CustomText/CustomText";
+import { Abstract, MusiQWithName } from "../../../../shared/assets/images";
 
 const LoginScreen = () => {
   return (
     <LoginScreenStyled>
-      <h2>Log in to join</h2>
-      <div>
-        <LoginButton />
+      <div className="abstractBox">
+        <img src={Abstract} alt="Abstract" />
+      </div>
+      <div className="loginBox">
+        <div className="logo">
+          <img src={MusiQWithName} alt="logo" />
+        </div>
+        <CustomText className="title" size="30" label="Log in to join the PARTY" />
+        <LoginButton className="loginButton" />
       </div>
     </LoginScreenStyled>
   );

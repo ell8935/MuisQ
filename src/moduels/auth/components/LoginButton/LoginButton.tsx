@@ -1,10 +1,15 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { loginWithGoogle } from "../../services/authServies";
 import { AppDispatch } from "../../../../shared/redux/store";
 import { setAuth } from "../../../../shared/redux/reducers/authSlice";
-import { loginWithGoogle } from "../../services/authServies";
+import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
 
-const LoginButton = () => {
+interface Props {
+  className?: string;
+}
+
+const LoginButton = ({ className }: Props) => {
   const dispatch: AppDispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,7 +22,7 @@ const LoginButton = () => {
     }
   };
 
-  return <button onClick={login}>Login with Google</button>;
+  return <CustomButton className={className} onClick={login} label="Login with Google" />;
 };
 
 export default LoginButton;
