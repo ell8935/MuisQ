@@ -8,6 +8,7 @@ const RoomScreenStyled = styled.div`
   grid-column-gap: 3px;
   grid-row-gap: 3px;
   height: calc(100vh - 5rem);
+  justify-content: center;
 
   .header {
     grid-area: 1 / 1 / 2 / 7;

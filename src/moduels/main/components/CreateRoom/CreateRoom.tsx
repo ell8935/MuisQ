@@ -29,7 +29,7 @@ const CreateRoom = () => {
       <CustomInput
         value={roomName}
         onChange={handleNameChange}
-        placeholder="eg rock and roll"
+        placeholder="e.g rock and roll"
         buttonLabel="Create"
         onClick={handleCreateRoom}
         minLength={1}

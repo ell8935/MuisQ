@@ -3,7 +3,7 @@ import MainScreenStyled from "./MainScreenStyled";
 import { motion, useAnimationControls } from "framer-motion";
 import HeaderBar from "../../components/HeaderBar/HeaderBar";
 import RoomsSelect from "../../components/RoomsSelect/RoomsSelect";
-import ExplanationBox from "../../components/ExplanationBox/ExplanationBox";
+import ImageBox from "../../components/ImageBox/ImageBox";
 
 const MainScreen = () => {
   const controls = useAnimationControls();
@@ -21,8 +21,8 @@ const MainScreen = () => {
   return (
     <MainScreenStyled>
       <HeaderBar className="header" />
-      <motion.div custom={4} animate={controls} className="explanationBox">
-        <ExplanationBox />
+      <motion.div custom={4} animate={controls} className="imageBox">
+        <ImageBox />
       </motion.div>
       <motion.div custom={5} animate={controls} className="functionalBox">
         <RoomsSelect />

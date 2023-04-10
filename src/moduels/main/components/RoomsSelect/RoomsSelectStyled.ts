@@ -7,31 +7,48 @@ const RoomsSelectStyled = styled.div`
   height: 100%;
   align-items: center;
   flex-direction: column;
-  justify-content: center;
+
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.borderRadius.medium};
 
-  .listContainer {
+  .explanation {
+    text-align: center;
+    font-size: clamp(2rem, 2.5vw, 4rem);
+  }
+
+  .roomSelectCreateContainer {
     width: 100%;
-    font-weight: 700;
+    display: flex;
+    flex-direction: column;
 
-    padding: 0;
+    h3 {
+      text-align: center;
+    }
 
-    .linkRoom {
-      user-select: none;
-      text-decoration: none;
-      color: ${({ theme }) => theme.colors.black};
+    .listContainer {
+      height: 50%;
+      font-weight: 700;
+      overflow: hidden auto;
+      padding: 0;
 
-      .listItem {
-        margin-bottom: 5px;
-        list-style-type: none;
-        padding: ${({ theme }) => theme.padding.small};
-        border-radius: ${({ theme }) => theme.borderRadius.medium};
-        background-color: ${({ theme }) => theme.colors.secondaryDarker};
-        text-indent: 10px;
+      .linkRoom {
+        user-select: none;
+        text-decoration: none;
+        color: ${({ theme }) => theme.colors.black};
 
-        :hover {
-          background-color: ${({ theme }) => theme.colors.secondaryLighter};
+        .listItem {
+          margin: 0 1rem 0 1rem;
+          margin-bottom: 5px;
+
+          list-style-type: none;
+          padding: ${({ theme }) => theme.padding.small};
+          border-radius: ${({ theme }) => theme.borderRadius.medium};
+          background-color: ${({ theme }) => theme.colors.secondaryDarker};
+          text-indent: 10px;
+
+          :hover {
+            background-color: ${({ theme }) => theme.colors.secondaryLighter};
+          }
         }
       }
     }

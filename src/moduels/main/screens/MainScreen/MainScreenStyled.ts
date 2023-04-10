@@ -11,7 +11,7 @@ const MainScreenStyled = styled.div`
   .header {
     grid-area: 1 / 1 / 2 / 7;
   }
-  .explanationBox {
+  .imageBox {
     grid-area: 2 / 1 / 3 / 4;
   }
   .functionalBox {
@@ -20,17 +20,18 @@ const MainScreenStyled = styled.div`
 
   @media (max-width: 850px) {
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 10% 1fr 1fr;
+    grid-template-rows: 10% 1fr;
 
     .header {
       grid-area: 1 / 1 / 2 / 5;
     }
-    .explanationBox {
-      grid-area: 2 / 1 / 3 / 5;
+    .imageBox {
+      display: none;
     }
 
     .functionalBox {
-      grid-area: 3 / 1 / 4 / 5;
+      grid-area: 2 / 1 / 3 / 5;
+      overflow-y: hidden;
     }
   }
 `;
