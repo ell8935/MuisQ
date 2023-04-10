@@ -12,6 +12,7 @@ const createRoom = async ({ roomName, user }: createRoomInterface): Promise<void
     addedByUser: user.displayName,
     timestamp: serverTimestamp(),
     expiredTime: getExpiredDate(),
+    numberOfsongs: 1,
   });
 
   await addDoc(collection(db, "Rooms", roomName, "songs"), {
@@ -29,12 +30,14 @@ const createRoom = async ({ roomName, user }: createRoomInterface): Promise<void
 
 const getRooms = async (): Promise<DocumentData[]> => {
   const rooms = await getDocs(collection(db, "Rooms"));
+  console.log(rooms);
 
   return rooms.docs;
 };
 
 const getRoom = async (roomId: string): Promise<DocumentData | undefined> => {
   const room = await getDoc(doc(db, "Rooms", roomId));
+
   return room.data();
 };
 

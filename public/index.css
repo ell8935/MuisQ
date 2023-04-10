@@ -4,13 +4,19 @@ body{
   padding: 2.5rem;
   background-color: #F6E8EA;
   color: #F6E8EA;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
+  font-family: "Open Sans", sans-serif;
 
 
 }
+#background{
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+
+
 ::-webkit-scrollbar {
   width: 2px;
   height: 2px;

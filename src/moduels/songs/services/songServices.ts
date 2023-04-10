@@ -3,6 +3,7 @@ import {
   collection,
   deleteDoc,
   doc,
+  increment,
   onSnapshot,
   orderBy,
   query,
@@ -18,6 +19,7 @@ const addSong = async ({ roomId, user, songURL, songTitle, duration, channelTitl
       doc(db, "Rooms", roomId),
       {
         expiredTime: getExpiredDate(),
+        numberOfSongs: increment(1),
       },
       { merge: true }
     );
@@ -37,6 +39,14 @@ const addSong = async ({ roomId, user, songURL, songTitle, duration, channelTitl
 };
 
 const removeSong = async ({ roomId, docId }: removeSongInterface) => {
+  await setDoc(
+    doc(db, "Rooms", roomId),
+    {
+      expiredTime: getExpiredDate(),
+      numberOfSongs: increment(-1),
+    },
+    { merge: true }
+  );
   await deleteDoc(doc(db, "Rooms", roomId, "songs", docId));
 };
 

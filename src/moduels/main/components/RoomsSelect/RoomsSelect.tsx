@@ -8,6 +8,7 @@ import { motion, useAnimationControls } from "framer-motion";
 import Loader from "../../../../shared/components/Loader/Loader";
 import { getRooms } from "../../services/roomServices";
 import CustomText from "../../../../shared/components/CustomText/CustomText";
+import MusicNoteIcon from "@mui/icons-material/MusicNote";
 
 const RoomsSelect = () => {
   const controls = useAnimationControls();
@@ -43,6 +44,10 @@ const RoomsSelect = () => {
                 <Link key={index} className="linkRoom" to={`/room?id=${room.id}`}>
                   <motion.li custom={index} animate={controls} className="listItem">
                     {room.id}
+                    <span>
+                      {room._document.data.value.mapValue.fields.numberOfSongs.integerValue}
+                      <MusicNoteIcon color="action" />
+                    </span>
                   </motion.li>
                 </Link>
               ))}

@@ -17,7 +17,11 @@ const MessageList = ({ roomId }: MessageListProps) => {
 
   useEffect(() => {
     if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
+      const container = containerRef.current;
+      const isAtBottom = container.scrollHeight - container.scrollTop === container.clientHeight;
+      if (isAtBottom) {
+        container.scrollTop = container.scrollHeight;
+      }
     }
   }, [messages]);
 

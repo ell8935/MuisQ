@@ -39,12 +39,17 @@ const RoomsSelectStyled = styled.div`
         .listItem {
           margin: 0 1rem 0 1rem;
           margin-bottom: 5px;
-
+          display: flex;
+          justify-content: space-between;
           list-style-type: none;
           padding: ${({ theme }) => theme.padding.small};
           border-radius: ${({ theme }) => theme.borderRadius.medium};
           background-color: ${({ theme }) => theme.colors.secondaryDarker};
           text-indent: 10px;
+          span {
+            display: flex;
+            color: rgba(0, 0, 0, 0.54);
+          }
 
           :hover {
             background-color: ${({ theme }) => theme.colors.secondaryLighter};
