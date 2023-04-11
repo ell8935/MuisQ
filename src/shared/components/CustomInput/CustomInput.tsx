@@ -20,11 +20,7 @@ const CustomInput: React.FC<Props> = ({ onClick, className, buttonLabel, value, 
       <input className={`default ${className}`} onKeyDown={handleKeyDown} value={value} {...rest} />
       {buttonLabel && (
         <div className="inputButton">
-          <CustomButton
-            label={buttonLabel}
-            onClick={onClick as MouseEventHandler<HTMLButtonElement>}
-            disabled={!value}
-          />
+          <CustomButton label={buttonLabel} onClick={onClick} disabled={!value} />
         </div>
       )}
     </CustomInputStyled>

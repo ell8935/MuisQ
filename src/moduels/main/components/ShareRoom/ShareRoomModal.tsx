@@ -1,13 +1,13 @@
 import QRCode from "react-qr-code";
 import { useEffect, useState } from "react";
-import ShareRoomStyled from "./ShareRoomStyled";
+import ShareRoomModalStyled from "./ShareRoomModalStyled";
 import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
 
 interface Props {
   roomId: string;
 }
 
-const ShareRoom = ({ roomId }: Props) => {
+const ShareRoomModal = ({ roomId }: Props) => {
   const [isCopied, setIsCopied] = useState<boolean>(false);
 
   useEffect(() => {
@@ -28,7 +28,7 @@ const ShareRoom = ({ roomId }: Props) => {
   };
 
   return (
-    <ShareRoomStyled>
+    <ShareRoomModalStyled>
       <CustomButton
         disabled={isCopied}
         className="copyUrl"
@@ -36,8 +36,8 @@ const ShareRoom = ({ roomId }: Props) => {
         label={isCopied ? "URL Copied"! : "Copy URL"}
       />
       <QRCode value={url} />
-    </ShareRoomStyled>
+    </ShareRoomModalStyled>
   );
 };
 
-export default ShareRoom;
+export default ShareRoomModal;

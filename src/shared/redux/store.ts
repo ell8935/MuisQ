@@ -1,10 +1,9 @@
 import storage from "redux-persist/lib/storage";
-import { authSlice } from "./reducers/authSlice";
-import { roomsSlice } from "./reducers/roomsSlice";
-import { modalSlice } from "./reducers/modalSlice";
+import authSlice from "./reducers/authSlice";
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import { musicControlsSlice } from "./reducers/musicControlsSlice";
-import { persistStore, persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER } from "redux-persist";
+import musicControlsSlice from "./reducers/musicControlsSlice";
+import { persistStore, persistReducer } from "redux-persist";
+import modalSlice from "./reducers/modalSlice";
 
 const persistConfig = {
   key: "root",
@@ -13,10 +12,9 @@ const persistConfig = {
 };
 
 const reducers = combineReducers({
-  auth: authSlice.reducer,
-  rooms: roomsSlice.reducer,
-  modal: modalSlice.reducer,
-  musicControls: musicControlsSlice.reducer,
+  auth: authSlice,
+  modal: modalSlice,
+  musicControls: musicControlsSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, reducers);
@@ -25,9 +23,9 @@ const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      thunk: true,
+      immutableCheck: false,
+      serializableCheck: false,
     }),
 });
 

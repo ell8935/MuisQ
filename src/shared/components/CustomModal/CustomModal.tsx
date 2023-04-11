@@ -1,20 +1,17 @@
 import CustomModalStyled from "./CustomModalStyled";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
-import { setModal } from "../../redux/reducers/modalSlice";
-import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
 import CustomIconButton from "../CustomIconButton/CustomIconButton";
+import CancelPresentationIcon from "@mui/icons-material/CancelPresentation";
+import { toggleModal } from "../../redux/reducers/modalSlice";
 
-interface Props {
-  children: any;
-}
-
-const CustomModal = ({ children }: Props) => {
+const CustomModal = () => {
   const dispatch: AppDispatch = useDispatch();
-  const isOpen = useSelector((state: RootState) => state.modal);
+  const { isOpen, modalData } = useSelector((state: RootState) => state.modal);
+  console.log(modalData);
 
   const closeModal = () => {
-    dispatch(setModal(false));
+    dispatch(toggleModal(null));
   };
 
   if (!isOpen) return null;
@@ -25,7 +22,7 @@ const CustomModal = ({ children }: Props) => {
         <CustomIconButton className="close" onClick={closeModal}>
           <CancelPresentationIcon />
         </CustomIconButton>
-        <p>{children}</p>
+        {modalData}
       </div>
     </CustomModalStyled>
   );

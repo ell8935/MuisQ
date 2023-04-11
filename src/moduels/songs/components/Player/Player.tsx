@@ -5,14 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import useSongs from "../../../../shared/hooks/useSongs";
 import DurationTimer from "../DurationTimer/DurationTimer";
-import ShareRoom from "../../../main/components/ShareRoom/ShareRoom";
 import Loader from "../../../../shared/components/Loader/Loader";
 import QueueList from "../../../songs/components/QueueList/QueueList";
-import { setModal } from "../../../../shared/redux/reducers/modalSlice";
+import { toggleModal } from "../../../../shared/redux/reducers/modalSlice";
 import { AppDispatch, RootState } from "../../../../shared/redux/store";
 import CustomModal from "../../../../shared/components/CustomModal/CustomModal";
 import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 import { setSongCurrentIndex, setTogglePlayer, skipSong } from "../../../../shared/redux/reducers/musicControlsSlice";
+import { createPlaylist } from "../../services/songServices";
+import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
+import QueueMusicIcon from "@mui/icons-material/QueueMusic";
+import ShareRoomModal from "../../../main/components/ShareRoom/ShareRoomModal";
+import PlaylistModal from "../PlaylistModal/PlaylistModal";
 
 interface Props {
   roomId: string;
@@ -25,6 +29,7 @@ const Player = ({ roomId, className }: Props) => {
   const playerRef = useRef<ReactPlayer>(null);
   const [durationElapsed, setDurationElapsed] = useState<number>(0);
   const { togglePlayer, currentIndex, volume, toggleMute } = useSelector((state: RootState) => state.musicControls);
+  const user = useSelector((state: RootState) => state.auth);
 
   const url = songsList[currentIndex]?.songURL;
   const songTitle = songsList[currentIndex]?.songTitle;
@@ -46,19 +51,32 @@ const Player = ({ roomId, className }: Props) => {
     dispatch(setSongCurrentIndex(index ?? 0));
   };
 
+  const handleCreatePlaylistClick = () => {
+    createPlaylist({ user, songsList });
+  };
+
+  const handleShareRoom = () => {
+    dispatch(toggleModal(<ShareRoomModal roomId={roomId} />));
+  };
+  const handleCreatePlaylist = () => {
+    dispatch(toggleModal(<PlaylistModal onClick={handleCreatePlaylistClick} />));
+  };
+
   return (
     <PlayerStyled className={className}>
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <CustomModal>
-            <ShareRoom roomId={roomId} />
-          </CustomModal>
+          <CustomModal />
           <span className="roomNameHeader">
             <h4>{roomId} Room</h4>
-            <CustomIconButton onClick={() => dispatch(setModal(true))}>
+            <CustomIconButton onClick={handleShareRoom}>
               <IosShareIcon />
+            </CustomIconButton>
+
+            <CustomIconButton onClick={handleCreatePlaylist}>
+              <QueueMusicIcon />
             </CustomIconButton>
           </span>
 

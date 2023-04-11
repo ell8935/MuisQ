@@ -21,7 +21,7 @@ const CustomModalStyled = styled.div<CustomModalStyledProps>`
     margin: 15% auto;
     width: fit-content;
     align-items: center;
-    background-color: ${({ theme }) => theme.colors.whiteCream};
+    background-color: ${({ theme }) => theme.colors.primaryLighter};
     flex-direction: column;
     justify-content: center;
     border-radius: ${({ theme }) => theme.borderRadius.medium};

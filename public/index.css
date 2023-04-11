@@ -2,20 +2,12 @@
 body{
   margin: 0;
   padding: 2.5rem;
-  background-color: #F6E8EA;
   color: #F6E8EA;
   font-family: "Open Sans", sans-serif;
-
-
+  background-image: url('./BlurBackground.png');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
-#background{
-
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-  }
-
-
 
 ::-webkit-scrollbar {
   width: 2px;

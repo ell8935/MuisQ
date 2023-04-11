@@ -12,7 +12,7 @@ const createRoom = async ({ roomName, user }: createRoomInterface): Promise<void
     addedByUser: user.displayName,
     timestamp: serverTimestamp(),
     expiredTime: getExpiredDate(),
-    numberOfsongs: 1,
+    numberOfSongs: 1,
   });
 
   await addDoc(collection(db, "Rooms", roomName, "songs"), {

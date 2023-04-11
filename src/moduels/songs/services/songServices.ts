@@ -11,7 +11,13 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { db, getExpiredDate } from "../../../shared/services/firebase";
-import { addSongInterface, getSongsInterface, removeSongInterface } from "../../../shared/constants/types/songTypes";
+import {
+  addSongInterface,
+  createPlaylistInterface,
+  getSongsInterface,
+  removeSongInterface,
+} from "../../../shared/constants/types/songTypes";
+import { User, UserInfo } from "firebase/auth";
 
 const addSong = async ({ roomId, user, songURL, songTitle, duration, channelTitle }: addSongInterface) => {
   try {
@@ -60,4 +66,14 @@ const getSongs = ({ roomId, callback }: getSongsInterface) => {
   });
 };
 
-export { addSong, getSongs, removeSong };
+const createPlaylist = async ({ user, songsList }: createPlaylistInterface) => {
+  await setDoc(
+    doc(db, "Users", user.uid!),
+    {
+      playlists: { songsList },
+    },
+    { merge: true }
+  );
+};
+
+export { addSong, getSongs, removeSong, createPlaylist };

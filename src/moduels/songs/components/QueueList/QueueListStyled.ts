@@ -64,6 +64,7 @@ const QueueListStyled = styled.div<Props>`
       align-items: center;
       list-style-type: none;
       line-height: 2rem;
+      transition: all 0.2s ease-in-out; // Add transition here
 
       &:hover {
         box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px,

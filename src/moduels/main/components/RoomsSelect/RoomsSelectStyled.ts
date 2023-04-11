@@ -7,6 +7,7 @@ const RoomsSelectStyled = styled.div`
   height: 100%;
   align-items: center;
   flex-direction: column;
+  justify-content: space-around;
 
   background-color: ${({ theme }) => theme.colors.primary};
   border-radius: ${({ theme }) => theme.borderRadius.medium};

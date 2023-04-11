@@ -28,3 +28,9 @@ export interface addSongInterface extends SongProps {
   roomId: string;
   user: Partial<UserInfo>;
 }
+
+export interface createPlaylistInterface {
+  user: Partial<UserInfo>;
+  songsList: {};
+  playlistName?: string;
+}

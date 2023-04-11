@@ -13,6 +13,7 @@ const SearchBarYTStyled = styled.div`
     .suggestion {
       align-items: center;
       display: flex;
+      transition: all 0.2s ease-in-out; // Add transition here
 
       h4 {
         overflow: hidden;

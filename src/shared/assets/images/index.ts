@@ -1,6 +1,5 @@
 import Abstract from "./Abstract.png";
 import MusicQLogo from "./MusiQLogo.png";
 import MusiQWithName from "./MusiQWithName.png";
-import BlurBackground from "./BlurBackground.png";
 
-export { MusicQLogo, MusiQWithName, Abstract, BlurBackground };
+export { MusicQLogo, MusiQWithName, Abstract };

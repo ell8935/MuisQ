@@ -12,7 +12,7 @@ export const authSlice = createSlice({
     },
 
     clearAuth: () => {
-      return {};
+      return initialState;
     },
   },
 });
