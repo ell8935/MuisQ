@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import QueueListStyled from "./QueueListStyled";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { removeSong } from "../../services/songServices";
@@ -20,10 +20,20 @@ interface Props {
 
 const QueueList = ({ roomId, className, songsList, currentIndex, handleSelectSong }: Props): JSX.Element => {
   const [totalDuration, setTotalDuration] = useState<number>(0);
+  const currentSongRef = useRef<HTMLLIElement>(null);
 
   useEffect(() => {
     handleSumSongDurations();
   }, [songsList]);
+
+  useEffect(() => {
+    if (currentSongRef.current) {
+      currentSongRef.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [currentIndex]);
 
   const removeItem = (index: number) => {
     try {
@@ -51,13 +61,24 @@ const QueueList = ({ roomId, className, songsList, currentIndex, handleSelectSon
         </div>
 
         {songsList.map((item: Songs, index: number) => (
-          <li key={index} className={currentIndex === index ? "highlighted" : ""}>
+          <li
+            key={index}
+            className={`${currentIndex === index ? "highlighted" : ""} ${
+              (currentSongRef.current === null || currentSongRef.current?.textContent !== item.songTitle) &&
+              "currentSong"
+            }`}
+            ref={currentIndex === index ? currentSongRef : null}
+          >
             <MusicNoteIcon color="action" />
-            <h4 className="songTitle">{item.songTitle}</h4>
+            <h4 onClick={() => handleSelectSong(index)} className="songTitle">
+              {item.songTitle}
+            </h4>
             <div className="queueListButton">
-              <CustomIconButton onClick={() => handleSelectSong(index)}>
-                {currentIndex !== index && <PlayArrowIcon />}
-              </CustomIconButton>
+              {currentIndex !== index && (
+                <CustomIconButton onClick={() => handleSelectSong(index)}>
+                  <PlayArrowIcon />
+                </CustomIconButton>
+              )}
               <CustomIconButton color="warning" onClick={() => removeItem(index)}>
                 <DeleteIcon />
               </CustomIconButton>

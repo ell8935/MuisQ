@@ -1,13 +1,21 @@
 import { useEffect, useState } from "react";
 import { Songs } from "../constants/types/songTypes";
 import { getSongs } from "../../moduels/songs/services/songServices";
+import { useDispatch } from "react-redux";
+import { setSongListLength } from "../redux/reducers/musicControlsSlice";
 
-const useSongs = (roomId: string): [Songs[], boolean] => {
+interface useSongsPromise {
+  songs: Songs[];
+  isLoading: boolean;
+}
+const useSongs = (roomId: string): useSongsPromise => {
   const [songs, setSongs] = useState<Songs[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const dispatch = useDispatch();
 
   const callback = (songs: Songs[]) => {
     setSongs(songs);
+    dispatch(setSongListLength(songs.length));
     setIsLoading(false);
   };
 
@@ -19,7 +27,7 @@ const useSongs = (roomId: string): [Songs[], boolean] => {
     return unsubscribe;
   }, [roomId]);
 
-  return [songs, isLoading];
+  return { songs, isLoading };
 };
 
 export default useSongs;

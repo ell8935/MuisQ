@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import HeaderBarStyled from "./HeaderBarStyled";
 import { motion, useAnimationControls } from "framer-motion";
-import { MusicQLogo, MusiQWithName } from "../../../../shared/assets/images";
+import { MusiQWithName } from "../../../../shared/assets/images";
 import LogoutButton from "../../../auth/components/LogoutButton/LogoutButton";
 import MusicControls from "../../../songs/components/MusicControls/MusicControls";
 
@@ -11,6 +12,7 @@ interface Props {
 }
 
 const HeaderBar = ({ className, isMusicControls }: Props) => {
+  const navigate = useNavigate();
   const controls = useAnimationControls();
 
   useEffect(() => {
@@ -23,9 +25,13 @@ const HeaderBar = ({ className, isMusicControls }: Props) => {
     }));
   }, [controls]);
 
+  const handleNavigateToHome = () => {
+    navigate("/");
+  };
+
   return (
     <HeaderBarStyled className={className}>
-      <motion.div custom={1} animate={controls} className="logo">
+      <motion.div custom={1} animate={controls} className="logo" onClick={handleNavigateToHome}>
         <img src={MusiQWithName} alt="Logo" />
       </motion.div>
 

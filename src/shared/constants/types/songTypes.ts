@@ -1,4 +1,5 @@
 import { UserInfo } from "firebase/auth";
+import { DocumentData } from "firebase/firestore";
 
 interface SongProps {
   roomId: string;
@@ -31,6 +32,17 @@ export interface addSongInterface extends SongProps {
 
 export interface createPlaylistInterface {
   user: Partial<UserInfo>;
-  songsList: {};
-  playlistName?: string;
+  songs: {};
+  playlistName: string;
+}
+
+export interface applyPlaylistInterface {
+  roomId: string;
+  user: Partial<UserInfo>;
+  playlist: DocumentData;
+}
+
+export interface deletePlaylistInterface {
+  user: Partial<UserInfo>;
+  playlistName: string;
 }

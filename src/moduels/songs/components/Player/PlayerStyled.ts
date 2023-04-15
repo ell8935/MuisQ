@@ -22,6 +22,10 @@ const PlayerStyled = styled.div`
   .playerDetailsContainer {
     display: flex;
 
+    .player {
+      overflow: hidden;
+    }
+
     @media (max-width: 850px) {
       .player {
         display: none;

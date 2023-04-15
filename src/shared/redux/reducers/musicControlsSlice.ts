@@ -4,6 +4,7 @@ interface MusicControlsInterface {
   toggleMute: boolean;
   currentIndex: number;
   togglePlayer: boolean;
+  songListLength: number;
 }
 
 const initialState: MusicControlsInterface = {
@@ -11,12 +12,16 @@ const initialState: MusicControlsInterface = {
   currentIndex: 0,
   toggleMute: false,
   togglePlayer: false,
+  songListLength: 0,
 };
 
 export const musicControlsSlice = createSlice({
   name: "musicControlsSlice",
   initialState,
   reducers: {
+    setSongListLength: (state, action: PayloadAction<number>) => {
+      state.songListLength = action.payload;
+    },
     setTogglePlayer: (state, action: PayloadAction<boolean>) => {
       state.togglePlayer = action.payload;
     },
@@ -43,7 +48,7 @@ export const musicControlsSlice = createSlice({
   },
 });
 
-export const { setTogglePlayer, setSongCurrentIndex, skipSong, previousSong, setVolume, setMute } =
+export const { setSongListLength, setTogglePlayer, setSongCurrentIndex, skipSong, previousSong, setVolume, setMute } =
   musicControlsSlice.actions;
 
 export default musicControlsSlice.reducer;

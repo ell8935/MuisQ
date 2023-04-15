@@ -51,7 +51,8 @@ const QueueListStyled = styled.div<Props>`
     padding-left: 0;
 
     .highlighted {
-      border: 2px solid ${({ theme }) => theme.colors.secondary};
+      background-color: ${({ theme }) => theme.colors.secondary};
+      color: ${({ theme }) => theme.colors.primaryLighter};
       border-radius: 10px;
       padding: 3px;
       box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
@@ -101,6 +102,8 @@ const QueueListStyled = styled.div<Props>`
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        margin: 0.5rem;
+        cursor: pointer;
       }
     }
   }

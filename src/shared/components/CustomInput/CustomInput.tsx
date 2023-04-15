@@ -1,4 +1,3 @@
-import { MouseEventHandler } from "react";
 import CustomInputStyled from "./CustomInputStyled";
 import CustomButton from "../CustomButton/CustomButton";
 
@@ -15,6 +14,7 @@ const CustomInput: React.FC<Props> = ({ onClick, className, buttonLabel, value, 
       onClick?.();
     }
   };
+
   return (
     <CustomInputStyled>
       <input className={`default ${className}`} onKeyDown={handleKeyDown} value={value} {...rest} />

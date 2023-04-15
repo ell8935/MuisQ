@@ -32,9 +32,7 @@ const MessageList = ({ roomId }: MessageListProps) => {
       ) : (
         <ul>
           {messages.map((message) => (
-            <>
-              <Message key={message.id} message={message} isOwnMessage={message.uid === user.uid} />
-            </>
+            <Message key={message.id} message={message} isOwnMessage={message.uid === user.uid} />
           ))}
         </ul>
       )}

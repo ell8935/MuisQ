@@ -10,6 +10,7 @@ const HeaderBarStyled = styled.div`
   .logo {
     grid-area: 1 / 1 / 2 / 2;
     display: flex;
+    cursor: pointer;
     overflow: hidden;
     align-items: center;
     justify-content: center;

@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import PlayerStyled from "./PlayerStyled";
 import { useDispatch, useSelector } from "react-redux";
 import IosShareIcon from "@mui/icons-material/IosShare";
@@ -12,8 +12,6 @@ import { AppDispatch, RootState } from "../../../../shared/redux/store";
 import CustomModal from "../../../../shared/components/CustomModal/CustomModal";
 import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 import { setSongCurrentIndex, setTogglePlayer, skipSong } from "../../../../shared/redux/reducers/musicControlsSlice";
-import { createPlaylist } from "../../services/songServices";
-import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import ShareRoomModal from "../../../main/components/ShareRoom/ShareRoomModal";
 import PlaylistModal from "../PlaylistModal/PlaylistModal";
@@ -24,17 +22,16 @@ interface Props {
 }
 
 const Player = ({ roomId, className }: Props) => {
-  const [songsList, isLoading] = useSongs(roomId);
+  const { songs, isLoading } = useSongs(roomId);
   const dispatch: AppDispatch = useDispatch();
   const playerRef = useRef<ReactPlayer>(null);
   const [durationElapsed, setDurationElapsed] = useState<number>(0);
   const { togglePlayer, currentIndex, volume, toggleMute } = useSelector((state: RootState) => state.musicControls);
-  const user = useSelector((state: RootState) => state.auth);
 
-  const url = songsList[currentIndex]?.songURL;
-  const songTitle = songsList[currentIndex]?.songTitle;
-  const songDuration = songsList[currentIndex]?.duration;
-  const songChannelTitle = songsList[currentIndex]?.channelTitle;
+  const url = songs[currentIndex]?.songURL;
+  const songTitle = songs[currentIndex]?.songTitle;
+  const songDuration = songs[currentIndex]?.duration;
+  const songChannelTitle = songs[currentIndex]?.channelTitle;
 
   document.title = togglePlayer === true && url ? `MusiQ-${songTitle}` : "MusiQ";
 
@@ -51,15 +48,12 @@ const Player = ({ roomId, className }: Props) => {
     dispatch(setSongCurrentIndex(index ?? 0));
   };
 
-  const handleCreatePlaylistClick = () => {
-    createPlaylist({ user, songsList });
-  };
-
   const handleShareRoom = () => {
     dispatch(toggleModal(<ShareRoomModal roomId={roomId} />));
   };
-  const handleCreatePlaylist = () => {
-    dispatch(toggleModal(<PlaylistModal onClick={handleCreatePlaylistClick} />));
+
+  const handleModalPlaylist = () => {
+    dispatch(toggleModal(<PlaylistModal roomId={roomId} />));
   };
 
   return (
@@ -75,7 +69,7 @@ const Player = ({ roomId, className }: Props) => {
               <IosShareIcon />
             </CustomIconButton>
 
-            <CustomIconButton onClick={handleCreatePlaylist}>
+            <CustomIconButton onClick={handleModalPlaylist}>
               <QueueMusicIcon />
             </CustomIconButton>
           </span>
@@ -111,7 +105,7 @@ const Player = ({ roomId, className }: Props) => {
           <QueueList
             className="queueList"
             currentIndex={currentIndex}
-            songsList={songsList}
+            songsList={songs}
             roomId={roomId}
             handleSelectSong={handleSelectSong}
           />

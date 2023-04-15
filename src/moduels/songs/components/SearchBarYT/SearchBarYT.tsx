@@ -86,7 +86,7 @@ const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
         {results?.map((result) => (
           <li className="suggestion" key={result.id.videoId}>
             <CustomIconButton onClick={() => handleAddNewItem(result)}>
-              <AddIcon sx={{ fontSize: "3rem" }} />
+              <AddIcon sx={{ fontSize: "1.5rem" }} />
             </CustomIconButton>
             <h4>{result.snippet.title}</h4>
           </li>

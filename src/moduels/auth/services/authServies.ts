@@ -19,12 +19,15 @@ const googleLogout = async () => {
 };
 
 const saveUserinDb = async (user: User) => {
-  await setDoc(doc(db, "Users", user.uid), {
-    uid: user.uid,
-    displayName: user.displayName,
-    email: user.email,
-    playlists: {},
-  });
+  await setDoc(
+    doc(db, "Users", user.uid),
+    {
+      uid: user.uid,
+      displayName: user.displayName,
+      email: user.email,
+    },
+    { merge: true }
+  );
 };
 
 export { loginWithGoogle, googleLogout };

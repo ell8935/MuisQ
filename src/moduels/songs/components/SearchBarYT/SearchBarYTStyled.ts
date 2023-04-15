@@ -19,6 +19,7 @@ const SearchBarYTStyled = styled.div`
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+        margin: 0;
       }
 
       &:hover {

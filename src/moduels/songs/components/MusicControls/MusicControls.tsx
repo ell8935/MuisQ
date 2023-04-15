@@ -13,7 +13,7 @@ import { previousSong, setTogglePlayer, skipSong } from "../../../../shared/redu
 
 const MusicControls = () => {
   const dispatch: AppDispatch = useDispatch();
-  const { togglePlayer } = useSelector((state: RootState) => state.musicControls);
+  const { togglePlayer, songListLength, currentIndex } = useSelector((state: RootState) => state.musicControls);
 
   const togglePlayerPausePlay = () => {
     dispatch(setTogglePlayer(!togglePlayer));
@@ -25,13 +25,21 @@ const MusicControls = () => {
       screenfull.request(playerElement);
     }
   };
+
+  const handleSkipSong = () => {
+    if (currentIndex + 1 < songListLength) dispatch(skipSong());
+  };
+
+  const handlePreviousSong = () => {
+    if (currentIndex > 0) dispatch(previousSong());
+  };
   return (
     <MusicControlStyled>
       <div className="volume">
         <VolumeControls />
       </div>
       <div className="baseControls">
-        <CustomIconButton onClick={() => dispatch(previousSong())}>
+        <CustomIconButton onClick={handlePreviousSong}>
           <SkipPreviousOutlined sx={{ fontSize: 35 }}></SkipPreviousOutlined>
         </CustomIconButton>
 
@@ -43,7 +51,7 @@ const MusicControls = () => {
           )}
         </CustomIconButton>
 
-        <CustomIconButton onClick={() => dispatch(skipSong())}>
+        <CustomIconButton onClick={handleSkipSong}>
           <SkipNextOutlined sx={{ fontSize: 35 }}></SkipNextOutlined>
         </CustomIconButton>
       </div>

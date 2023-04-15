@@ -30,7 +30,6 @@ const createRoom = async ({ roomName, user }: createRoomInterface): Promise<void
 
 const getRooms = async (): Promise<DocumentData[]> => {
   const rooms = await getDocs(collection(db, "Rooms"));
-  console.log(rooms);
 
   return rooms.docs;
 };
