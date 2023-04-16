@@ -3,11 +3,11 @@ import styled from "styled-components";
 const MusicControlStyled = styled.div`
   width: 100%;
   display: grid;
+  align-items: center;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 6px;
   grid-row-gap: 0px;
-  align-items: center;
 
   .volume {
     grid-area: 1 / 1 / 2 / 2;
@@ -30,6 +30,7 @@ const MusicControlStyled = styled.div`
     .volume {
       display: none;
     }
+
     .fullScreen {
       display: none;
     }

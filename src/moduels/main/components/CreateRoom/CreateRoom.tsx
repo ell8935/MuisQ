@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import CreateRoomStyled from "./CreateRoomStyled";
+import { createRoom } from "../../services/roomServices";
 import { RootState } from "../../../../shared/redux/store";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
-import { createRoom } from "../../services/roomServices";
 
 const CreateRoom = () => {
   const navigate = useNavigate();

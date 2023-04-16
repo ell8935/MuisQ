@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import MainScreenStyled from "./MainScreenStyled";
+import ImageBox from "../../components/ImageBox/ImageBox";
 import { motion, useAnimationControls } from "framer-motion";
 import HeaderBar from "../../components/HeaderBar/HeaderBar";
 import RoomsSelect from "../../components/RoomsSelect/RoomsSelect";
-import ImageBox from "../../components/ImageBox/ImageBox";
 
 const MainScreen = () => {
   const controls = useAnimationControls();

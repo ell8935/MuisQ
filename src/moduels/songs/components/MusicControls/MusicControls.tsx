@@ -33,6 +33,7 @@ const MusicControls = () => {
   const handlePreviousSong = () => {
     if (currentIndex > 0) dispatch(previousSong());
   };
+
   return (
     <MusicControlStyled>
       <div className="volume">

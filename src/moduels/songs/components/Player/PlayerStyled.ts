@@ -10,9 +10,10 @@ const PlayerStyled = styled.div`
 
   .roomNameHeader {
     display: flex;
+    margin-left: 1rem;
     align-items: center;
     justify-content: space-between;
-    margin-left: 1rem;
+
     .modalSetters {
       display: flex;
     }
@@ -36,9 +37,9 @@ const PlayerStyled = styled.div`
     }
 
     .songDetails {
-      margin-left: 1rem;
       display: flex;
       overflow: hidden;
+      margin-left: 1rem;
       white-space: nowrap;
       flex-direction: column;
 

@@ -4,17 +4,17 @@ import PlayerStyled from "./PlayerStyled";
 import { useDispatch, useSelector } from "react-redux";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import useSongs from "../../../../shared/hooks/useSongs";
+import PlaylistModal from "../PlaylistModal/PlaylistModal";
 import DurationTimer from "../DurationTimer/DurationTimer";
+import QueueMusicIcon from "@mui/icons-material/QueueMusic";
 import Loader from "../../../../shared/components/Loader/Loader";
 import QueueList from "../../../songs/components/QueueList/QueueList";
 import { toggleModal } from "../../../../shared/redux/reducers/modalSlice";
 import { AppDispatch, RootState } from "../../../../shared/redux/store";
+import ShareRoomModal from "../../../main/components/ShareRoom/ShareRoomModal";
 import CustomModal from "../../../../shared/components/CustomModal/CustomModal";
 import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 import { setSongCurrentIndex, setTogglePlayer, skipSong } from "../../../../shared/redux/reducers/musicControlsSlice";
-import QueueMusicIcon from "@mui/icons-material/QueueMusic";
-import ShareRoomModal from "../../../main/components/ShareRoom/ShareRoomModal";
-import PlaylistModal from "../PlaylistModal/PlaylistModal";
 
 interface Props {
   roomId: string;

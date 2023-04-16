@@ -1,6 +1,6 @@
-import CustomText from "../../../../shared/components/CustomText/CustomText";
 import PlaylistStyled from "./PlaylistStyled";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
+import CustomText from "../../../../shared/components/CustomText/CustomText";
 
 const Playlist = ({ playlistData }: any) => {
   return (

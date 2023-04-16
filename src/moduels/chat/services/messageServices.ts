@@ -1,17 +1,6 @@
-import { UserInfo } from "firebase/auth";
 import { db, getExpiredDate } from "../../../shared/services/firebase";
+import { getMessagesInterface, sendMessageInterface } from "../../../shared/constants/types/messageTypes";
 import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc } from "firebase/firestore";
-
-interface getMessagesInterface {
-  roomId: string;
-  callback: (messages: any) => void;
-}
-
-interface sendMessageInterface {
-  text: string;
-  roomId: string;
-  user: Partial<UserInfo>;
-}
 
 const sendMessage = async ({ roomId, user, text }: sendMessageInterface) => {
   try {

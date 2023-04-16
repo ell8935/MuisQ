@@ -14,33 +14,33 @@ const VolumeControlsStyled = styled.div`
   }
 
   input[type="range"] {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 15px;
-    border-radius: 5px;
-    position: absolute;
     left: 60%;
     opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.5s ease-in-out;
+    width: 100%;
+    height: 15px;
     cursor: pointer;
+    border-radius: 5px;
+    position: absolute;
+    pointer-events: none;
+    -webkit-appearance: none;
+    transition: opacity 0.5s ease-in-out;
   }
 
   input[type="range"]::-webkit-slider-runnable-track {
     width: 100%;
     height: 15px;
-    background: ${({ theme }) => theme.colors.secondary};
     border-radius: 5px;
+    background: ${({ theme }) => theme.colors.secondary};
   }
 
   input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
     width: 20px;
     height: 20px;
-    border-radius: 25%;
     background: #fff;
-    box-shadow: 0 0 5px #3498db;
+    border-radius: 25%;
     margin-top: -3.5px;
+    -webkit-appearance: none;
+    box-shadow: 0 0 5px #3498db;
   }
 `;
 

@@ -2,8 +2,8 @@ import { useSelector } from "react-redux";
 import MessageInputStyled from "./MessageInputStyled";
 import { FormEvent, ChangeEvent, useState } from "react";
 import { RootState } from "../../../../shared/redux/store";
-import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 import { sendMessage } from "../../services/messageServices";
+import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 
 interface Props {
   roomId: string;

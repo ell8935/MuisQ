@@ -15,6 +15,7 @@ const RoomsSelectStyled = styled.div`
   .explanation {
     text-align: center;
     font-size: clamp(2rem, 2.5vw, 4rem);
+
     span {
       color: ${({ theme }) => theme.colors.secondary};
     }
@@ -41,15 +42,16 @@ const RoomsSelectStyled = styled.div`
         color: ${({ theme }) => theme.colors.black};
 
         .listItem {
-          margin: 0 1rem 0 1rem;
-          margin-bottom: 5px;
           display: flex;
-          justify-content: space-between;
+          text-indent: 10px;
+          margin-bottom: 5px;
+          margin: 0 1rem 0 1rem;
           list-style-type: none;
+          justify-content: space-between;
           padding: ${({ theme }) => theme.padding.small};
           border-radius: ${({ theme }) => theme.borderRadius.medium};
           background-color: ${({ theme }) => theme.colors.secondaryDarker};
-          text-indent: 10px;
+
           span {
             display: flex;
             color: rgba(0, 0, 0, 0.54);

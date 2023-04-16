@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 const ShareRoomStyled = styled.div`
-  display: flex;
   gap: 10px;
+  display: flex;
   flex-direction: column;
 
   .copyUrl {

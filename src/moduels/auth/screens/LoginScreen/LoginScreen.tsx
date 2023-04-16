@@ -1,7 +1,7 @@
 import LoginScreenStyled from "./LoginScreenStyled";
 import LoginButton from "../../components/LoginButton/LoginButton";
-import CustomText from "../../../../shared/components/CustomText/CustomText";
 import { Abstract, MusiQWithName } from "../../../../shared/assets/images";
+import CustomText from "../../../../shared/components/CustomText/CustomText";
 
 const LoginScreen = () => {
   return (

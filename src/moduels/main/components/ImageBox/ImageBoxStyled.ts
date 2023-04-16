@@ -3,6 +3,7 @@ import styled from "styled-components";
 const ImageBoxStyled = styled.div`
   width: 100%;
   height: 100%;
+
   #container {
     width: 100%;
     height: 100%;
@@ -15,9 +16,9 @@ const ImageBoxStyled = styled.div`
   #image {
     width: 100%;
     height: 100%;
-    transform: scale(1.5) translate(0, 0);
     object-fit: cover;
     position: absolute;
+    transform: scale(1.5) translate(0, 0);
   }
 `;
 export default ImageBoxStyled;

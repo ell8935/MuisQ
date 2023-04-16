@@ -4,10 +4,10 @@ import { useQuery } from "@tanstack/react-query";
 import { DocumentData } from "firebase/firestore";
 import CreateRoom from "../CreateRoom/CreateRoom";
 import RoomsSelectStyled from "./RoomsSelectStyled";
-import { motion, useAnimationControls } from "framer-motion";
-import Loader from "../../../../shared/components/Loader/Loader";
 import { getRooms } from "../../services/roomServices";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
+import { motion, useAnimationControls } from "framer-motion";
+import Loader from "../../../../shared/components/Loader/Loader";
 
 const RoomsSelect = () => {
   const controls = useAnimationControls();

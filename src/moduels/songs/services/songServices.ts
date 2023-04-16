@@ -1,5 +1,4 @@
 import {
-  Firestore,
   addDoc,
   collection,
   deleteDoc,
@@ -13,7 +12,6 @@ import {
   serverTimestamp,
   setDoc,
 } from "firebase/firestore";
-import { db, getExpiredDate } from "../../../shared/services/firebase";
 import {
   addSongInterface,
   applyPlaylistInterface,
@@ -23,6 +21,7 @@ import {
   removeSongInterface,
 } from "../../../shared/constants/types/songTypes";
 import { UserInfo } from "firebase/auth";
+import { db, getExpiredDate } from "../../../shared/services/firebase";
 
 const addSong = async ({ roomId, user, songURL, songTitle, duration, channelTitle }: addSongInterface) => {
   try {

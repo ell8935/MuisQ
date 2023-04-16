@@ -1,20 +1,20 @@
 import React, { useState } from "react";
-import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../../shared/redux/store";
-import { applyPlaylist, createPlaylist, deletePlaylist, getPlaylists } from "../../services/songServices";
-import useSongs from "../../../../shared/hooks/useSongs";
-import PlaylistModalStyled from "./PlaylistModalStyled";
+import Playlist from "../Playlist/Playlist";
+import AddIcon from "@mui/icons-material/Add";
 import { useQuery } from "@tanstack/react-query";
 import { DocumentData } from "firebase/firestore";
-import Playlist from "../Playlist/Playlist";
-import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
-import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
+import RemoveIcon from "@mui/icons-material/Remove";
+import { useDispatch, useSelector } from "react-redux";
+import PlaylistModalStyled from "./PlaylistModalStyled";
+import useSongs from "../../../../shared/hooks/useSongs";
+import { RootState } from "../../../../shared/redux/store";
 import Loader from "../../../../shared/components/Loader/Loader";
 import { toggleModal } from "../../../../shared/redux/reducers/modalSlice";
-import RemoveIcon from "@mui/icons-material/Remove";
-import AddIcon from "@mui/icons-material/Add";
+import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
+import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
+import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
+import { applyPlaylist, createPlaylist, deletePlaylist, getPlaylists } from "../../services/songServices";
 
 interface Props {
   roomId: string;

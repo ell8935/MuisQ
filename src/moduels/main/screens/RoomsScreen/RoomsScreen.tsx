@@ -1,11 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import RoomScreenStyled from "./RoomScreenStyled";
 import { useSearchParams } from "react-router-dom";
+import { getRoom } from "../../services/roomServices";
 import HeaderBar from "../../components/HeaderBar/HeaderBar";
 import Player from "../../../songs/components/Player/Player";
 import NotFound from "../../../auth/components/NotFound404/NotFound404";
 import SearchBarYT from "../../../songs/components/SearchBarYT/SearchBarYT";
-import { getRoom } from "../../services/roomServices";
 import MessageContainer from "../../../chat/components/MessageContainer/MessageContainer";
 
 const RoomScreen = () => {

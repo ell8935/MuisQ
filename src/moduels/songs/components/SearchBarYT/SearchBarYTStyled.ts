@@ -7,19 +7,19 @@ const SearchBarYTStyled = styled.div`
 
   .suggestionsContainer {
     margin-top: 10px;
-    background-color: ${({ theme }) => theme.colors.primaryLighter};
     border-radius: ${({ theme }) => theme.borderRadius.medium};
+    background-color: ${({ theme }) => theme.colors.primaryLighter};
 
     .suggestion {
-      align-items: center;
       display: flex;
+      align-items: center;
       transition: all 0.2s ease-in-out; // Add transition here
 
       h4 {
+        margin: 0;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        margin: 0;
       }
 
       &:hover {

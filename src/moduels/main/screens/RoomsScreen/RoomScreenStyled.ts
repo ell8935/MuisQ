@@ -2,12 +2,12 @@ import styled from "styled-components";
 
 const RoomScreenStyled = styled.div`
   display: grid;
+  height: calc(100vh - 5rem);
+  justify-content: center;
   grid-template-columns: repeat(6, 1fr);
   grid-template-rows: 10% 1fr 1fr;
   grid-column-gap: 3px;
   grid-row-gap: 3px;
-  height: calc(100vh - 5rem);
-  justify-content: center;
 
   .header {
     grid-area: 1 / 1 / 2 / 7;

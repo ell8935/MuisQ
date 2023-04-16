@@ -10,13 +10,13 @@ const CustomInputStyled = styled.div`
   .default {
     border: 0;
     width: 100%;
-    color: ${({ theme }) => theme.colors.black};
-    font-weight: 600;
     font-size: 1rem;
+    font-weight: 600;
     padding: 20px 0px;
     text-indent: 10px;
-    background-color: ${({ theme }) => theme.colors.whiteCream};
+    color: ${({ theme }) => theme.colors.black};
     border-radius: ${({ theme }) => theme.padding.medium};
+    background-color: ${({ theme }) => theme.colors.whiteCream};
   }
 
   .inputButton {

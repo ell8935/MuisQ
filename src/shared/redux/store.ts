@@ -1,9 +1,9 @@
-import storage from "redux-persist/lib/storage";
 import authSlice from "./reducers/authSlice";
-import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import musicControlsSlice from "./reducers/musicControlsSlice";
-import { persistStore, persistReducer } from "redux-persist";
 import modalSlice from "./reducers/modalSlice";
+import storage from "redux-persist/lib/storage";
+import { persistStore, persistReducer } from "redux-persist";
+import musicControlsSlice from "./reducers/musicControlsSlice";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 
 const persistConfig = {
   key: "root",

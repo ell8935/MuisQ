@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useState, useEffect, useRef } from "react";
 import QueueListStyled from "./QueueListStyled";
+import { useState, useEffect, useRef } from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { removeSong } from "../../services/songServices";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";

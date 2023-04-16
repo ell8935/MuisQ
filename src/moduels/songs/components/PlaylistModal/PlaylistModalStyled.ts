@@ -6,31 +6,31 @@ const PlaylistModalStyled = styled.div`
 
   .playlistName {
     width: 20%;
+    display: flex;
     cursor: pointer;
     align-items: center;
-    display: flex;
   }
 
   .expanded {
-    margin-bottom: 100px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: relative;
+    align-items: center;
+    margin-bottom: 100px;
+    justify-content: space-between;
   }
 
   .notExpanded {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     position: relative;
+    align-items: center;
+    justify-content: space-between;
   }
 
   .applyPlaylist {
     width: 30%;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
   }
 
   .input {
