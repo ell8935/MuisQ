@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { Abstract } from "../../../../shared/assets/images";
 import ImageBoxStyled from "./ImageBoxStyled";
+import { Abstract } from "../../../../shared/assets/images";
 
 let interval: any;
 let translateX = 0;

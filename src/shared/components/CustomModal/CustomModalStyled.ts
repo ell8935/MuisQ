@@ -17,12 +17,12 @@ const CustomModalStyled = styled.div<CustomModalStyledProps>`
   .modalContent {
     display: flex;
     padding: 20px;
-    width: clamp(25vw, 30%, 80vw);
     margin: 15% auto;
     align-items: center;
-    background-color: ${({ theme }) => theme.colors.primaryLighter};
     flex-direction: column;
+    width: clamp(25vw, 30%, 80vw);
     border-radius: ${({ theme }) => theme.borderRadius.medium};
+    background-color: ${({ theme }) => theme.colors.primaryLighter};
 
     .close {
       align-self: flex-end;
