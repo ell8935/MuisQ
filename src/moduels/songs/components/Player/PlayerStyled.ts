@@ -13,6 +13,9 @@ const PlayerStyled = styled.div`
     align-items: center;
     justify-content: space-between;
     margin-left: 1rem;
+    .modalSetters {
+      display: flex;
+    }
 
     h4 {
       margin: 0;
@@ -43,6 +46,10 @@ const PlayerStyled = styled.div`
       h5 {
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+
+      h3 {
+        margin: 0;
       }
     }
   }

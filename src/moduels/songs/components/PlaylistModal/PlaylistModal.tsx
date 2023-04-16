@@ -43,10 +43,12 @@ const PlaylistModal = ({ roomId }: Props) => {
 
   const handleApplyPlaylist = async (playlistData: DocumentData) => {
     await applyPlaylist({ roomId, user, playlist: playlistData });
+    dispatch(toggleModal(null));
   };
 
   const handleDeletePlaylist = (playlistName: string) => {
     deletePlaylist({ playlistName, user });
+    dispatch(toggleModal(null));
   };
 
   return (
@@ -67,7 +69,7 @@ const PlaylistModal = ({ roomId }: Props) => {
           {data &&
             Object.entries(data).map(([playlistId, playlistData]) => (
               <li key={playlistId} className={expandedPlaylistId === playlistId ? "expanded" : "notExpanded"}>
-                <span onClick={() => handleExpandPlaylist(playlistId)}>
+                <span className="playlistName" onClick={() => handleExpandPlaylist(playlistId)}>
                   {expandedPlaylistId === playlistId ? <RemoveIcon /> : <AddIcon />}
                   {playlistId}
                 </span>

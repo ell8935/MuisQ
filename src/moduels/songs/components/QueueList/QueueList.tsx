@@ -26,14 +26,14 @@ const QueueList = ({ roomId, className, songsList, currentIndex, handleSelectSon
     handleSumSongDurations();
   }, [songsList]);
 
-  useEffect(() => {
-    if (currentSongRef.current) {
-      currentSongRef.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }, [currentIndex]);
+  // useEffect(() => {
+  //   if (currentSongRef.current) {
+  //     currentSongRef.current.scrollIntoView({
+  //       behavior: "smooth",
+  //       block: "start",
+  //     });
+  //   }
+  // }, [currentIndex]);
 
   const removeItem = (index: number) => {
     try {

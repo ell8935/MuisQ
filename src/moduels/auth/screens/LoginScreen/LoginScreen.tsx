@@ -13,7 +13,7 @@ const LoginScreen = () => {
         <div className="logo">
           <img src={MusiQWithName} alt="logo" />
         </div>
-        <CustomText className="title" size="30" label="Log in to join the PARTY" />
+        <CustomText className="title" label="Log in to join the PARTY" />
         <LoginButton className="loginButton" />
       </div>
     </LoginScreenStyled>

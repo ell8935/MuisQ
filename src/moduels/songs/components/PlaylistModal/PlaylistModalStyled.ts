@@ -4,7 +4,7 @@ const PlaylistModalStyled = styled.div`
   width: 80%;
   list-style-type: none;
 
-  span {
+  .playlistName {
     width: 20%;
     cursor: pointer;
     align-items: center;

@@ -1,5 +1,5 @@
 import ReactPlayer from "react-player";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import PlayerStyled from "./PlayerStyled";
 import { useDispatch, useSelector } from "react-redux";
 import IosShareIcon from "@mui/icons-material/IosShare";
@@ -48,7 +48,7 @@ const Player = ({ roomId, className }: Props) => {
     dispatch(setSongCurrentIndex(index ?? 0));
   };
 
-  const handleShareRoom = () => {
+  const handleModalShareRoom = () => {
     dispatch(toggleModal(<ShareRoomModal roomId={roomId} />));
   };
 
@@ -65,13 +65,15 @@ const Player = ({ roomId, className }: Props) => {
           <CustomModal />
           <span className="roomNameHeader">
             <h4>{roomId} Room</h4>
-            <CustomIconButton onClick={handleShareRoom}>
-              <IosShareIcon />
-            </CustomIconButton>
+            <div className="modalSetters">
+              <CustomIconButton onClick={handleModalShareRoom}>
+                <IosShareIcon />
+              </CustomIconButton>
 
-            <CustomIconButton onClick={handleModalPlaylist}>
-              <QueueMusicIcon />
-            </CustomIconButton>
+              <CustomIconButton onClick={handleModalPlaylist}>
+                <QueueMusicIcon />
+              </CustomIconButton>
+            </div>
           </span>
 
           <div className="playerDetailsContainer">
@@ -82,7 +84,7 @@ const Player = ({ roomId, className }: Props) => {
                 url={url}
                 playing={togglePlayer}
                 onEnded={() => dispatch(skipSong())}
-                width="20vh"
+                width="100%"
                 height="20vh"
                 ref={playerRef}
                 volume={volume}

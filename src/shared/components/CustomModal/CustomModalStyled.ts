@@ -17,7 +17,7 @@ const CustomModalStyled = styled.div<CustomModalStyledProps>`
   .modalContent {
     display: flex;
     padding: 20px;
-    width: clamp(25vw, 75%, 80vw);
+    width: clamp(25vw, 30%, 80vw);
     margin: 15% auto;
     align-items: center;
     background-color: ${({ theme }) => theme.colors.primaryLighter};
@@ -26,6 +26,12 @@ const CustomModalStyled = styled.div<CustomModalStyledProps>`
 
     .close {
       align-self: flex-end;
+    }
+  }
+
+  @media (max-width: 850px) {
+    .modalContent {
+      width: 85%;
     }
   }
 `;

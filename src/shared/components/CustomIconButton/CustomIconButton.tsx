@@ -5,9 +5,9 @@ interface Props extends IconButtonProps {
   children: React.ReactNode;
 }
 
-const CustomIconButton = ({ children, color, ...rest }: Props) => {
+const CustomIconButton = ({ children, color, className, ...rest }: Props) => {
   return (
-    <CustomIconButtonStyled color={color}>
+    <CustomIconButtonStyled color={color} className={className}>
       <IconButton className="iconButton" {...rest}>
         {children}
       </IconButton>

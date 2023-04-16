@@ -14,7 +14,7 @@ const MainScreen = () => {
     controls.start((i) => ({
       opacity: 1,
       x: 0,
-      transition: { delay: i * 0.05 },
+      transition: { delay: i * 0.1 },
     }));
   }, [controls]);
 

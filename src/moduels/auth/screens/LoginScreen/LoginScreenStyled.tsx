@@ -25,8 +25,8 @@ const LoginScreenStyled = styled.div`
   .loginBox {
     background-color: ${({ theme }) => theme.colors.primary};
     border-radius: ${({ theme }) => theme.borderRadius.medium};
-    width: 30vw;
-    height: 75vh;
+    width: 20vw;
+    height: 80vh;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -35,7 +35,6 @@ const LoginScreenStyled = styled.div`
     .logo {
       display: flex;
       align-items: center;
-      margin-left: 1.5rem;
       img {
         max-width: 100%;
         max-height: 100%;
@@ -48,6 +47,19 @@ const LoginScreenStyled = styled.div`
 
     .title {
       text-align: center;
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 850px) {
+    flex-direction: column;
+    align-items: center;
+    .abstractBox {
+      display: none;
+    }
+    .loginBox {
+      height: 30vh;
+      width: 50vw;
     }
   }
 `;

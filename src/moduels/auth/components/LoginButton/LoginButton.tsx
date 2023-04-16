@@ -4,7 +4,6 @@ import { loginWithGoogle } from "../../services/authServies";
 import { AppDispatch } from "../../../../shared/redux/store";
 import { setAuth } from "../../../../shared/redux/reducers/authSlice";
 import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
-import { User } from "firebase/auth";
 
 interface Props {
   className?: string;

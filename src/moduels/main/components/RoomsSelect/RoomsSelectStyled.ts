@@ -15,6 +15,9 @@ const RoomsSelectStyled = styled.div`
   .explanation {
     text-align: center;
     font-size: clamp(2rem, 2.5vw, 4rem);
+    span {
+      color: ${({ theme }) => theme.colors.secondary};
+    }
   }
 
   .roomSelectCreateContainer {

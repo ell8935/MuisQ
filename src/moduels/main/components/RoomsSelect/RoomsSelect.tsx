@@ -7,7 +7,6 @@ import RoomsSelectStyled from "./RoomsSelectStyled";
 import { motion, useAnimationControls } from "framer-motion";
 import Loader from "../../../../shared/components/Loader/Loader";
 import { getRooms } from "../../services/roomServices";
-import CustomText from "../../../../shared/components/CustomText/CustomText";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 
 const RoomsSelect = () => {
@@ -27,15 +26,16 @@ const RoomsSelect = () => {
     }));
   }, [controls]);
 
-  const explanationText = "Share music with anyone, anywhere with MusiQ. Create your playlist and start jamming!";
-
   return (
     <RoomsSelectStyled>
       {isLoading ? (
         <Loader />
       ) : (
         <>
-          <CustomText className="explanation" label={explanationText} />
+          <p className="explanation">
+            <span>Share</span> music with anyone, anywhere with <span>MusiQ</span>. Create your playlist and{" "}
+            <span>start jamming!</span>
+          </p>
           <div className="roomSelectCreateContainer">
             <h3>Choose a Room or Create</h3>
             <CreateRoom />

@@ -1,8 +1,15 @@
 const NotFound = () => {
   return (
-    <div>
-      <h1>404 - Not Found</h1>
-      <p>The page you are looking for doesn't exist.</p>
+    <div className="site">
+      <div className="sketch">
+        <div className="bee-sketch red"></div>
+        <div className="bee-sketch blue"></div>
+      </div>
+
+      <h1>
+        404:
+        <small>Page Not Found</small>
+      </h1>
     </div>
   );
 };
