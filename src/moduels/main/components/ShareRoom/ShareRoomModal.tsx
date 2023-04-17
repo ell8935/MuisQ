@@ -14,9 +14,7 @@ const ShareRoomModal = ({ roomId }: Props) => {
     setTimeout(() => setIsCopied(false), 3000);
   }, [isCopied]);
 
-  const url = Boolean(process.env.REACT_APP_IS_DEV)
-    ? `http://localhost:3000/room?id=${roomId}`
-    : `https://musiq.onrender.com/room?id=${roomId}`;
+  const url = `https://musiq.onrender.com/room?id=${roomId}`;
 
   const copyToClipboard = async () => {
     try {

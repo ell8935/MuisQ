@@ -4,6 +4,10 @@ html {
 	height: 100%;
 }
 
+body {
+}
+
+
 h1 {
 	font-family: 'Cabin Sketch', cursive;
 	font-size: 3em;
@@ -15,7 +19,7 @@ h1 {
 
 h1 small {
 	display: block;
-	color:black
+		color:black
 
 }
 
