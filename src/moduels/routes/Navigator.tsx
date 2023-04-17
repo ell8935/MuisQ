@@ -16,6 +16,7 @@ const Navigator = () => {
             <Route path="/" element={<MainScreen />} />
             <Route path="/room" element={<RoomScreen />} />
           </Route>
+
           <Route path="/login" element={<LoginScreen />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
