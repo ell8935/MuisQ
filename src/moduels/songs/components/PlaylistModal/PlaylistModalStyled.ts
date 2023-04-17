@@ -15,7 +15,7 @@ const PlaylistModalStyled = styled.div`
     display: flex;
     position: relative;
     align-items: center;
-    margin-bottom: 100px;
+    margin-bottom: 120px;
     justify-content: space-between;
   }
 

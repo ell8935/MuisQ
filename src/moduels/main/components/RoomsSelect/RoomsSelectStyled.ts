@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
 const RoomsSelectStyled = styled.div`
-  padding-right: 25px;
-  padding-left: 25px;
   display: flex;
   height: 100%;
+  padding-left: 25px;
+  padding-right: 25px;
   align-items: center;
   flex-direction: column;
   justify-content: space-around;
@@ -31,10 +31,10 @@ const RoomsSelectStyled = styled.div`
     }
 
     .listContainer {
+      padding: 0;
       height: 50%;
       font-weight: 700;
       overflow: hidden auto;
-      padding: 0;
 
       .linkRoom {
         user-select: none;
@@ -44,9 +44,8 @@ const RoomsSelectStyled = styled.div`
         .listItem {
           display: flex;
           text-indent: 10px;
-          margin-bottom: 5px;
-          margin: 0 1rem 0 1rem;
           list-style-type: none;
+          margin: 0 1rem 0.3rem 1rem;
           justify-content: space-between;
           padding: ${({ theme }) => theme.padding.small};
           border-radius: ${({ theme }) => theme.borderRadius.medium};

@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { Songs } from "../constants/types/songTypes";
 import { getSongs } from "../../moduels/songs/services/songServices";
-import { useDispatch } from "react-redux";
 import { setSongListLength } from "../redux/reducers/musicControlsSlice";
 
 interface useSongsPromise {

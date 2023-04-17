@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { loginWithGoogle } from "../../services/authServies";
+import { loginWithGoogle } from "../../services/authServices";
 import { AppDispatch } from "../../../../shared/redux/store";
 import { setAuth } from "../../../../shared/redux/reducers/authSlice";
 import CustomButton from "../../../../shared/components/CustomButton/CustomButton";

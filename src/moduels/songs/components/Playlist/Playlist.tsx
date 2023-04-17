@@ -8,7 +8,7 @@ const Playlist = ({ playlistData }: any) => {
       {playlistData.map((playlist: any) => (
         <div className="data" key={playlist.id}>
           <MusicNoteIcon color="action" />
-          <CustomText label={playlist.songTitle} />
+          <CustomText className="songTitle" label={playlist.songTitle} />
         </div>
       ))}
     </PlaylistStyled>

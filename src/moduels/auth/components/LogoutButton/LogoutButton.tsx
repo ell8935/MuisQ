@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { googleLogout } from "../../services/authServies";
+import { googleLogout } from "../../services/authServices";
 import { AppDispatch } from "../../../../shared/redux/store";
 import { clearAuth } from "../../../../shared/redux/reducers/authSlice";
 import CustomButton from "../../../../shared/components/CustomButton/CustomButton";

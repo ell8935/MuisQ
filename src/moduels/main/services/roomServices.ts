@@ -24,8 +24,6 @@ const createRoom = async ({ roomName, user }: createRoomInterface): Promise<void
     channelTitle: "Earth Wind & Fire",
     timestamp: serverTimestamp(),
   });
-
-  console.log(`${roomName} Created`);
 };
 
 const getRooms = async (): Promise<DocumentData[]> => {
