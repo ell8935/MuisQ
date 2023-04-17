@@ -13,7 +13,7 @@ const LoginScreen = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) {
+    if (user.uid) {
       navigate("/");
     }
   }, [user]);

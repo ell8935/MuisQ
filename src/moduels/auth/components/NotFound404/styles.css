@@ -18,10 +18,13 @@ h1 {
 	text-align: center;
 	opacity: .8;
 	order: 1;
+	color:black
 }
 
 h1 small {
 	display: block;
+	color:black
+
 }
 
 .site {
