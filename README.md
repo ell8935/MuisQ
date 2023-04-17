@@ -1,6 +1,7 @@
 # MusiQ
 
 This project was created by Elad Ovadia.
+![image](https://user-images.githubusercontent.com/86250844/232465864-6c5a69e1-f322-40a5-941f-2e7bcbe1698c.png)
 
 ## Share music with anyone, anywhere with MusiQ. Create your playlist and start jamming!
 
@@ -9,7 +10,8 @@ You can add songs in real-time, chat and even create custom playlists for your n
 
 ## Built with
 
-React - Typescript
+React - Typescript,
+
 Firebase - backend
 
 ## How to run
