@@ -1,9 +1,5 @@
 import styled, { keyframes } from "styled-components";
 
-interface Props {
-  currentIndex: number;
-}
-
 const fadeIn = keyframes`
   from {
     opacity: 0;
@@ -24,7 +20,7 @@ const fadeOut = keyframes`
   }
 `;
 
-const QueueListStyled = styled.div<Props>`
+const QueueListStyled = styled.div`
   margin-top: 1rem;
   height: 100%;
   font-weight: 600;
@@ -41,6 +37,7 @@ const QueueListStyled = styled.div<Props>`
       width: 15%;
       align-items: center;
       margin-left: 1.5rem;
+
       img {
         max-width: 100%;
         max-height: 100%;

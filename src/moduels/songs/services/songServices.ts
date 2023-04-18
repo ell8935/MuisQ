@@ -13,6 +13,7 @@ import {
   setDoc,
 } from "firebase/firestore";
 import {
+  SongProps,
   addSongInterface,
   applyPlaylistInterface,
   createPlaylistInterface,
@@ -21,7 +22,8 @@ import {
   removeSongInterface,
 } from "../../../shared/constants/types/songTypes";
 import { UserInfo } from "firebase/auth";
-import { db, getExpiredDate } from "../../../shared/services/firebase";
+import { db } from "../../../shared/services/firebase";
+import { getExpiredDate } from "../../../shared/utils/timeUtils";
 
 const addSong = async ({ roomId, user, songURL, songTitle, duration, channelTitle }: addSongInterface) => {
   try {
@@ -62,10 +64,10 @@ const removeSong = async ({ roomId, docId }: removeSongInterface) => {
 
 const getSongs = ({ roomId, callback }: getSongsInterface) => {
   return onSnapshot(query(collection(db, "Rooms", roomId, "songs"), orderBy("timestamp", "asc")), (querySnapshot) => {
-    const songs = querySnapshot.docs.map((doc) => ({
-      id: doc.id,
-      ...doc.data(),
-    }));
+    const songs: { [key: string]: SongProps } = {};
+    querySnapshot.docs.forEach((doc) => {
+      songs[doc.id] = doc.data() as SongProps;
+    });
     callback(songs);
   });
 };

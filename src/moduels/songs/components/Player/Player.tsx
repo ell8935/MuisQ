@@ -1,39 +1,40 @@
 import ReactPlayer from "react-player";
-import { useRef, useState } from "react";
 import PlayerStyled from "./PlayerStyled";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useRef, useState } from "react";
 import IosShareIcon from "@mui/icons-material/IosShare";
 import useSongs from "../../../../shared/hooks/useSongs";
 import PlaylistModal from "../PlaylistModal/PlaylistModal";
 import DurationTimer from "../DurationTimer/DurationTimer";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
+import { AppDispatch } from "../../../../shared/redux/store";
 import Loader from "../../../../shared/components/Loader/Loader";
 import QueueList from "../../../songs/components/QueueList/QueueList";
 import { toggleModal } from "../../../../shared/redux/reducers/modalSlice";
-import { AppDispatch, RootState } from "../../../../shared/redux/store";
 import ShareRoomModal from "../../../main/components/ShareRoom/ShareRoomModal";
 import CustomModal from "../../../../shared/components/CustomModal/CustomModal";
 import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
-import { setSongCurrentIndex, setTogglePlayer, skipSong } from "../../../../shared/redux/reducers/musicControlsSlice";
+import { MusicControlsInterface } from "../../../../shared/constants/types/musicControlsTypes";
+import { currentSongRTDB, skipSongRTDB, togglePlayerRTDB } from "../../services/musicControlsServices";
 
 interface Props {
   roomId: string;
   className: string;
+  playerDetails: MusicControlsInterface;
 }
 
-const Player = ({ roomId, className }: Props) => {
+const Player = ({ roomId, className, playerDetails }: Props) => {
   const { songs, isLoading } = useSongs(roomId);
   const dispatch: AppDispatch = useDispatch();
   const playerRef = useRef<ReactPlayer>(null);
   const [durationElapsed, setDurationElapsed] = useState<number>(0);
-  const { togglePlayer, currentIndex, volume, toggleMute } = useSelector((state: RootState) => state.musicControls);
 
-  const url = songs[currentIndex]?.songURL;
-  const songTitle = songs[currentIndex]?.songTitle;
-  const songDuration = songs[currentIndex]?.duration;
-  const songChannelTitle = songs[currentIndex]?.channelTitle;
+  const url = songs[playerDetails.currentSong]?.songURL;
+  const songTitle = songs[playerDetails.currentSong]?.songTitle;
+  const songDuration = songs[playerDetails.currentSong]?.duration;
+  const songChannelTitle = songs[playerDetails.currentSong]?.channelTitle;
 
-  document.title = togglePlayer === true && url ? `MusiQ-${songTitle}` : "MusiQ";
+  document.title = playerDetails.isPlaying === true && url ? `MusiQ-${songTitle}` : "MusiQ";
 
   const handleTimer = () => {
     if (playerRef.current) {
@@ -41,11 +42,12 @@ const Player = ({ roomId, className }: Props) => {
     }
   };
 
-  const handleSelectSong = (index: number) => {
-    if (index === currentIndex) {
-      return dispatch(setTogglePlayer(!togglePlayer));
+  const handleSelectSong = (songId: string) => {
+    if (songId === playerDetails.currentSong) {
+      togglePlayerRTDB({ roomId });
+    } else {
+      currentSongRTDB({ roomId, songs, songId });
     }
-    dispatch(setSongCurrentIndex(index ?? 0));
   };
 
   const handleModalShareRoom = () => {
@@ -54,6 +56,10 @@ const Player = ({ roomId, className }: Props) => {
 
   const handleModalPlaylist = () => {
     dispatch(toggleModal(<PlaylistModal roomId={roomId} />));
+  };
+
+  const handleSkipSong = () => {
+    skipSongRTDB({ roomId, songs });
   };
 
   return (
@@ -82,13 +88,13 @@ const Player = ({ roomId, className }: Props) => {
                 onProgress={handleTimer}
                 onReady={handleTimer}
                 url={url}
-                playing={togglePlayer}
-                onEnded={() => dispatch(skipSong())}
+                playing={playerDetails.isPlaying}
+                onEnded={handleSkipSong}
                 width="100%"
                 height="20vh"
                 ref={playerRef}
-                volume={volume}
-                muted={toggleMute}
+                volume={playerDetails.volumeLevel}
+                muted={playerDetails.toggleMute}
               />
             </div>
 
@@ -106,7 +112,7 @@ const Player = ({ roomId, className }: Props) => {
 
           <QueueList
             className="queueList"
-            currentIndex={currentIndex}
+            currentPlayingSong={playerDetails.currentSong}
             songsList={songs}
             roomId={roomId}
             handleSelectSong={handleSelectSong}

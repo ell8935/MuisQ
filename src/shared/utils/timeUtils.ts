@@ -7,4 +7,11 @@ const formatDurationISO8601 = (durationString: string): number => {
   return durationInSeconds;
 };
 
-export { formatDurationISO8601 };
+const getExpiredDate = () => {
+  const expiredDate = new Date();
+  expiredDate.setDate(expiredDate.getDate() + 2);
+
+  return expiredDate;
+};
+
+export { formatDurationISO8601, getExpiredDate };

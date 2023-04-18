@@ -15,7 +15,7 @@ const MessageStyled = styled.div<Props>`
     padding: 10px;
     text-align: left;
     border-radius: 10px;
-    color: ${({ theme }) => theme.colors.white};
+    color: ${({ theme }) => theme.colors.black};
     background: ${({ theme }) => theme.colors.secondaryDarker};
   }
 

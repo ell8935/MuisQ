@@ -5,13 +5,16 @@ import { motion, useAnimationControls } from "framer-motion";
 import { MusiQWithName } from "../../../../shared/assets/images";
 import LogoutButton from "../../../auth/components/LogoutButton/LogoutButton";
 import MusicControls from "../../../songs/components/MusicControls/MusicControls";
+import { MusicControlsInterface } from "../../../../shared/constants/types/musicControlsTypes";
 
 interface Props {
   className: string;
   isMusicControls?: boolean;
+  roomId?: string;
+  playerDetails?: MusicControlsInterface;
 }
 
-const HeaderBar = ({ className, isMusicControls }: Props) => {
+const HeaderBar = ({ className, isMusicControls, roomId, playerDetails }: Props) => {
   const navigate = useNavigate();
   const controls = useAnimationControls();
 
@@ -32,11 +35,11 @@ const HeaderBar = ({ className, isMusicControls }: Props) => {
   return (
     <HeaderBarStyled className={className}>
       <motion.div custom={1} animate={controls} className="logo" onClick={handleNavigateToHome}>
-        <img src={MusiQWithName} alt="Logo" />
+        <img src={MusiQWithName} alt="logo" />
       </motion.div>
 
       <motion.div custom={2} animate={controls} className="controls">
-        {isMusicControls ? <MusicControls /> : ""}
+        {isMusicControls ? <MusicControls roomId={roomId || ""} playerDetails={playerDetails} /> : ""}
       </motion.div>
 
       <motion.div custom={3} animate={controls} className="logout">

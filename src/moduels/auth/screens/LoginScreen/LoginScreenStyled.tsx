@@ -53,15 +53,44 @@ const LoginScreenStyled = styled.div`
   }
 
   @media (max-width: 850px) {
-    align-items: center;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 3px;
+    grid-row-gap: 3px;
+
+    .top {
+      grid-area: 1 / 1 / 2 / 5;
+      background-color: ${({ theme }) => theme.colors.primary};
+      border-radius: ${({ theme }) => theme.borderRadius.medium};
+    }
+
+    .right {
+      grid-area: 1 / 5 / 5 / 6;
+      background-color: ${({ theme }) => theme.colors.primary};
+      border-radius: ${({ theme }) => theme.borderRadius.medium};
+    }
+
+    .bottom {
+      grid-area: 5 / 2 / 6 / 6;
+      background-color: ${({ theme }) => theme.colors.primary};
+      border-radius: ${({ theme }) => theme.borderRadius.medium};
+    }
+
+    .left {
+      grid-area: 2 / 1 / 6 / 2;
+      background-color: ${({ theme }) => theme.colors.primary};
+      border-radius: ${({ theme }) => theme.borderRadius.medium};
+    }
 
     .abstractBox {
       display: none;
     }
+
     .loginBox {
       width: 50vw;
       height: 30vh;
+      grid-area: 2 / 2 / 5 / 5;
     }
   }
 `;

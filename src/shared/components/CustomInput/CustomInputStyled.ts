@@ -6,6 +6,7 @@ const CustomInputStyled = styled.div`
   height: 100%;
   position: relative;
   flex-direction: "row";
+  caret-color: gray;
 
   .default {
     border: 0;

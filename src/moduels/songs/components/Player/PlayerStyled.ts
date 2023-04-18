@@ -28,6 +28,7 @@ const PlayerStyled = styled.div`
 
     .player {
       overflow: hidden;
+      pointer-events: none;
     }
 
     @media (max-width: 850px) {

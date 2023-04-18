@@ -1,12 +1,16 @@
 import { UserInfo } from "firebase/auth";
 import { DocumentData } from "firebase/firestore";
 
-interface SongProps {
+export interface SongProps {
   roomId: string;
   songURL: string;
   duration: number;
   songTitle: string;
   channelTitle: string;
+}
+
+export interface Songs {
+  [key: string]: Song;
 }
 
 export interface getSongsInterface {
@@ -19,7 +23,7 @@ export interface removeSongInterface {
   roomId: string;
 }
 
-export interface Songs extends SongProps {
+export interface Song extends SongProps {
   id: string;
   timestamp: {};
   displayName: string;

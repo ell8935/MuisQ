@@ -1,4 +1,5 @@
-import { db, getExpiredDate } from "../../../shared/services/firebase";
+import { db } from "../../../shared/services/firebase";
+import { getExpiredDate } from "../../../shared/utils/timeUtils";
 import { getMessagesInterface, sendMessageInterface } from "../../../shared/constants/types/messageTypes";
 import { addDoc, collection, doc, onSnapshot, orderBy, query, serverTimestamp, setDoc } from "firebase/firestore";
 

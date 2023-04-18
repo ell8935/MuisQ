@@ -7,17 +7,22 @@ import VolumeDownIcon from "@mui/icons-material/VolumeDown";
 import { AppDispatch, RootState } from "../../../../../shared/redux/store";
 import { setMute, setVolume } from "../../../../../shared/redux/reducers/musicControlsSlice";
 import CustomIconButton from "../../../../../shared/components/CustomIconButton/CustomIconButton";
-
-const VolumeControls = () => {
+import { toggleMuteRTDB, volumeLevelRTDB } from "../../../services/musicControlsServices";
+interface Props {
+  roomId: string;
+}
+const VolumeControls = ({ roomId }: Props) => {
   const dispatch: AppDispatch = useDispatch();
   const { volume, toggleMute } = useSelector((state: RootState) => state.musicControls);
 
   const handleVolumeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    dispatch(setVolume(parseFloat(event.target.value)));
+    const { volumeLevel } = volumeLevelRTDB({ roomId, volume: parseFloat(event.target.value) });
+    dispatch(setVolume(volumeLevel));
   };
 
   const handleMute = () => {
-    dispatch(setMute());
+    const { toggleMute } = toggleMuteRTDB({ roomId });
+    dispatch(setMute(toggleMute));
   };
   const SpeakerIcon = volume < 0.5 ? <VolumeDownIcon /> : <VolumeUpIcon />;
 

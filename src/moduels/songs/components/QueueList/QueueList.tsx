@@ -13,12 +13,12 @@ import CustomIconButton from "../../../../shared/components/CustomIconButton/Cus
 interface Props {
   roomId: string;
   className: string;
-  songsList: Songs[];
-  currentIndex: number;
-  handleSelectSong: (index: number) => void;
+  songsList: Songs;
+  currentPlayingSong: string;
+  handleSelectSong: (item: string) => void;
 }
 
-const QueueList = ({ roomId, className, songsList, currentIndex, handleSelectSong }: Props): JSX.Element => {
+const QueueList = ({ roomId, className, songsList, currentPlayingSong, handleSelectSong }: Props): JSX.Element => {
   const [totalDuration, setTotalDuration] = useState<number>(0);
   const currentSongRef = useRef<HTMLLIElement>(null);
 
@@ -33,58 +33,57 @@ const QueueList = ({ roomId, className, songsList, currentIndex, handleSelectSon
         block: "start",
       });
     }
-  }, [currentIndex]);
+  }, [currentPlayingSong]);
 
-  const removeItem = (index: number) => {
+  const removeItem = (item: string) => {
     try {
-      const docId = songsList.filter((_, i) => i === index)[0].id;
-      removeSong({ roomId, docId });
+      removeSong({ roomId, docId: item });
     } catch (error) {
       console.log(error);
     }
   };
 
   const handleSumSongDurations = () => {
-    const durations = songsList.map((item) => Number(item.duration));
+    const durations = Object.values(songsList).map((item) => Number(item.duration));
     const totalDurationInSeconds = durations.reduce((acc, curr) => acc + curr, 0);
     setTotalDuration(totalDurationInSeconds);
   };
 
   return (
-    <QueueListStyled className={className} currentIndex={currentIndex}>
+    <QueueListStyled className={className}>
       <ul>
         <div className="queueListHeader">
           <div className="logo">
-            <img src={MusiQWithName} alt="Logo" />
+            <img src={MusiQWithName} alt="logo" />
           </div>
           <DurationDisplay isTotal durationInSeconds={Number(totalDuration)} />
         </div>
 
-        {songsList.map((item: Songs, index: number) => (
+        {Object.entries(songsList).map(([songKey, songValues]) => (
           <li
-            key={index}
-            className={`${currentIndex === index ? "highlighted" : ""} ${
-              (currentSongRef.current === null || currentSongRef.current?.textContent !== item.songTitle) &&
+            key={songKey}
+            className={`${songKey === currentPlayingSong ? "highlighted" : ""} ${
+              (currentSongRef.current === null || currentSongRef.current?.textContent !== songValues.songTitle) &&
               "currentSong"
             }`}
-            ref={currentIndex === index ? currentSongRef : null}
+            ref={songKey === currentPlayingSong ? currentSongRef : null}
           >
             <MusicNoteIcon color="action" />
-            <h4 onClick={() => handleSelectSong(index)} className="songTitle">
-              {item.songTitle}
+            <h4 onClick={() => handleSelectSong(songKey)} className="songTitle">
+              {songValues.songTitle}
             </h4>
             <div className="queueListButton">
-              {currentIndex !== index && (
-                <CustomIconButton onClick={() => handleSelectSong(index)}>
+              {currentPlayingSong !== songKey && (
+                <CustomIconButton onClick={() => handleSelectSong(songKey)}>
                   <PlayArrowIcon />
                 </CustomIconButton>
               )}
-              <CustomIconButton color="warning" onClick={() => removeItem(index)}>
+              <CustomIconButton color="warning" onClick={() => removeItem(songKey)}>
                 <DeleteIcon />
               </CustomIconButton>
             </div>
             <div className="durationTime">
-              <DurationDisplay durationInSeconds={Number(item.duration)} />
+              <DurationDisplay durationInSeconds={Number(songValues.duration)} />
             </div>
           </li>
         ))}

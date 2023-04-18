@@ -21,8 +21,9 @@ const LoginScreen = () => {
   return (
     <LoginScreenStyled>
       <div className="abstractBox">
-        <img src={Abstract} alt="Abstract" />
+        <img src={Abstract} alt="abstract" />
       </div>
+
       <div className="loginBox">
         <div className="logo">
           <img src={MusiQWithName} alt="logo" />
@@ -30,6 +31,11 @@ const LoginScreen = () => {
         <CustomText className="title" label="Log in to join the PARTY" />
         <LoginButton className="loginButton" />
       </div>
+
+      <div className="top"></div>
+      <div className="right"></div>
+      <div className="bottom"></div>
+      <div className="left"></div>
     </LoginScreenStyled>
   );
 };

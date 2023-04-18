@@ -61,7 +61,7 @@ const ImageBox = () => {
   return (
     <ImageBoxStyled>
       <div id="container">
-        <img src={Abstract} alt="Abstract" id="image" />
+        <img src={Abstract} alt="abstract" id="image" />
       </div>
     </ImageBoxStyled>
   );
