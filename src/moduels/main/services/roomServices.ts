@@ -1,7 +1,9 @@
 import { UserInfo } from "firebase/auth";
+import { ref, set } from "firebase/database";
 import { db } from "../../../shared/services/firebase";
 import { getExpiredDate } from "../../../shared/utils/timeUtils";
-import { addDoc, collection, doc, DocumentData, getDoc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
+import { realTimeDatabase } from "../../../shared/services/firebase";
+import { collection, doc, DocumentData, getDoc, getDocs, serverTimestamp, setDoc } from "firebase/firestore";
 
 interface createRoomInterface {
   roomName: string;
@@ -16,7 +18,7 @@ const createRoom = async ({ roomName, user }: createRoomInterface): Promise<void
     numberOfSongs: 1,
   });
 
-  await addDoc(collection(db, "Rooms", roomName, "songs"), {
+  await setDoc(doc(db, "Rooms", roomName, "songs", "firstSong"), {
     uid: user.uid,
     displayName: user.displayName,
     songURL: "https://www.youtube.com/watch?v=Gs069dndIYk",
@@ -24,6 +26,11 @@ const createRoom = async ({ roomName, user }: createRoomInterface): Promise<void
     duration: 201,
     channelTitle: "Earth Wind & Fire",
     timestamp: serverTimestamp(),
+  });
+
+  set(ref(realTimeDatabase, roomName), {
+    currentSong: "firstSong",
+    isPlaying: true,
   });
 };
 

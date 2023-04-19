@@ -1,15 +1,14 @@
 import ReactPlayer from "react-player";
-import PlayerStyled from "./PlayerStyled";
-import { useDispatch } from "react-redux";
 import { useRef, useState } from "react";
+import PlayerStyled from "./PlayerStyled";
+import { useDispatch, useSelector } from "react-redux";
 import IosShareIcon from "@mui/icons-material/IosShare";
-import useSongs from "../../../../shared/hooks/useSongs";
 import PlaylistModal from "../PlaylistModal/PlaylistModal";
 import DurationTimer from "../DurationTimer/DurationTimer";
 import QueueMusicIcon from "@mui/icons-material/QueueMusic";
-import { AppDispatch } from "../../../../shared/redux/store";
 import Loader from "../../../../shared/components/Loader/Loader";
 import QueueList from "../../../songs/components/QueueList/QueueList";
+import { AppDispatch, RootState } from "../../../../shared/redux/store";
 import { toggleModal } from "../../../../shared/redux/reducers/modalSlice";
 import ShareRoomModal from "../../../main/components/ShareRoom/ShareRoomModal";
 import CustomModal from "../../../../shared/components/CustomModal/CustomModal";
@@ -24,10 +23,11 @@ interface Props {
 }
 
 const Player = ({ roomId, className, playerDetails }: Props) => {
-  const { songs, isLoading } = useSongs(roomId);
   const dispatch: AppDispatch = useDispatch();
   const playerRef = useRef<ReactPlayer>(null);
   const [durationElapsed, setDurationElapsed] = useState<number>(0);
+  const { songs, isLoading } = useSelector((state: RootState) => state.songs);
+  const { volume, toggleMute } = useSelector((state: RootState) => state.musicControls);
 
   const url = songs[playerDetails.currentSong]?.songURL;
   const songTitle = songs[playerDetails.currentSong]?.songTitle;
@@ -93,8 +93,8 @@ const Player = ({ roomId, className, playerDetails }: Props) => {
                 width="100%"
                 height="20vh"
                 ref={playerRef}
-                volume={playerDetails.volumeLevel}
-                muted={playerDetails.toggleMute}
+                volume={volume}
+                muted={toggleMute}
               />
             </div>
 

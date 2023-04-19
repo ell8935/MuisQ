@@ -20,7 +20,7 @@ const MainScreen = () => {
 
   return (
     <MainScreenStyled>
-      <HeaderBar className="header" />
+      <HeaderBar roomId="" className="header" />
       <motion.div custom={4} animate={controls} className="imageBox">
         <ImageBox />
       </motion.div>

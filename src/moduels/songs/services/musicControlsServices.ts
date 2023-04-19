@@ -4,16 +4,11 @@ import {
   RoomId,
   SkipOrPrev,
   CurrentSongInterface,
-  VolumeLevelInterface,
   MusicControlsInterface,
 } from "../../../shared/constants/types/musicControlsTypes";
 
 export const currentSongRTDB = ({ roomId, songs, songId }: CurrentSongInterface) => {
-  const { currentSong } = readMusicControls(roomId);
-
-  if (!currentSong && songs) {
-    update(ref(realTimeDatabase, roomId), { currentSong: Object.keys(songs)[0] });
-  } else if (songs) {
+  if (songs) {
     update(ref(realTimeDatabase, roomId), { currentSong: songId });
   }
 };
@@ -42,26 +37,9 @@ export const togglePlayerRTDB = ({ roomId }: RoomId) => {
   });
 };
 
-export const toggleMuteRTDB = ({ roomId }: RoomId) => {
-  const { toggleMute } = readMusicControls(roomId);
-  update(ref(realTimeDatabase, roomId), {
-    toggleMute: !toggleMute,
-  });
-  const data = readMusicControls(roomId);
-  return data;
-};
-
-export const volumeLevelRTDB = ({ roomId, volume }: VolumeLevelInterface) => {
-  update(ref(realTimeDatabase, roomId), {
-    volumeLevel: volume,
-  });
-  const data = readMusicControls(roomId);
-  return data;
-};
-
 export const readMusicControls = (roomId: string): MusicControlsInterface => {
   const path = ref(realTimeDatabase, roomId);
-  let data: MusicControlsInterface = { isPlaying: true, currentSong: "", toggleMute: false, volumeLevel: 1 };
+  let data: MusicControlsInterface = { isPlaying: true, currentSong: "" };
   onValue(path, (snapshot) => {
     data = snapshot.val();
   });

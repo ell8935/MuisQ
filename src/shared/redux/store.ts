@@ -1,5 +1,6 @@
 import authSlice from "./reducers/authSlice";
 import modalSlice from "./reducers/modalSlice";
+import songsSlice from "./reducers/songsSlice";
 import storage from "redux-persist/lib/storage";
 import { persistStore, persistReducer } from "redux-persist";
 import musicControlsSlice from "./reducers/musicControlsSlice";
@@ -15,6 +16,7 @@ const persistConfig = {
 const reducers = combineReducers({
   auth: authSlice,
   modal: modalSlice,
+  songs: songsSlice,
   musicControls: musicControlsSlice,
 });
 

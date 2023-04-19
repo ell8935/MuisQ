@@ -8,9 +8,9 @@ import MusicControls from "../../../songs/components/MusicControls/MusicControls
 import { MusicControlsInterface } from "../../../../shared/constants/types/musicControlsTypes";
 
 interface Props {
+  roomId: string;
   className: string;
   isMusicControls?: boolean;
-  roomId?: string;
   playerDetails?: MusicControlsInterface;
 }
 
@@ -39,7 +39,7 @@ const HeaderBar = ({ className, isMusicControls, roomId, playerDetails }: Props)
       </motion.div>
 
       <motion.div custom={2} animate={controls} className="controls">
-        {isMusicControls ? <MusicControls roomId={roomId || ""} playerDetails={playerDetails} /> : ""}
+        {isMusicControls ? <MusicControls roomId={roomId} playerDetails={playerDetails} /> : ""}
       </motion.div>
 
       <motion.div custom={3} animate={controls} className="logout">

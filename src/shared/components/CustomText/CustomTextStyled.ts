@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { CustomTextInterface } from "../../constants/types";
+import { CustomTextInterface } from "../../constants/types/generalTypes";
 
 const CustomTextStyled = styled.div<CustomTextInterface>`
   padding: 0.5em;

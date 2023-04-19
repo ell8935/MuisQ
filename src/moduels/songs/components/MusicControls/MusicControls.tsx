@@ -1,6 +1,7 @@
 import screenfull from "screenfull";
+import { useSelector } from "react-redux";
 import MusicControlStyled from "./MusicControlsStyled";
-import useSongs from "../../../../shared/hooks/useSongs";
+import { RootState } from "../../../../shared/redux/store";
 import VolumeControls from "./VolumeSlider/VolumeControls";
 import FullscreenIcon from "@mui/icons-material/Fullscreen";
 import PauseOutlined from "@mui/icons-material/PauseOutlined";
@@ -17,7 +18,7 @@ interface Props {
 }
 
 const MusicControls = ({ roomId, playerDetails }: Props) => {
-  const { songs } = useSongs(roomId);
+  const { songs } = useSelector((state: RootState) => state.songs);
 
   const togglePlayerPausePlay = () => {
     togglePlayerRTDB({ roomId });
@@ -41,7 +42,7 @@ const MusicControls = ({ roomId, playerDetails }: Props) => {
   return (
     <MusicControlStyled>
       <div className="volume">
-        <VolumeControls roomId={roomId} />
+        <VolumeControls />
       </div>
       <div className="baseControls">
         <CustomIconButton onClick={handlePreviousSong}>

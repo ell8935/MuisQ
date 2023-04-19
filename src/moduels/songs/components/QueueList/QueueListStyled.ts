@@ -31,6 +31,7 @@ const QueueListStyled = styled.div`
   .queueListHeader {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 3px;
 
     .logo {
       display: flex;

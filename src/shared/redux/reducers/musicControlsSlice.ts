@@ -18,8 +18,8 @@ export const musicControlsSlice = createSlice({
       state.volume = action.payload;
     },
 
-    setMute: (state, action: PayloadAction<boolean>) => {
-      state.toggleMute = action.payload;
+    setMute: (state) => {
+      state.toggleMute = !state.toggleMute;
     },
   },
 });

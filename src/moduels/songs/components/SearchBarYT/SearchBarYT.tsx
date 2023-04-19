@@ -8,11 +8,7 @@ import { RootState } from "../../../../shared/redux/store";
 import { formatDurationISO8601 } from "../../../../shared/utils/timeUtils";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 import CustomIconButton from "../../../../shared/components/CustomIconButton/CustomIconButton";
-
-interface SearchResult {
-  id: { videoId: string };
-  snippet: { title: string; channelTitle: string };
-}
+import { SearchResult } from "../../../../shared/constants/types/generalTypes";
 
 interface Props {
   roomId: string;
@@ -23,6 +19,7 @@ const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
   const [query, setQuery] = useState<string>("");
   const [results, setResults] = useState<SearchResult[]>([]);
   const user = useSelector((state: RootState) => state.auth);
+  const { songs } = useSelector((state: RootState) => state.songs);
 
   const queryFormatter = () => {
     if (query.includes("youtube.com")) {
@@ -45,11 +42,16 @@ const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
   };
 
   const handleAddNewItem = async (result: SearchResult) => {
-    const youTubeVideoTitle = result.snippet.title;
     const youTubeVideoId = result.id.videoId;
     const youTubeURL = `https://www.youtube.com/watch?v=${youTubeVideoId}`;
-    const youtubeDuration = await getItemDuration(youTubeVideoId);
+
+    if (Object.values(songs).some((song) => song.songURL === youTubeURL)) {
+      return;
+    }
+
+    const youTubeVideoTitle = result.snippet.title;
     const youtubeChannel = result.snippet.channelTitle;
+    const youtubeDuration = await getItemDuration(youTubeVideoId);
 
     addSong({
       user,

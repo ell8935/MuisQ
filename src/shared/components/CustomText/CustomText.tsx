@@ -1,5 +1,5 @@
 import CustomTextStyled from "./CustomTextStyled";
-import { CustomTextInterface } from "../../constants/types";
+import { CustomTextInterface } from "../../constants/types/generalTypes";
 
 const CustomText = ({ label, size, className, ...rest }: CustomTextInterface) => {
   return (

@@ -8,8 +8,8 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import { useDispatch, useSelector } from "react-redux";
 import PlaylistModalStyled from "./PlaylistModalStyled";
 import useSongs from "../../../../shared/hooks/useSongs";
-import { RootState } from "../../../../shared/redux/store";
 import Loader from "../../../../shared/components/Loader/Loader";
+import { AppDispatch, RootState } from "../../../../shared/redux/store";
 import { toggleModal } from "../../../../shared/redux/reducers/modalSlice";
 import CustomInput from "../../../../shared/components/CustomInput/CustomInput";
 import CustomButton from "../../../../shared/components/CustomButton/CustomButton";
@@ -22,11 +22,11 @@ interface Props {
 
 const PlaylistModal = ({ roomId }: Props) => {
   const { songs } = useSongs(roomId);
-  const [playlistName, setPlaylistName] = useState("");
+  const dispatch: AppDispatch = useDispatch();
+  const [playlistName, setPlaylistName] = useState<string>("");
+  const user = useSelector((state: RootState) => state.auth);
   const [expandedPlaylistId, setExpandedPlaylistId] = useState<string | null>(null);
 
-  const user = useSelector((state: RootState) => state.auth);
-  const dispatch = useDispatch();
   const { data, isLoading } = useQuery<DocumentData[]>({
     queryKey: ["getPlaylists"],
     queryFn: () => getPlaylists(user),
