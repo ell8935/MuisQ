@@ -13,9 +13,8 @@ const ShareRoomModal = ({ roomId }: Props) => {
   useEffect(() => {
     setTimeout(() => setIsCopied(false), 3000);
   }, [isCopied]);
-  const roomIdString = roomId.replace(/\s/g, "%20");
-  console.log(roomIdString);
 
+  const roomIdString = roomId.replace(/\s/g, "%20");
   const url = `https://musiq.onrender.com/room?id=${roomIdString}`;
 
   const copyToClipboard = async () => {

@@ -75,7 +75,7 @@ const PlaylistModal = ({ roomId }: Props) => {
                 </span>
                 {expandedPlaylistId === playlistId && <Playlist playlistData={playlistData} />}
                 <div className="applyPlaylist">
-                  <CustomButton label="Apply Playlist" onClick={() => handleApplyPlaylist(playlistData)} />
+                  <CustomButton label="Apply" onClick={() => handleApplyPlaylist(playlistData)} />
                   <CustomIconButton color="warning" onClick={() => handleDeletePlaylist(playlistId)}>
                     <DeleteIcon />
                   </CustomIconButton>
