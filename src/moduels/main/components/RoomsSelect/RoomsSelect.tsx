@@ -45,7 +45,7 @@ const RoomsSelect = () => {
                   <motion.li custom={index} animate={controls} className="listItem">
                     {room.id}
                     <span>
-                      {room._document.data.value.mapValue.fields.numberOfSongs.integerValue}
+                      {room && room._document.data.value.mapValue.fields?.numberOfSongs?.integerValue}
                       <MusicNoteIcon color="action" />
                     </span>
                   </motion.li>
