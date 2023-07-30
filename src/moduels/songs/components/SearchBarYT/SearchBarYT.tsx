@@ -27,19 +27,19 @@ const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
       const videoId = searchParams.get("v");
       setQuery(videoId ?? "");
     }
-    // autoComplete();
+    autoComplete();
   };
 
-  // const autoComplete = async () => {
-  //   if (query) {
-  //     const { data } = await axios.get(
-  //       `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${process.env.REACT_APP_YOUTUBE_AUTOCOMPLETE_KEY}`
-  //     );
-  //     setResults(data.items);
-  //   } else {
-  //     setResults([]);
-  //   }
-  // };
+  const autoComplete = async () => {
+    if (query) {
+      // const { data } = await axios.get(
+      //   `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=${process.env.REACT_APP_YOUTUBE_AUTOCOMPLETE_KEY}`
+      // );
+      // setResults(data.items);
+    } else {
+      setResults([]);
+    }
+  };
 
   const handleAddNewItem = async (result: SearchResult) => {
     const youTubeVideoId = result.id.videoId;
@@ -57,19 +57,18 @@ const SearchBarYT = ({ roomId, className }: Props): JSX.Element => {
       user,
       roomId,
       songURL: youTubeURL,
-      duration: youtubeDuration,
+      duration: 0o0,
       songTitle: youTubeVideoTitle,
       channelTitle: youtubeChannel,
     });
   };
 
   const getItemDuration = async (videoId: string) => {
-    const { data } = await axios.get(
-      `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${process.env.REACT_APP_YOUTUBE_AUTOCOMPLETE_KEY}`
-    );
-    const tempDuration = data.items[0].contentDetails.duration;
-
-    return formatDurationISO8601(tempDuration);
+    // const { data } = await axios.get(
+    //   `https://www.googleapis.com/youtube/v3/videos?id=${videoId}&part=contentDetails&key=${process.env.REACT_APP_YOUTUBE_AUTOCOMPLETE_KEY}`
+    // );
+    // const tempDuration = data.items[0].contentDetails.duration;
+    // return formatDurationISO8601(tempDuration);
   };
 
   return (
